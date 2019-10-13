@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorGrey"
+    tools:context=".activity.AddAbsentActivity">
+
+    <EditText
+        android:id="@+id/et_add_absent"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/add_absent_et_bg"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"/>
+
+    <Button
+        android:id="@+id/btn_add_absent"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:text="加入"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="100dp"
+        tools:ignore="HardcodedText" />
+
+</LinearLayout>

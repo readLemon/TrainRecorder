@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/colorGrey"
+    android:layout_height="match_parent"
+    tools:context=".activity.SignInActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_sign_in"
+        app:title="以下为缺训名单"
+        app:titleTextColor="@color/colorPrimaryDark"
+        app:navigationIcon="@drawable/common_ic_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@+id/tb_sign_in"
+        android:layout_marginTop="10dp"
+        android:id="@+id/rv_absent_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+</RelativeLayout>
