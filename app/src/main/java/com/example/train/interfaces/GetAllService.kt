@@ -12,6 +12,6 @@ import retrofit2.http.Query
  */
 interface GetAllService {
 
-    @GET("/getAlll")
-    fun getAll(@Query("name") name: String): Call<AbsentListBean>
+    @GET("getAll")
+    fun getAll(): Call<AbsentListBean>
 }

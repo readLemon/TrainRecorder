@@ -1,6 +1,5 @@
 package com.example.train.interfaces
 
-import com.example.train.Bean.AbsentBean
 import retrofit2.Call
 import retrofit2.http.*
 

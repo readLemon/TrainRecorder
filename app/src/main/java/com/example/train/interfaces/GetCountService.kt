@@ -7,6 +7,7 @@ import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 
 /**
+ * 返回一个人的训练记录数据
  * Created by chenyang
  * on 19-10-10
  */

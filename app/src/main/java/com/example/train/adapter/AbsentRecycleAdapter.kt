@@ -1,33 +1,31 @@
 package com.example.train.adapter
 
 import android.content.Context
-import android.widget.AdapterView
-import android.widget.Button
-import com.example.train.Bean.AbsentBean
+import com.example.train.Bean.AbsentListBean
 import com.example.train.R
-import com.example.train.interfaces.OnRecycleItemClickedListener
 import kotlinx.android.synthetic.main.recycle_absent_item.view.*
-import java.security.AllPermission
 
 /**
  * Created by chenyang
  * on 19-9-29 上午10:15
  */
-class AbsentRecycleAdapter(private val date: List<AbsentBean>, context: Context): BaseRecycleAdapter<AbsentBean>(date) {
+class AbsentRecycleAdapter(private val date: List<AbsentListBean.Data>, override val context: Context):
+    BaseRecycleAdapter<AbsentListBean.Data>(date) {
 
 
     override val layoutId: Int
         get() = R.layout.recycle_absent_item
-    override val context: Context
-        get() = context
+//    override val context: Context
+//        get() = mcontext
 
 
 
-    override fun creatHolder(holer: BaseViewHolder, t: AbsentBean) {
+
+    override fun creatHolder(holer: BaseViewHolder, t: AbsentListBean.Data) {
 
         val view = holer.itemView
         view.tv_absent_name.text = t.name
-        view.tv_absent_num.text = t.num
+        view.tv_absent_num.text = t.absent.toString()
 
     }
 

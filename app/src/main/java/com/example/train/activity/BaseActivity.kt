@@ -9,7 +9,7 @@ import androidx.appcompat.widget.Toolbar
 import com.example.train.R
 import kotlinx.android.synthetic.main.my_toolbar.*
 
-class BaseActivity : AppCompatActivity() {
+open class BaseActivity : AppCompatActivity() {
 
     val my_toolbar
     get() = toolbar

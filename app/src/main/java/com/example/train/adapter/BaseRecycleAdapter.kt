@@ -16,7 +16,7 @@ abstract class BaseRecycleAdapter<T> (val data: List<T>) : RecyclerView.Adapter<
 
     internal abstract val layoutId: Int
     internal abstract val context: Context
-    var listener: OnRecycleItemClickedListener ?= null
+//    var listener: OnRecycleItemClickedListener ?= null
 
 
 
@@ -28,7 +28,7 @@ abstract class BaseRecycleAdapter<T> (val data: List<T>) : RecyclerView.Adapter<
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         creatHolder(holder, data.get(position))
-        listener!!.onItemCliked()
+//        listener!!.onItemCliked()
     }
 
     override fun getItemCount(): Int {
@@ -42,8 +42,8 @@ abstract class BaseRecycleAdapter<T> (val data: List<T>) : RecyclerView.Adapter<
 
 
     internal abstract fun creatHolder(holer: BaseViewHolder, t: T)
-
-    fun setOnrecycleItemClikedListener(listener: OnRecycleItemClickedListener){
-        this.listener = listener
-    }
+//
+//    fun setOnrecycleItemClikedListener(listener: OnRecycleItemClickedListener){
+//        this.listener = listener
+//    }
 }
