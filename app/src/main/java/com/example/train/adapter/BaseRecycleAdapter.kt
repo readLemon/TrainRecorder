@@ -1,6 +1,7 @@
 package com.example.train.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +17,8 @@ abstract class BaseRecycleAdapter<T> (val data: List<T>) : RecyclerView.Adapter<
 
     internal abstract val layoutId: Int
     internal abstract val context: Context
-//    var listener: OnRecycleItemClickedListener ?= null
+
+    var listener: OnRecycleItemClickedListener ?= null
 
 
 
@@ -28,7 +30,14 @@ abstract class BaseRecycleAdapter<T> (val data: List<T>) : RecyclerView.Adapter<
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         creatHolder(holder, data.get(position))
-//        listener!!.onItemCliked()
+        Log.d("********","Listrner")
+            holder.itemView.setOnClickListener(object :View.OnClickListener{
+                override fun onClick(v: View?) {
+                    if (listener != null){
+                        listener!!.onItemCliked()
+                    }
+                }
+            })
     }
 
     override fun getItemCount(): Int {
@@ -42,8 +51,10 @@ abstract class BaseRecycleAdapter<T> (val data: List<T>) : RecyclerView.Adapter<
 
 
     internal abstract fun creatHolder(holer: BaseViewHolder, t: T)
-//
-//    fun setOnrecycleItemClikedListener(listener: OnRecycleItemClickedListener){
-//        this.listener = listener
-//    }
+
+    fun setOnrecycleItemClikedListener(listener: OnRecycleItemClickedListener){
+        Log.d("********","setListrner")
+
+        this.listener = listener
+    }
 }

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_01"
+        android:layout_marginTop="10dp"
+        android:text="日期:"
+        android:textSize="15sp"
+        android:layout_marginStart="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tv_dialog_absent_date"
+        android:layout_toEndOf="@+id/tv_01"
+        android:layout_marginTop="10dp"
+        android:text="2019年10月19号"
+        android:textSize="15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/tv_01"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tv_dialog_absent_reason"
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/tv_01"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="请假原因:"
+        android:textSize="15sp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+
+        android:layout_toEndOf="@+id/tv_dialog_absent_reason"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/tv_01"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:text="XXXXXXXXXXXXXXXXXXX"
+        android:textSize="15sp"
+        tools:ignore="HardcodedText"
+        android:layout_toRightOf="@+id/tv_dialog_absent_reason"
+        android:layout_marginRight="20dp" />
+
+</RelativeLayout>

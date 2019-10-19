@@ -9,14 +9,47 @@
     android:background="@color/colorGrey"
     tools:context=".activity.AddAbsentActivity">
 
+    <TextView
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:layout_marginStart="20dp"
+        android:text="缺勤人员:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        tools:ignore="HardcodedText" />
+
     <EditText
-        android:id="@+id/et_add_absent"
+        android:id="@+id/et_add_absent_name"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:hint="   请输入缺勤人员名字"
         android:background="@drawable/add_absent_et_bg"
-        android:layout_marginTop="50dp"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"/>
+        android:layout_marginEnd="20dp"
+        tools:ignore="HardcodedText"
+        android:importantForAutofill="no" />
+    
+    <TextView
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="20dp"
+        android:text="缺勤原因"
+        android:textSize="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="HardcodedText,RtlCompat" />
+
+    <EditText
+        android:id="@+id/et_add_absent_reason"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="   请输入缺勤原因"
+        android:background="@drawable/add_absent_et_bg"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/btn_add_absent"

@@ -9,16 +9,12 @@ import kotlinx.android.synthetic.main.recycle_absent_item.view.*
  * Created by chenyang
  * on 19-9-29 上午10:15
  */
-class AbsentRecycleAdapter(private val date: List<AbsentListBean.Data>, override val context: Context):
-    BaseRecycleAdapter<AbsentListBean.Data>(date) {
+class AbsentRecycleAdapter(private val dataList: List<AbsentListBean.Data>, override val context: Context):
+    BaseRecycleAdapter<AbsentListBean.Data>(dataList) {
 
 
     override val layoutId: Int
         get() = R.layout.recycle_absent_item
-//    override val context: Context
-//        get() = mcontext
-
-
 
 
     override fun creatHolder(holer: BaseViewHolder, t: AbsentListBean.Data) {
