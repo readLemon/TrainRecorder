@@ -1,7 +1,6 @@
 package com.example.train.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.example.train.R
@@ -21,6 +20,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     private fun initView() {
         btn_goto_add_absent_activity.setOnClickListener(this)
         btn_goto_check_absent_activity.setOnClickListener(this)
+        btn_goto_add_teamCount_activity.setOnClickListener(this)
     }
 
 
@@ -28,7 +28,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
         when(v.id) {
             R.id.btn_goto_add_absent_activity -> {
-                val intent = Intent(this, AddAbsentActivity::class.java)
+                val intent = Intent(this, AddLeaveActivity::class.java)
                 startActivity(intent)
             }
 
@@ -36,6 +36,13 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                 val intent = Intent(this, CheckAbsentActivity::class.java)
                 startActivity(intent)
             }
+
+            R.id.btn_goto_add_teamCount_activity -> {
+                val intent = Intent(this, AddTeamCountActivity::class.java)
+                startActivity(intent)
+            }
+
+
         }
 
     }

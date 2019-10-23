@@ -2,18 +2,18 @@ package com.example.train.Bean
 
 /**
  * Created by chenyang
- * on 19-10-11
+ * on 19-10-23
  */
-data class AbsentListBean(
+data class TeamCountBean(
     val `data`: List<Data>,
     val info: String,
     val status: Int
-) {
+){
 
     data class Data(
-        val absent: Int,
         val check_count: Int,
         val id: Int,
-        val name: String
+        val team_name: String
     )
+
 }

@@ -2,8 +2,14 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="10dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    android:background="@drawable/personal_absent_recycle_bg"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:layout_marginLeft="10dp">
 
     <TextView
         android:id="@+id/tv_01"
@@ -28,7 +34,7 @@
         tools:ignore="HardcodedText" />
 
     <TextView
-        android:id="@+id/tv_dialog_absent_reason"
+        android:id="@+id/tv_02"
         android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
         android:layout_below="@+id/tv_01"
@@ -40,8 +46,9 @@
         tools:ignore="HardcodedText" />
 
     <TextView
+        android:id="@+id/tv_dialog_absent_reason"
 
-        android:layout_toEndOf="@+id/tv_dialog_absent_reason"
+        android:layout_toEndOf="@+id/tv_02"
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_below="@+id/tv_01"
@@ -50,7 +57,36 @@
         android:text="XXXXXXXXXXXXXXXXXXX"
         android:textSize="15sp"
         tools:ignore="HardcodedText"
-        android:layout_toRightOf="@+id/tv_dialog_absent_reason"
+        android:layout_toRightOf="@+id/tv_02"
         android:layout_marginRight="20dp" />
+
+    <TextView
+        android:id="@+id/tv_03"
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/tv_dialog_absent_reason"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="请假原因:"
+        android:textSize="15sp"
+        android:layout_marginBottom="10dp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/tv_dialog_absent_project"
+
+        android:layout_toEndOf="@+id/tv_03"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/tv_02"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:text="XXXXXXXXXXXXXXXXXXX"
+        android:textSize="15sp"
+        tools:ignore="HardcodedText"
+        android:layout_toRightOf="@+id/tv_03"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"/>
 
 </RelativeLayout>

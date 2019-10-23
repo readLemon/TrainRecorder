@@ -23,6 +23,13 @@
         android:layout_height="wrap_content"
         tools:ignore="HardcodedText" />
 
+    <Button
+        android:id="@+id/btn_goto_add_teamCount_activity"
+        android:text="增加团队训练次数"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="HardcodedText" />
+
 
 
 </LinearLayout>

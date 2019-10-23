@@ -5,8 +5,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.train.Bean.TeamAbsentBean
 import com.example.train.interfaces.OnRecycleItemClickedListener
 
 /**
@@ -18,7 +18,7 @@ abstract class BaseRecycleAdapter<T> (val data: List<T>) : RecyclerView.Adapter<
     internal abstract val layoutId: Int
     internal abstract val context: Context
 
-    var listener: OnRecycleItemClickedListener ?= null
+    var listener: OnRecycleItemClickedListener<T> ?= null
 
 
 
@@ -34,7 +34,7 @@ abstract class BaseRecycleAdapter<T> (val data: List<T>) : RecyclerView.Adapter<
             holder.itemView.setOnClickListener(object :View.OnClickListener{
                 override fun onClick(v: View?) {
                     if (listener != null){
-                        listener!!.onItemCliked()
+                        listener!!.onItemCliked(data.get(position))
                     }
                 }
             })
@@ -44,7 +44,6 @@ abstract class BaseRecycleAdapter<T> (val data: List<T>) : RecyclerView.Adapter<
         return data.size
     }
 
-
     class BaseViewHolder (itemView: View): RecyclerView.ViewHolder(itemView) {
 
     }
@@ -52,7 +51,7 @@ abstract class BaseRecycleAdapter<T> (val data: List<T>) : RecyclerView.Adapter<
 
     internal abstract fun creatHolder(holer: BaseViewHolder, t: T)
 
-    fun setOnrecycleItemClikedListener(listener: OnRecycleItemClickedListener){
+    fun setOnrecycleItemClikedListener(listener: OnRecycleItemClickedListener<T>){
         Log.d("********","setListrner")
 
         this.listener = listener

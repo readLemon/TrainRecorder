@@ -1,5 +1,6 @@
 package com.example.train.interfaces
 
+import com.example.train.Bean.TeamCountBean
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -10,10 +11,10 @@ import retrofit2.http.POST
  * Created by chenyang
  * on 19-10-15
  */
-interface AddTeamTrainCountService {
+interface AddTeamCountService {
 
     @FormUrlEncoded
-    @POST("/addTeamTrainCount")
-    fun addTrainCount(@Field("teamName") teamName: String): Call<String>
+    @POST("/addTeamCount")
+    fun addTrainCount(@Field("name") teamName: String): Call<String>
 
 }

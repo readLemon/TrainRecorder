@@ -1,9 +1,8 @@
 package com.example.train.interfaces
 
-import com.example.train.Bean.AbsentListBean
+import com.example.train.Bean.TeamAbsentBean
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Query
 
 /**
  * 得到缺勤的所有的人员名单
@@ -13,5 +12,5 @@ import retrofit2.http.Query
 interface GetAllService {
 
     @GET("getAll")
-    fun getAll(): Call<AbsentListBean>
+    fun getAll(): Call<TeamAbsentBean>
 }
