@@ -21,22 +21,22 @@ import com.example.train.viewmodel.CheckAbsentVM
 import kotlinx.android.synthetic.main.activity_check_absent.*
 import retrofit2.Response
 
-class CheckAbsentActivity : AppCompatActivity() {
+class CheckAbsentActivity : BaseActivity() {
 
     private lateinit var currentModel: TeamAbsentModel.Data
     private lateinit var checkAbsentViewModel: CheckAbsentVM
     private val teamAbsentList = ArrayList<TeamAbsentModel.Data>()
     private val personalAbsentList = ArrayList<PersonalAbsentModel.Leave>()
+    override val contentVieId: Int
+        get() = R.layout.activity_check_absent
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_check_absent)
+    override fun initView(savedInstanceState: Bundle?) {
         checkAbsentViewModel = ViewModelProviders.of(this).get(checkAbsentViewModel::class.java)
 
         initData()
         initView()
-
     }
+
 
     private fun initData() {
 

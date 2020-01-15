@@ -7,15 +7,14 @@ import com.example.train.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity(), View.OnClickListener {
+    override val contentVieId: Int
+        get() = R.layout.activity_main
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
+    override fun initView(savedInstanceState: Bundle?) {
         initView()
-
     }
+
 
     private fun initView() {
         btn_goto_add_absent_activity.setOnClickListener(this)

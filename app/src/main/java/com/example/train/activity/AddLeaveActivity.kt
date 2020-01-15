@@ -18,21 +18,19 @@ import com.example.train.util.hideKeyboard
 import kotlinx.android.synthetic.main.activity_add_leave.*
 import retrofit2.Response
 
-class AddLeaveActivity : AppCompatActivity() {
+class AddLeaveActivity : BaseActivity() {
 
 
     private var memberList = ArrayList<TeamMemberBean>()
+    override val contentVieId: Int
+        get() = R.layout.activity_add_leave
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_leave)
-
+    override fun initView(savedInstanceState: Bundle?) {
         initTeamMember()
 
         initView()
-
     }
+
 
     /**
      * 此方法用于初始化队内成员

@@ -4,20 +4,27 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.DrawableRes
+import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.DialogTitle
 import androidx.appcompat.widget.Toolbar
 import com.example.train.R
 import kotlinx.android.synthetic.main.my_toolbar.*
 
-open class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity() {
 
     val my_toolbar
     get() = toolbar
+    @get:LayoutRes
+    protected abstract val contentVieId: Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_base)
+        setContentView(contentVieId)
+
+        initView(savedInstanceState)
     }
+
+    protected open fun initView(savedInstanceState: Bundle?) {}
 
     protected fun Toolbar.init(title: String, @DrawableRes icon: Int = R.drawable.ic_arrow_back,
                                listener: View.OnClickListener ?= View.OnClickListener { finish() }) {

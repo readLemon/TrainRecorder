@@ -14,13 +14,14 @@ import com.mredrock.cyxbs.common.utils.LogUtils
 import kotlinx.android.synthetic.main.activity_add_team_count.*
 import retrofit2.Response
 
-class AddTeamCountActivity : AppCompatActivity() {
+class AddTeamCountActivity : BaseActivity() {
 
     private lateinit var addTeamCountViewModel: AddTeamCountVM
+    override val contentVieId: Int
+        get() = R.layout.activity_add_team_count
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_team_count)
+
+    override fun initView(savedInstanceState: Bundle?) {
         addTeamCountViewModel = ViewModelProviders.of(this).get(AddTeamCountVM::class.java)
 
         btn_add_team_count.setOnClickListener {
@@ -38,4 +39,5 @@ class AddTeamCountActivity : AppCompatActivity() {
             }
         }
     }
+
 }
