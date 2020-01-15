@@ -2,13 +2,9 @@ package com.example.train.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
-import com.example.train.Bean.PersonalAbsentBean
-import com.example.train.Bean.TeamAbsentBean
-import com.example.train.Bean.TeamMemberBean
+import com.example.train.model.TeamMemberBean
 import com.example.train.R
-import kotlinx.android.synthetic.main.recycle_personal_absent_item.view.*
 import kotlinx.android.synthetic.main.recycle_team_member_item.view.*
-import kotlin.math.log
 
 /**
  * Created by chenyang

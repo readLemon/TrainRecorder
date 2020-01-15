@@ -1,6 +1,5 @@
 package com.example.train.interfaces
 
-import com.example.train.Bean.TeamCountBean
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded

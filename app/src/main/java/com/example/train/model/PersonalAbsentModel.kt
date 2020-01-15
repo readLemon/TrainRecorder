@@ -1,11 +1,12 @@
-package com.example.train.Bean
+package com.example.train.model
 
 /**
+ * 个人的缺勤记录
  * Created by chenyang
  * on 19-10-19d
  */
 
-data class PersonalAbsentBean(
+data class PersonalAbsentModel(
     val absent: Int,
     val leave: List<Leave>,
     val leave_times: Int,

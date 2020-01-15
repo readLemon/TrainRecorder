@@ -1,6 +1,6 @@
 package com.example.train.interfaces
 
-import com.example.train.Bean.TeamCountBean
+import com.example.train.model.TeamCountModel
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -12,6 +12,6 @@ import retrofit2.http.*
 interface GetTeamCountService {
 
     @GET("getTeamCount")
-    fun getTeamCount(): Call<TeamCountBean>
+    fun getTeamCount(): Call<TeamCountModel>
 
 }

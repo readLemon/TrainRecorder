@@ -4,4 +4,7 @@
     <color name="colorPrimaryDark">#377375</color>
     <color name="colorAccent">#A8D8CD</color>
     <color name="colorGrey">#DDEFE3</color>
+
+<!--    主界面的颜色-->
+    <color name="activity_main_bg_color">#FFFFFF</color>
 </resources>

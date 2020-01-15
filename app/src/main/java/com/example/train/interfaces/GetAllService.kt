@@ -1,6 +1,6 @@
 package com.example.train.interfaces
 
-import com.example.train.Bean.TeamAbsentBean
+import com.example.train.model.TeamAbsentModel
 import retrofit2.Call
 import retrofit2.http.GET
 
@@ -12,5 +12,5 @@ import retrofit2.http.GET
 interface GetAllService {
 
     @GET("getAll")
-    fun getAll(): Call<TeamAbsentBean>
+    fun getAll(): Call<TeamAbsentModel>
 }

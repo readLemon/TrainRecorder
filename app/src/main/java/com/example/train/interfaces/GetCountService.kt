@@ -1,6 +1,6 @@
 package com.example.train.interfaces
 
-import com.example.train.Bean.PersonalAbsentBean
+import com.example.train.model.PersonalAbsentModel
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -15,6 +15,6 @@ interface GetCountService {
 
     @FormUrlEncoded
     @POST("/getCount")
-    fun getCount(@Field("name") name: String): Call<PersonalAbsentBean>
+    fun getCount(@Field("name") name: String): Call<PersonalAbsentModel>
 
 }

@@ -2,14 +2,13 @@ package com.example.train.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.train.Bean.TeamMemberBean
+import com.example.train.model.TeamMemberBean
 import com.example.train.R
 import com.example.train.adapter.TeamMemberRecycleAdapter
 import com.example.train.interfaces.OnInternetCallback

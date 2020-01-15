@@ -1,10 +1,10 @@
-package com.example.train.Bean
+package com.example.train.model
 
 /**
  * Created by chenyang
  * on 19-10-23
  */
-data class TeamCountBean(
+data class TeamCountModel(
     val `data`: List<Data>,
     val info: String,
     val status: Int

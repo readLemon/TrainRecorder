@@ -1,9 +1,9 @@
 package com.example.train.retrofit
 
 import android.util.Log
-import com.example.train.Bean.TeamAbsentBean
-import com.example.train.Bean.PersonalAbsentBean
-import com.example.train.Bean.TeamCountBean
+import com.example.train.model.TeamAbsentModel
+import com.example.train.model.PersonalAbsentModel
+import com.example.train.model.TeamCountModel
 import com.example.train.interfaces.*
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
@@ -48,7 +48,7 @@ public fun addAUser(name: String, callback: OnInternetCallback<String>) {
  * 得到个人缺勤的具体信息
  * POST
  */
-public fun getCount(name: String, callback: OnInternetCallback<PersonalAbsentBean>) {
+public fun getCount(name: String, callback: OnInternetCallback<PersonalAbsentModel>) {
     val retrofit = baseRetrofit
         .addConverterFactory(GsonConverterFactory.create())
         .build()
@@ -56,13 +56,13 @@ public fun getCount(name: String, callback: OnInternetCallback<PersonalAbsentBea
     val getCountService = retrofit.create(GetCountService::class.java)
     val request = getCountService.getCount(name)
 
-    request.enqueue(object : Callback<PersonalAbsentBean> {
-        override fun onFailure(call: Call<PersonalAbsentBean>, t: Throwable) {
+    request.enqueue(object : Callback<PersonalAbsentModel> {
+        override fun onFailure(call: Call<PersonalAbsentModel>, t: Throwable) {
 
             callback.onFailed()
         }
 
-        override fun onResponse(call: Call<PersonalAbsentBean>, response: Response<PersonalAbsentBean>) {
+        override fun onResponse(call: Call<PersonalAbsentModel>, response: Response<PersonalAbsentModel>) {
             Log.d("getCount请求成功", "***" + response.body()!!.name)
             callback.onSuccessful(response)
         }
@@ -76,7 +76,7 @@ public fun getCount(name: String, callback: OnInternetCallback<PersonalAbsentBea
  * 得到所有的缺勤人员信息
  * Get
  */
-public fun getAll(callback: OnInternetCallback<TeamAbsentBean>) {
+ fun getAll(callback: OnInternetCallback<TeamAbsentModel>) {
 
     val retrofit = baseRetrofit
         .addConverterFactory(GsonConverterFactory.create())
@@ -85,13 +85,13 @@ public fun getAll(callback: OnInternetCallback<TeamAbsentBean>) {
     val getAllService = retrofit.create(GetAllService::class.java)
     val request = getAllService.getAll()
 
-    request.enqueue(object :Callback<TeamAbsentBean>{
-        override fun onFailure(call: Call<TeamAbsentBean>, t: Throwable) {
+    request.enqueue(object :Callback<TeamAbsentModel>{
+        override fun onFailure(call: Call<TeamAbsentModel>, t: Throwable) {
             callback.onFailed()
         }
 
-        override fun onResponse(call: Call<TeamAbsentBean>, response: Response<TeamAbsentBean>) {
-            val bean = response.body() as TeamAbsentBean
+        override fun onResponse(call: Call<TeamAbsentModel>, response: Response<TeamAbsentModel>) {
+            val bean = response.body() as TeamAbsentModel
             Log.d("getAll请求成功","***"+bean.info)
             callback.onSuccessful(response)
         }
@@ -165,7 +165,7 @@ public fun addAbsent(postMap: Map<String, String>, callback: OnInternetCallback<
  * 得到全队的训练次数
  * POST
  */
-public fun getTeamCount(callback: OnInternetCallback<TeamCountBean>) {
+public fun getTeamCount(callback: OnInternetCallback<TeamCountModel>) {
 
     val retrofit = baseRetrofit
         .addConverterFactory(GsonConverterFactory.create())
@@ -174,13 +174,13 @@ public fun getTeamCount(callback: OnInternetCallback<TeamCountBean>) {
     val getTeamCountService = retrofit.create<GetTeamCountService>(GetTeamCountService::class.java)
     val request = getTeamCountService.getTeamCount()
 
-    request.enqueue(object : Callback<TeamCountBean> {
-        override fun onFailure(call: Call<TeamCountBean>, t: Throwable) {
+    request.enqueue(object : Callback<TeamCountModel> {
+        override fun onFailure(call: Call<TeamCountModel>, t: Throwable) {
             Log.e("getTeamTraincount请求失败", "***" + t)
             callback.onFailed()
         }
 
-        override fun onResponse(call: Call<TeamCountBean>, response: Response<TeamCountBean>) {
+        override fun onResponse(call: Call<TeamCountModel>, response: Response<TeamCountModel>) {
             Log.d("getTeamTraincount请求成功", "***" + response.body())
             callback.onSuccessful(response)
         }

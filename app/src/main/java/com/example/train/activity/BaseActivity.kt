@@ -19,7 +19,7 @@ open class BaseActivity : AppCompatActivity() {
         setContentView(R.layout.activity_base)
     }
 
-    protected fun Toolbar.init(title: String, @DrawableRes icon: Int = R.drawable.back_icon,
+    protected fun Toolbar.init(title: String, @DrawableRes icon: Int = R.drawable.ic_arrow_back,
                                listener: View.OnClickListener ?= View.OnClickListener { finish() }) {
 
         this.title = title

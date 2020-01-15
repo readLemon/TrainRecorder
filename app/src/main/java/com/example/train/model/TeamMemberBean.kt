@@ -1,6 +1,7 @@
-package com.example.train.Bean
+package com.example.train.model
 
 /**
+ * 团队成员名单
  * Created by chenyang
  * on 19-10-23
  */

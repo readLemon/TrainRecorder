@@ -1,10 +1,11 @@
-package com.example.train.Bean
+package com.example.train.model
 
 /**
+ * 团队的缺勤名单
  * Created by chenyang
  * on 19-10-22
  */
-data class TeamAbsentBean(
+data class TeamAbsentModel(
     val `data`: List<Data>,
     val info: String,
     val status: Int
