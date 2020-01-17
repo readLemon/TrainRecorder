@@ -1,58 +1,74 @@
 package com.example.train.repository
 
+import android.annotation.SuppressLint
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
-import com.example.train.model.TeamAbsentModel
-import com.example.train.interfaces.OnInternetCallback
 import com.example.train.model.PersonalAbsentModel
+import com.example.train.model.TeamAbsentModel
 import com.example.train.model.TeamCountModel
-import com.example.train.retrofit.getAll
-import com.example.train.retrofit.getCount
-import retrofit2.Response
+import com.example.train.retrofit.loader.PersonalLoader
+import com.example.train.retrofit.loader.TeamLoader
+import com.mredrock.cyxbs.common.utils.LogUtils
+import io.reactivex.functions.Consumer
 
+@SuppressLint("CheckResult")
 class CheckAbsentRepository(application: Application) {
 
-    val allTeamMemberAbsentLive = MutableLiveData<TeamAbsentModel>()
-    val teamCountLive = MutableLiveData<TeamCountModel>()
+    val allTeamMemberAbsentLive = MutableLiveData<List<TeamAbsentModel.Data>>()
+    val teamCountLive = MutableLiveData<List<TeamCountModel.Data>>()
     val personalAbsentLive = MutableLiveData<PersonalAbsentModel>()
+    private val mTeamLoader: TeamLoader
+    private val mPersonalLoader: PersonalLoader
 
+    init {
+        mTeamLoader = TeamLoader()
+        mPersonalLoader = PersonalLoader()
+    }
     fun getTeamAbsentData() {
-        getAll(object : OnInternetCallback<TeamAbsentModel> {
-            override fun onFailed() {
+        mTeamLoader.getTeamAbsentList().subscribe(
+            object : Consumer<List<TeamAbsentModel.Data>> {
+                override fun accept(t: List<TeamAbsentModel.Data>) {
+                    allTeamMemberAbsentLive.value = t
+                }
+            },
+            object : Consumer<Throwable> {
+                override fun accept(t: Throwable) {
+                    LogUtils.e("CheckAbsentRepository", t.message.toString())
+                }
+            })
 
-            }
-
-            override fun onSuccessful(response: Response<TeamAbsentModel>) {
-                allTeamMemberAbsentLive.value = response.body()
-            }
-
-        })
     }
 
-    fun getTeamCount(){
+    fun getTeamCount() {
         //团队的训练次数
-        com.example.train.retrofit.getTeamCount(object : OnInternetCallback<TeamCountModel> {
-            override fun onFailed() {
 
+        mTeamLoader.getTeamTrainCount().subscribe(object : Consumer<List<TeamCountModel.Data>> {
+            override fun accept(t: List<TeamCountModel.Data>) {
+                teamCountLive.value = t
             }
+        },
+            object : Consumer<Throwable> {
+                override fun accept(t: Throwable) {
+                    LogUtils.e("CheckAbsentRepository", t.message.toString())
+                }
 
-            override fun onSuccessful(response: Response<TeamCountModel>) {
-                teamCountLive.value = response.body()
-            }
+            })
 
-        })
+
     }
 
     fun getPersonalAbsent(name: String) {
-        getCount(name, object : OnInternetCallback<PersonalAbsentModel>{
-            override fun onFailed() {
+        mPersonalLoader.getAbsentList(name).subscribe(object : Consumer<PersonalAbsentModel> {
+            override fun accept(t: PersonalAbsentModel) {
+                personalAbsentLive.value = t
             }
+        },
+            object : Consumer<Throwable> {
+                override fun accept(t: Throwable) {
+                    LogUtils.e("CheckAbsentRepository", t.message.toString())
+                }
 
-            override fun onSuccessful(response: Response<PersonalAbsentModel>) {
-                personalAbsentLive.value = response.body()
-            }
-
-        })
+            })
     }
 
 

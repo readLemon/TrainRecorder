@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.train.interfaces.OnRecycleItemClickedListener
+import com.example.train.retrofit.interfaces.OnRecycleItemClickedListener
 
 /**
  * Created by chenyang

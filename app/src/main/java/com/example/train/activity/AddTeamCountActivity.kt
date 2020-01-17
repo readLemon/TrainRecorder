@@ -1,18 +1,10 @@
 package com.example.train.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
 import com.example.train.R
-import com.example.train.interfaces.OnInternetCallback
-import com.example.train.retrofit.addAUser
-import com.example.train.retrofit.addTeamCount
 import com.example.train.viewmodel.AddTeamCountVM
-import com.mredrock.cyxbs.common.utils.LogUtils
 import kotlinx.android.synthetic.main.activity_add_team_count.*
-import retrofit2.Response
 
 class AddTeamCountActivity : BaseActivity() {
 

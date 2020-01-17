@@ -10,26 +10,26 @@ import com.example.train.repository.CheckAbsentRepository
 
 class CheckAbsentVM(application: Application) : ViewModel() {
 
-    private val repository: CheckAbsentRepository
+    private val mCheckAbsentRepo: CheckAbsentRepository
 
-    val teamAbsentData: MutableLiveData<TeamAbsentModel>
-    val teamCount: MutableLiveData<TeamCountModel>
+    val teamAbsentData: MutableLiveData<List<TeamAbsentModel.Data>>
+    val teamCount: MutableLiveData<List<TeamCountModel.Data>>
     val personalAbsent: MutableLiveData<PersonalAbsentModel>
 
     init {
-        repository = CheckAbsentRepository(application)
-        teamAbsentData = repository.allTeamMemberAbsentLive
-        teamCount = repository.teamCountLive
-        personalAbsent = repository.personalAbsentLive
+        mCheckAbsentRepo = CheckAbsentRepository(application)
+        teamAbsentData = mCheckAbsentRepo.allTeamMemberAbsentLive
+        teamCount = mCheckAbsentRepo.teamCountLive
+        personalAbsent = mCheckAbsentRepo.personalAbsentLive
     }
 
     fun requestData() {
-        repository.getTeamAbsentData()
-        repository.getTeamCount()
+        mCheckAbsentRepo.getTeamAbsentData()
+        mCheckAbsentRepo.getTeamCount()
     }
 
     fun requestPersonalData(name: String) {
-        repository.getPersonalAbsent(name)
+        mCheckAbsentRepo.getPersonalAbsent(name)
     }
 
 

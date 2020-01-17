@@ -1,25 +1,20 @@
 package com.example.train.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.train.model.PersonalAbsentModel
-import com.example.train.model.TeamAbsentModel
 import com.example.train.R
 import com.example.train.adapter.LeaveRecycleAdapter
 import com.example.train.adapter.PersonalRecycleAdapter
-import com.example.train.interfaces.OnInternetCallback
-import com.example.train.interfaces.OnRecycleItemClickedListener
-import com.example.train.retrofit.getCount
+import com.example.train.retrofit.interfaces.OnRecycleItemClickedListener
+import com.example.train.model.PersonalAbsentModel
+import com.example.train.model.TeamAbsentModel
 import com.example.train.viewmodel.CheckAbsentVM
 import kotlinx.android.synthetic.main.activity_check_absent.*
-import retrofit2.Response
 
 class CheckAbsentActivity : BaseActivity() {
 
@@ -32,11 +27,9 @@ class CheckAbsentActivity : BaseActivity() {
 
     override fun initView(savedInstanceState: Bundle?) {
         checkAbsentViewModel = ViewModelProviders.of(this).get(checkAbsentViewModel::class.java)
-
         initData()
         initView()
     }
-
 
     private fun initData() {
 
@@ -47,12 +40,12 @@ class CheckAbsentActivity : BaseActivity() {
                 teamAbsentList.apply {
                     sortBy { it.absent }
                     clear()
-                    addAll(it.data.filter { it.absent != 0 })
+                    addAll(it.filter { it.absent != 0 })
                 }
             })
 
             teamCount.observe(this@CheckAbsentActivity, Observer {
-                tv_team_count.text = it.data[0].check_count.toString()
+                tv_team_count.text = it.get(0).check_count.toString()
             })
 
             personalAbsent.observe(this@CheckAbsentActivity, Observer {
@@ -67,13 +60,13 @@ class CheckAbsentActivity : BaseActivity() {
         tb_sign_in.setNavigationOnClickListener { finish() }
         val adapter = LeaveRecycleAdapter<TeamAbsentModel.Data>(teamAbsentList, this)
 
-        rv_absent_list.layoutManager = LinearLayoutManager(this) as LinearLayoutManager
+        rv_absent_list.layoutManager = LinearLayoutManager(this)
         rv_absent_list.adapter = adapter
 
         adapter.setOnrecycleItemClikedListener(object :
             OnRecycleItemClickedListener<TeamAbsentModel.Data> {
-            override fun onItemCliked(model: TeamAbsentModel.Data) {
-                currentModel = model
+            override fun onItemCliked(bean: TeamAbsentModel.Data) {
+                currentModel = bean
                 setPersonalAbsentDialog()
             }
         })

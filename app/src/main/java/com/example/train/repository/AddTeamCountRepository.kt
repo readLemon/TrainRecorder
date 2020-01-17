@@ -1,46 +1,51 @@
 package com.example.train.repository
 
+import android.annotation.SuppressLint
 import android.app.Application
-import android.widget.Toast
-import com.example.train.interfaces.OnInternetCallback
-import com.example.train.retrofit.addAUser
+import com.example.train.model.BaseResponse
+import com.example.train.retrofit.loader.TeamLoader
 import com.mredrock.cyxbs.common.utils.LogUtils
-import retrofit2.Response
+import io.reactivex.functions.Consumer
 
+@SuppressLint("CheckResult")
 class AddTeamCountRepository(application: Application) {
 
+    private val mTeamLoader: TeamLoader
 
+    init {
+        mTeamLoader = TeamLoader()
+    }
 
     fun addTeamCount() {
-        com.example.train.retrofit.addTeamCount("SCIE", object : OnInternetCallback<String> {
-            override fun onFailed() {
 
 
-            }
+        mTeamLoader.requestAddTeamTrainCount("SCIE").subscribe(
+            object : Consumer<BaseResponse> {
+                override fun accept(t: BaseResponse) {
 
-            override fun onSuccessful(response: Response<String>) {
-
-                LogUtils.d("****", "" + response.body())
-
-            }
-
-        })
+                }
+            },
+            object : Consumer<Throwable> {
+                override fun accept(t: Throwable) {
+                    LogUtils.e("CheckAbsentRepository", t.message.toString())
+                }
+            })
     }
 
     fun addUser(memberName: String) {
+        mTeamLoader.requestAddUser(memberName).subscribe(
 
-        addAUser(memberName, object :OnInternetCallback<String> {
-            override fun onFailed() {
+            object : Consumer<BaseResponse> {
+                override fun accept(t: BaseResponse) {
 
-            }
-
-            override fun onSuccessful(response: Response<String>) {
-
-            }
-
-        })
+                }
+            },
+            object : Consumer<Throwable> {
+                override fun accept(t: Throwable) {
+                    LogUtils.e("CheckAbsentRepository", t.message.toString())
+                }
+            })
     }
-
 
 
 }

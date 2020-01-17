@@ -6,18 +6,18 @@ import com.example.train.repository.AddTeamCountRepository
 
 class AddTeamCountVM(application: Application): ViewModel() {
 
-    val addTeamCountRepository: AddTeamCountRepository
+    private val mAddTeamCountRepo: AddTeamCountRepository
 
     init {
-        addTeamCountRepository = AddTeamCountRepository(application)
+        mAddTeamCountRepo = AddTeamCountRepository(application)
     }
 
     fun requestAddTeamCount() {
-        addTeamCountRepository.addTeamCount()
+        mAddTeamCountRepo.addTeamCount()
     }
 
     fun requestAddUser(username: String){
-        addTeamCountRepository.addUser(username)
+        mAddTeamCountRepo.addUser(username)
     }
 
 
