@@ -1,8 +1,8 @@
-package com.example.train.retrofit.loader
+package com.example.train.network.loader
 
 import com.example.train.model.BaseResponse
 import com.example.train.model.PersonalAbsentModel
-import com.example.train.retrofit.interfaces.PersonalService
+import com.example.train.network.interfaces.PersonalService
 import io.reactivex.Observable
 
 /**

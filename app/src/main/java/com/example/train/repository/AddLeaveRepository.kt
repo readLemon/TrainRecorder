@@ -2,7 +2,7 @@ package com.example.train.repository
 
 import android.annotation.SuppressLint
 import com.example.train.model.BaseResponse
-import com.example.train.retrofit.loader.PersonalLoader
+import com.example.train.network.loader.PersonalLoader
 import io.reactivex.functions.Consumer
 
 /**

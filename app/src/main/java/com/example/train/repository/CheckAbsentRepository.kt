@@ -6,8 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import com.example.train.model.PersonalAbsentModel
 import com.example.train.model.TeamAbsentModel
 import com.example.train.model.TeamCountModel
-import com.example.train.retrofit.loader.PersonalLoader
-import com.example.train.retrofit.loader.TeamLoader
+import com.example.train.network.loader.PersonalLoader
+import com.example.train.network.loader.TeamLoader
 import com.mredrock.cyxbs.common.utils.LogUtils
 import io.reactivex.functions.Consumer
 

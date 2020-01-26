@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.train.R
 import com.example.train.adapter.TeamMemberRecycleAdapter
 import com.example.train.model.TeamMemberBean
-import com.example.train.retrofit.interfaces.OnRecycleItemClickedListener
+import com.example.train.network.interfaces.OnRecycleItemClickedListener
 import com.example.train.util.hideKeyboard
 import com.example.train.viewmodel.AddLeaveVM
 import kotlinx.android.synthetic.main.activity_add_leave.*
@@ -50,14 +50,11 @@ class AddLeaveActivity : BaseActivity() {
             bean = TeamMemberBean(name)
             memberList.add(bean)
         }
-
-
     }
 
     private fun initView() {
 
         btn_add_absent.setOnClickListener {
-
             //按下发送以后，收起软键盘
             hideKeyboard(this)
 

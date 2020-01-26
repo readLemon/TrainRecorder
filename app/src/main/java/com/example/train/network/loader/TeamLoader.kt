@@ -1,10 +1,10 @@
-package com.example.train.retrofit.loader
+package com.example.train.network.loader
 
 
 import com.example.train.model.BaseResponse
 import com.example.train.model.TeamAbsentModel
 import com.example.train.model.TeamCountModel
-import com.example.train.retrofit.interfaces.TeamService
+import com.example.train.network.interfaces.TeamService
 import io.reactivex.Observable
 
 /**

@@ -1,4 +1,4 @@
-package com.example.train.retrofit
+package com.example.train.network
 
 import okhttp3.ResponseBody
 import retrofit2.Converter

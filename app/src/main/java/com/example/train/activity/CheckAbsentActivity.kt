@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.train.R
 import com.example.train.adapter.LeaveRecycleAdapter
 import com.example.train.adapter.PersonalRecycleAdapter
-import com.example.train.retrofit.interfaces.OnRecycleItemClickedListener
+import com.example.train.network.interfaces.OnRecycleItemClickedListener
 import com.example.train.model.PersonalAbsentModel
 import com.example.train.model.TeamAbsentModel
 import com.example.train.viewmodel.CheckAbsentVM

@@ -2,6 +2,7 @@ package com.example.train.weight
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.View
 import androidx.appcompat.widget.Toolbar
 
 /**
@@ -18,5 +19,6 @@ class MyToolbar: Toolbar {
         defStyleAttr
     )
 
+//    val ss  = View
 
 }

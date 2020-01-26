@@ -1,4 +1,4 @@
-package com.example.train.retrofit.interfaces
+package com.example.train.network.interfaces
 
 import com.example.train.model.BaseResponse
 import com.example.train.model.TeamAbsentModel

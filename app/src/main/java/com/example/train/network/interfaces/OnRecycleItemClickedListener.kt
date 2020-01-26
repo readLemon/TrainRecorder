@@ -1,4 +1,4 @@
-package com.example.train.retrofit.interfaces
+package com.example.train.network.interfaces
 
 /**
  * Created by chenyang

@@ -1,4 +1,4 @@
-package com.example.train.retrofit
+package com.example.train.network
 
 import com.example.train.config.ApiConfig
 import okhttp3.OkHttpClient

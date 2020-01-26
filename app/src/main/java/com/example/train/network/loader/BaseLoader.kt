@@ -1,6 +1,6 @@
-package com.example.train.retrofit.loader
+package com.example.train.network.loader
 
-import com.example.train.retrofit.RetrofitServiceManager
+import com.example.train.network.RetrofitServiceManager
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
