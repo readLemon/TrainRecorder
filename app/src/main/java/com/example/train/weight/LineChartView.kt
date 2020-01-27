@@ -44,9 +44,10 @@ class LineChartView : View {
         mPathPaint = Paint(Paint.ANTI_ALIAS_FLAG)
         mPathPaint.apply {
             style = Paint.Style.STROKE
-            strokeWidth = 20F
+            strokeWidth = 10F
             strokeCap = Paint.Cap.ROUND
             color = charPathColor
+            strokeJoin = Paint.Join.ROUND
         }
         mPaint = Paint(Paint.ANTI_ALIAS_FLAG)
         mPaint.textSize = textSize
@@ -54,6 +55,7 @@ class LineChartView : View {
         mPaint.strokeWidth = 2f
         mPaint.color = paintColor
         setBackgroundColor(backGroundColor)
+        setData()
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -81,7 +83,7 @@ class LineChartView : View {
         mWidth = width
         mHeight = height
 
-        setData()
+
         //画底下和顶上的线
         drawX(canvas)
 
