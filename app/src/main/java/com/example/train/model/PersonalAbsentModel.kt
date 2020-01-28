@@ -5,13 +5,12 @@ package com.example.train.model
  * Created by chenyang
  * on 19-10-19d
  */
-
 data class PersonalAbsentModel(
     val absent: Int,
     val leave: List<Leave>,
     val leave_times: Int,
     val name: String
-){
+) {
 
     data class Leave(
         val project: String,

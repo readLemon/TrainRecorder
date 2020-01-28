@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.train.R
 import com.example.train.adapter.TeamMemberRecycleAdapter
-import com.example.train.model.TeamMemberBean
+import com.example.train.model.TeamMemberModel
 import com.example.train.network.interfaces.OnRecycleItemClickedListener
 import com.example.train.util.hideKeyboard
 import com.example.train.viewmodel.AddLeaveVM
@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_add_leave.*
 class AddLeaveActivity : BaseActivity() {
 
 
-    private var memberList = ArrayList<TeamMemberBean>()
+    private var memberList = ArrayList<TeamMemberModel>()
     override val contentVieId: Int
         get() = R.layout.activity_add_leave
     private val addLeaveVM: AddLeaveVM
@@ -44,11 +44,11 @@ class AddLeaveActivity : BaseActivity() {
             "勾建松", "刘光炀", "李昊川", "李子龙", "雒泰", "潘立夫", "傅译平", "蒋正道", "陈阳",
             "罗彦钦", "乜云鹏", "向元弟", "王涛", "蒋英杰", "李俊", "张纪强", "卫卓凡", "董瑞钊", "周淋佳", "王海龙", "尹兴宸"
         )
-        var bean: TeamMemberBean
+        var model: TeamMemberModel
 
         for (name in names) {
-            bean = TeamMemberBean(name)
-            memberList.add(bean)
+            model = TeamMemberModel(name)
+            memberList.add(model)
         }
     }
 
@@ -91,11 +91,11 @@ class AddLeaveActivity : BaseActivity() {
             override fun onClick(v: View) {
 
                 val adapter =
-                    TeamMemberRecycleAdapter<TeamMemberBean>(memberList, this@AddLeaveActivity)
+                    TeamMemberRecycleAdapter<TeamMemberModel>(memberList, this@AddLeaveActivity)
                 adapter.setOnrecycleItemClikedListener(object :
-                    OnRecycleItemClickedListener<TeamMemberBean> {
-                    override fun onItemCliked(bean: TeamMemberBean) {
-                        tv_add_absent_name.text = bean.name
+                    OnRecycleItemClickedListener<TeamMemberModel> {
+                    override fun onItemCliked(model: TeamMemberModel) {
+                        tv_add_absent_name.text = model.name
                         dialog.dismiss()
                     }
                 })

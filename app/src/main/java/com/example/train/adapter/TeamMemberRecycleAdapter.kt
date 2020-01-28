@@ -2,7 +2,7 @@ package com.example.train.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
-import com.example.train.model.TeamMemberBean
+import com.example.train.model.TeamMemberModel
 import com.example.train.R
 import kotlinx.android.synthetic.main.recycle_team_member_item.view.*
 
@@ -20,7 +20,7 @@ class TeamMemberRecycleAdapter<T>(private val dataList: List<T>, override val co
     @SuppressLint("SetTextI18n")
     override fun creatHolder(holer: BaseViewHolder, t: T) {
         val view = holer.itemView
-        t as TeamMemberBean
+        t as TeamMemberModel
 
         view.tv_team_member_name.text = t.name
 
