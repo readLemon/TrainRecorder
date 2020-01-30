@@ -31,7 +31,6 @@ abstract class MemberDb : RoomDatabase() {
                     }
                 }
             }
-
             return instance
         }
     }

@@ -7,4 +7,7 @@
 
 <!--    主界面的颜色-->
     <color name="activity_main_bg_color">#FFFFFF</color>
+
+
+    <color name="rich_editor_text_color" >#616161</color>
 </resources>
