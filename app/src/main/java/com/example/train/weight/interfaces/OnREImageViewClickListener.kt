@@ -6,6 +6,6 @@ import com.example.train.weight.DataImageView
  * Created by chenyang
  * on 20-1-30
  */
-interface onREImageViewClickListener {
+interface OnREImageViewClickListener {
     fun onImageClick(v: DataImageView, imagePath: String)
 }

@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.TextUtils
@@ -16,12 +17,18 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.annotation.Nullable
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.example.train.R
 import com.example.train.util.DensityUtil
+import com.example.train.weight.interfaces.IRichEditorImageLoader
 import com.example.train.weight.interfaces.OnImageDeleteClickListener
-import com.example.train.weight.interfaces.onREImageViewClickListener
+import com.example.train.weight.interfaces.OnREImageViewClickListener
+import com.mredrock.cyxbs.common.utils.LogUtils
 import java.util.regex.Pattern
 
 /**
@@ -48,15 +55,19 @@ class RichEditor : ScrollView {
 
     companion object {
         val EDIT_PADDING = 10
+        val imageBottomMargin = 10 //图片的底边距
+
     }
 
     var textLightColor = Color.parseColor("#EE5C42")
+    var keywords = ""
+    var mImageClickListener: OnREImageViewClickListener? = null
+
 
     private val mKeyListener: OnKeyListener
     private var mOnImageDeleteClickListener: OnImageDeleteClickListener? = null
     private val mBtnListener: OnClickListener
     private var mFocusListener: OnFocusChangeListener? = null
-    private var mImageClickListener: onREImageViewClickListener? = null
 
     private var viewTagIndex = 1
     private val baseLayout: LinearLayout
@@ -68,7 +79,6 @@ class RichEditor : ScrollView {
     private var lastFocusEdit: EditText
     private var editNormalPadding = 0
     private var disappearingImageIndex = 0
-    private var keywords = ""
 
     private var reImageHeight: Int = 0
     private var reImageSpace: Int = 0
@@ -78,6 +88,7 @@ class RichEditor : ScrollView {
     private var reTextLineSpace = 8 //dp
 
     init {
+        initImageLoader()
         imagePaths = ArrayList()
         inflater = LayoutInflater.from(context)
         mTransitioner = LayoutTransition()
@@ -106,7 +117,7 @@ class RichEditor : ScrollView {
             override fun onClick(v: View) {
                 if (v is DataImageView) {
                     if (mImageClickListener != null) {
-                        (mImageClickListener as onREImageViewClickListener).onImageClick(
+                        (mImageClickListener as OnREImageViewClickListener).onImageClick(
                             v,
                             v.absolutePath
                         )
@@ -161,14 +172,23 @@ class RichEditor : ScrollView {
         } else {
             //如果光标已经顶在了editText的最中间，则需要分割字符串，分割成两个EditText，并在两个EditText中间插入图片
             //把光标前面的字符串保留，设置给当前获得焦点的EditText（此为分割出来的第一个EditText）
-            lastFocusEdit.setText(strBeforeCur);
+            lastFocusEdit.setText(strBeforeCur)
             //把光标后面的字符串放在新创建的EditText中（此为分割出来的第二个EditText）
-            addEditAtIndex(focusEditIndex + 1, strAfterCur);
+            addEditAtIndex(focusEditIndex + 1, strAfterCur)
             //在第二个EditText的位置插入一个空的EditText，以便连续插入多张图片时，有空间写文字，第二个EditText下移
-            addEditAtIndex(focusEditIndex + 1, "");
+            addEditAtIndex(focusEditIndex + 1, "")
             //在空的EditText的位置插入图片布局，空的EditText下移
-            addImageViewAtIndex(focusEditIndex + 1, imagePath);
+            addImageViewAtIndex(focusEditIndex + 1, imagePath)
         }
+        hideKeyBoard()
+    }
+
+    /**
+     * 隐藏小键盘
+     */
+    private fun hideKeyBoard() {
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(lastFocusEdit.windowToken, 0)
     }
 
     /**
@@ -180,6 +200,11 @@ class RichEditor : ScrollView {
         }
         imagePaths.add(imagePath)
         val imageLayout = createImageLayout()
+        val dataImageView = imageLayout.findViewById<DataImageView>(R.id.rich_edit_image_view)
+        dataImageView.absolutePath = imagePath
+        dataImageView.scaleType = ImageView.ScaleType.CENTER_CROP //裁剪剧中
+        RichEditorImageLoader.getSingleton()?.loadImage(dataImageView, imagePath, reImageHeight)
+        baseLayout.addView(imageLayout, index)
     }
 
     private fun createImageLayout(): RelativeLayout {
@@ -391,6 +416,91 @@ class RichEditor : ScrollView {
             setLineSpacing(reTextLineSpace.toFloat(), 1.0f)
         }
         return editView
+    }
+
+    private fun initImageLoader() {
+        Thread(object : Runnable {
+            override fun run() {
+                RichEditorImageLoader.getSingleton()
+                    ?.setImageLoader((object : IRichEditorImageLoader {
+                        override fun loadImage(
+                            imageView: ImageView,
+                            imagePath: String,
+                            imageHeight: Int
+                        ) {
+                            LogUtils.e("******imagePath*****", imagePath)
+                            if (imagePath.startsWith("http://")
+                                || imagePath.startsWith("https://")
+                            ) {
+                                Glide.with(context)
+                                    .asBitmap()
+                                    .load(imagePath)
+                                    .dontAnimate()
+                                    .into(object : CustomTarget<Bitmap>() {
+                                        override fun onLoadCleared(placeholder: Drawable?) {
+
+                                        }
+
+                                        override fun onResourceReady(
+                                            resource: Bitmap,
+                                            transition: Transition<in Bitmap>?
+                                        ) {
+                                            if (imageHeight > 0) {
+                                                val param = RelativeLayout.LayoutParams(
+                                                    LayoutParams.MATCH_PARENT, imageHeight
+                                                )
+                                                param.bottomMargin = imageBottomMargin
+                                                imageView.layoutParams = param
+                                                Glide.with(context)
+                                                    .asBitmap()
+                                                    .load(imagePath)
+                                                    .centerCrop()
+                                                    .placeholder(R.drawable.ic_rich_editor_image_view_load_fail)
+                                                    .error(R.drawable.ic_rich_editor_image_view_load_fail)
+                                                    .into(imageView)
+                                            } else {
+                                                Glide.with(context)
+                                                    .asBitmap()
+                                                    .load(imagePath)
+                                                    .centerCrop()
+                                                    .placeholder(R.drawable.ic_rich_editor_image_view_load_fail)
+                                                    .error(R.drawable.ic_rich_editor_image_view_load_fail)
+                                                    .into(TransformImageScale(imageView))
+                                            }
+                                        }
+
+                                    })
+                            } else {
+                                if (imageHeight > 0) {
+                                    val params = RelativeLayout.LayoutParams(
+                                        ViewGroup.LayoutParams.MATCH_PARENT,
+                                        imageHeight
+                                    )
+                                    params.bottomMargin = imageBottomMargin
+                                    imageView.layoutParams = params
+
+                                    Glide.with(context)
+                                        .asBitmap()
+                                        .load(imagePath)
+                                        .centerCrop()
+                                        .placeholder(R.drawable.ic_rich_editor_image_view_load_fail)
+                                        .error(R.drawable.ic_rich_editor_image_view_load_fail)
+                                        .into(imageView)
+                                } else {
+                                    Glide.with(context)
+                                        .asBitmap()
+                                        .load(imagePath)
+                                        .centerCrop()
+                                        .placeholder(R.drawable.ic_rich_editor_image_view_load_fail)
+                                        .error(R.drawable.ic_rich_editor_image_view_load_fail)
+                                        .into(TransformImageScale(imageView))
+                                }
+
+                            }
+                        }
+                    }))
+            }
+        }).start()
     }
 
     class EditData {
