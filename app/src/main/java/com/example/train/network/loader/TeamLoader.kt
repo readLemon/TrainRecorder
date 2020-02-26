@@ -1,10 +1,12 @@
 package com.example.train.network.loader
 
 
-import com.example.train.model.BaseResponse
-import com.example.train.model.TeamAbsentModel
-import com.example.train.model.TeamCountModel
-import com.example.train.network.interfaces.TeamService
+import com.example.train.bean.BaseResponse
+import com.example.train.bean.TeamAbsentBean
+import com.example.train.bean.TeamCountBean
+import com.example.train.network.JsonWrapperFunc
+import com.example.train.network.RetrofitServiceManager
+import com.example.train.network.service.TeamService
 import io.reactivex.Observable
 
 /**
@@ -12,39 +14,35 @@ import io.reactivex.Observable
  * Created by chenyang
  * on 20-1-17
  */
-class TeamLoader : BaseLoader<TeamService>() {
+class TeamLoader : BaseLoader() {
 
     override val clazz: Class<TeamService>
         get() = TeamService::class.java
 
-    fun getTeamTrainCount(): Observable<List<TeamCountModel.Data>> {
-        return observe(service.getTeamCount()).map({
-            it.data
-        })
+    val service: TeamService
+
+    init {
+        service = RetrofitServiceManager.getInstance().creat(clazz)
+
     }
 
-   /**
-    * @param null
-    * @return
-    */
-    fun getTeamAbsentList(): Observable<List<TeamAbsentModel.Data>> {
-        return observe(service.getAllAbsentMember().map {
-            it.data
-        })
-    }
+    fun getTeamTrainCount() = observe(service.getTeamCount()).map(JsonWrapperFunc())
+
+    /**
+     * @param null
+     * @return
+     */
+    fun getTeamAbsentList() =  observe(service.getAllAbsentMember()).map(JsonWrapperFunc())
+
 
     /**
      * 增加团队成员
      * @param null
      * @return
      */
-    fun requestAddUser(name: String): Observable<BaseResponse> {
-        return observe(service.requestAddUser(name))
-    }
+    fun requestAddUser(name: String)= observe(service.requestAddUser(name))
 
-    fun requestAddTeamTrainCount(teamName: String): Observable<BaseResponse> {
-        return observe(service.addTrainCount(teamName))
-    }
 
+    fun requestAddTeamTrainCount(teamName: String) = observe(service.addTrainCount(teamName))
 
 }

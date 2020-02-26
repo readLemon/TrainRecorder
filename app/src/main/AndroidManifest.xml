@@ -14,18 +14,18 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.TestActivity">
+        <activity android:name="com.example.train.view.activity.TestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.AddTeamCountActivity" />
-        <activity android:name=".activity.AddLeaveActivity" />
-        <activity android:name=".activity.BaseActivity" />
-        <activity android:name=".activity.CheckAbsentActivity" />
-        <activity android:name=".activity.MainActivity">
+        <activity android:name="com.example.train.view.activity.AddTeamCountActivity" />
+        <activity android:name="com.example.train.view.activity.AddLeaveActivity" />
+        <activity android:name="com.example.train.view.activity.BaseActivity" />
+        <activity android:name="com.example.train.view.activity.CheckAbsentActivity" />
+        <activity android:name="com.example.train.view.activity.MainActivity">
 
         </activity>
     </application>

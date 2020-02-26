@@ -2,7 +2,8 @@ package com.example.train.repository
 
 import android.annotation.SuppressLint
 import android.app.Application
-import com.example.train.model.BaseResponse
+import com.example.train.bean.BaseResponse
+import com.example.train.network.Fault
 import com.example.train.network.loader.TeamLoader
 import com.mredrock.cyxbs.common.utils.LogUtils
 import io.reactivex.functions.Consumer
@@ -27,7 +28,9 @@ class AddTeamCountRepository(application: Application) {
             },
             object : Consumer<Throwable> {
                 override fun accept(t: Throwable) {
-                    LogUtils.e("CheckAbsentRepository", t.message.toString())
+                    if (t is Fault){
+
+                    }
                 }
             })
     }
@@ -42,7 +45,9 @@ class AddTeamCountRepository(application: Application) {
             },
             object : Consumer<Throwable> {
                 override fun accept(t: Throwable) {
-                    LogUtils.e("CheckAbsentRepository", t.message.toString())
+                    if (t is Fault){
+
+                    }
                 }
             })
     }

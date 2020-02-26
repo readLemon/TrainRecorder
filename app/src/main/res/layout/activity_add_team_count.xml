@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:background="@color/colorAccent"
-    tools:context=".activity.AddTeamCountActivity">
+    tools:context=".view.activity.AddTeamCountActivity">
 
     <Button
         android:id="@+id/btn_add_team_count"

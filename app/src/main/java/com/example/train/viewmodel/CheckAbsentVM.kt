@@ -3,18 +3,18 @@ package com.example.train.viewmodel
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.train.model.PersonalAbsentModel
-import com.example.train.model.TeamAbsentModel
-import com.example.train.model.TeamCountModel
+import com.example.train.bean.PersonalAbsentBean
+import com.example.train.bean.TeamAbsentBean
+import com.example.train.bean.TeamCountBean
 import com.example.train.repository.CheckAbsentRepository
 
 class CheckAbsentVM(application: Application) : ViewModel() {
 
     private val mCheckAbsentRepo: CheckAbsentRepository
 
-    val teamAbsentData: MutableLiveData<List<TeamAbsentModel.Data>>
-    val teamCount: MutableLiveData<List<TeamCountModel.Data>>
-    val personalAbsent: MutableLiveData<PersonalAbsentModel>
+    val teamAbsentData: MutableLiveData<List<TeamAbsentBean.Data>>
+    val teamCount: MutableLiveData<List<TeamCountBean.Data>>
+    val personalAbsent: MutableLiveData<PersonalAbsentBean>
 
     init {
         mCheckAbsentRepo = CheckAbsentRepository(application)

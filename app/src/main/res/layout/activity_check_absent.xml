@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:background="@color/colorGrey"
     android:layout_height="match_parent"
-    tools:context=".activity.CheckAbsentActivity">
+    tools:context=".view.activity.CheckAbsentActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tb_sign_in"

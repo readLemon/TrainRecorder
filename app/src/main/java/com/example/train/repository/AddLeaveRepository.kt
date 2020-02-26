@@ -1,7 +1,8 @@
 package com.example.train.repository
 
 import android.annotation.SuppressLint
-import com.example.train.model.BaseResponse
+import com.example.train.bean.BaseResponse
+import com.example.train.network.Fault
 import com.example.train.network.loader.PersonalLoader
 import io.reactivex.functions.Consumer
 
@@ -27,8 +28,10 @@ class AddLeaveRepository {
 
             },
             object :Consumer<Throwable>{
-                override fun accept(t: Throwable?) {
+                override fun accept(t: Throwable) {
+                    if (t is Fault){
 
+                    }
                 }
             }
         )

@@ -8,7 +8,7 @@ import okhttp3.Response
  * Created by chenyang
  * on 20-1-15
  */
-class HttpCommonInterceptor: Interceptor {
+class HttpCommonInterceptor : Interceptor {
     internal val mHearderHashMap = HashMap<String, String>()
     override fun intercept(chain: Interceptor.Chain): Response {
         val oldRequest = chain.request()
@@ -21,72 +21,41 @@ class HttpCommonInterceptor: Interceptor {
         */
 
         //新的请求
-        val requesBuilder = oldRequest.newBuilder()
-        requesBuilder.method(oldRequest.method, oldRequest.body)
-        if (mHearderHashMap.size > 0) {
-           for (params in mHearderHashMap.entries){
-               requesBuilder.header(params.key, params.value)
-           }
-        }
-
-        return chain.proceed(requesBuilder.build())
-    }
-
-
-}
-
-class HttpCommonInterceptorGen() {
-
-    val mHttpCommonInterceptor:HttpCommonInterceptor
-    init {
-       mHttpCommonInterceptor = HttpCommonInterceptor()
-    }
-    companion object {
-        fun generate(body: HttpCommonInterceptorGen.() -> HttpCommonInterceptor): HttpCommonInterceptor{
-            return with(HttpCommonInterceptorGen()) {
-                body()
+        val newRequest = with(oldRequest.newBuilder()) {
+            method(oldRequest.method, oldRequest.body)
+            if (mHearderHashMap.size > 0) {
+                for (params in mHearderHashMap.entries) {
+                    header(params.key, params.value)
+                }
             }
+            build()
         }
+
+        return chain.proceed(newRequest)
     }
 
-
-    fun addHeaderParams(key: String, value: String): HttpCommonInterceptorGen {
-        mHttpCommonInterceptor.mHearderHashMap.put(key,value)
+    fun addHeaderParams(key: String, value: String): HttpCommonInterceptor {
+        mHearderHashMap.put(key, value)
         return this
     }
 
-    fun addHeaderParams(key: String, value: Int): HttpCommonInterceptorGen {
-        return addHeaderParams(key, value.toString())
-    }
+    fun addHeaderParams(key: String, value: Int) = addHeaderParams(key, value.toString())
 
-    fun addHeaderParams(key: String, value: Float): HttpCommonInterceptorGen {
-        return addHeaderParams(key, value.toString())
-    }
 
-    fun addHeaderParams(key: String, value: Long): HttpCommonInterceptorGen {
-        return addHeaderParams(key, value.toString())
-    }
+    fun addHeaderParams(key: String, value: Float) = addHeaderParams(key, value.toString())
 
-    fun addHeaderParams(key: String, value: Double): HttpCommonInterceptorGen {
-        return addHeaderParams(key, value.toString())
-    }
 
-    fun addAllHeaderParams(map: HashMap<String, String>): HttpCommonInterceptorGen{
-        mHttpCommonInterceptor.mHearderHashMap.putAll(map)
+    fun addHeaderParams(key: String, value: Long) = addHeaderParams(key, value.toString())
+
+
+    fun addHeaderParams(key: String, value: Double) = addHeaderParams(key, value.toString())
+
+    fun addAllHeaderParams(map: HashMap<String, String>): HttpCommonInterceptor {
+        mHearderHashMap.putAll(map)
         return this
     }
 
     fun build(): HttpCommonInterceptor {
-        return mHttpCommonInterceptor
+        return this
     }
-
 }
-
-//object Builder{
-//    val mHttpCommonInterceptor:HttpCommonInterceptor
-//
-//    init {
-//       mHttpCommonInterceptor = HttpCommonInterceptor()
-//    }
-//
-//}

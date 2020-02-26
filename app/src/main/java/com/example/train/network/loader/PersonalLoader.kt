@@ -1,25 +1,32 @@
 package com.example.train.network.loader
 
-import com.example.train.model.BaseResponse
-import com.example.train.model.PersonalAbsentModel
-import com.example.train.network.interfaces.PersonalService
+import com.example.train.bean.BaseResponse
+import com.example.train.bean.PersonalAbsentBean
+import com.example.train.network.RetrofitServiceManager
+import com.example.train.network.service.PersonalService
 import io.reactivex.Observable
 
 /**
  * Created by chenyang
  * on 20-1-17
  */
-class PersonalLoader() : BaseLoader<PersonalService>() {
+class PersonalLoader() : BaseLoader() {
     override val clazz: Class<PersonalService>
         get() = PersonalService::class.java
 
+    val service: PersonalService
+
+    init {
+        service = RetrofitServiceManager.getInstance().creat(clazz)
+
+    }
 
     /**
      * 得到个人的所有缺勤的数据
      * @param null
      * @return
      */
-    fun getAbsentList(name: String): Observable<PersonalAbsentModel> {
+    fun getAbsentList(name: String): Observable<PersonalAbsentBean> {
         return observe(service.getCount(name))
     }
 

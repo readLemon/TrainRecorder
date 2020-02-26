@@ -1,7 +1,7 @@
 package com.example.train.adapter
 
 import android.content.Context
-import com.example.train.model.TeamAbsentModel
+import com.example.train.bean.TeamAbsentBean
 import com.example.train.R
 import kotlinx.android.synthetic.main.recycle_absent_item.view.*
 
@@ -18,7 +18,7 @@ class LeaveRecycleAdapter<T>(private val dataList: List<T>, override val context
         get() = R.layout.recycle_absent_item
 
     override fun creatHolder(holer: BaseViewHolder, t: T) {
-        t as TeamAbsentModel.Data
+        t as TeamAbsentBean.Data
         val view = holer.itemView
         view.tv_absent_name.text = t.name
         view.tv_absent_num.text = (t.leave_times - t.absent).toString()

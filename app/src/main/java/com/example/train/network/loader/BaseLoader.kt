@@ -1,6 +1,5 @@
 package com.example.train.network.loader
 
-import com.example.train.network.RetrofitServiceManager
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -9,15 +8,9 @@ import io.reactivex.schedulers.Schedulers
  * Created by chenyang
  * on 20-1-17
  */
-abstract class BaseLoader<T> {
+abstract class BaseLoader {
 
-
-    abstract val clazz: Class<T>
-    val service: T
-
-    init {
-        service = RetrofitServiceManager.getInstance().creat(clazz)
-    }
+    abstract val clazz: Class<out Any>
 
     protected fun <T> observe(observable: Observable<T>): Observable<T> {
 
