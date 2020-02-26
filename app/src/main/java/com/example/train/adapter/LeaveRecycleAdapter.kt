@@ -1,7 +1,6 @@
 package com.example.train.adapter
 
 import android.content.Context
-import com.example.train.bean.TeamAbsentBean
 import com.example.train.R
 import kotlinx.android.synthetic.main.recycle_absent_item.view.*
 

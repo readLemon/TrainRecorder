@@ -25,24 +25,24 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
     override fun onClick(v: View) {
 
-        when(v.id) {
-            R.id.btn_goto_add_absent_activity -> {
-                val intent = Intent(this, AddLeaveActivity::class.java)
-                startActivity(intent)
-            }
+//        when(v.id) {
+//            R.id.btn_goto_add_absent_activity -> {
+//                val intent = Intent(this, AddLeaveActivity::class.java)
+//                startActivity(intent)
+//            }
+//
+//            R.id.btn_goto_check_absent_activity -> {
+//                val intent = Intent(this, CheckAbsentActivity::class.java)
+//                startActivity(intent)
+//            }
+//
+//            R.id.btn_goto_add_teamCount_activity -> {
+//                val intent = Intent(this, AddTeamCountActivity::class.java)
+//                startActivity(intent)
+//            }
 
-            R.id.btn_goto_check_absent_activity -> {
-                val intent = Intent(this, CheckAbsentActivity::class.java)
-                startActivity(intent)
-            }
 
-            R.id.btn_goto_add_teamCount_activity -> {
-                val intent = Intent(this, AddTeamCountActivity::class.java)
-                startActivity(intent)
-            }
-
-
-        }
+//        }
 
     }
 }

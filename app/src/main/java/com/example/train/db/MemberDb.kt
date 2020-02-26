@@ -19,7 +19,6 @@ abstract class MemberDb : RoomDatabase() {
     companion object {
 
         var instance: MemberDb? = null
-
         fun getInstance(context: Context): MemberDb? {
             if (instance == null) {
                 synchronized(MemberDb::class) {

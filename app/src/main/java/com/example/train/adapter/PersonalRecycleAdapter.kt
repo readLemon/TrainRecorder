@@ -2,7 +2,7 @@ package com.example.train.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
-import com.example.train.bean.PersonalAbsentBean
+import com.example.train.bean.PAbsentBean
 import com.example.train.R
 import kotlinx.android.synthetic.main.recycle_personal_absent_item.view.*
 
@@ -20,7 +20,7 @@ class PersonalRecycleAdapter<T>(private val dataList: List<T>, override val cont
     @SuppressLint("SetTextI18n")
     override fun creatHolder(holer: BaseViewHolder, t: T) {
         val view = holer.itemView
-        t as PersonalAbsentBean.Leave
+        t as PAbsentBean.Leave
 
         view.tv_dialog_absent_date.text = " "+t.time
         view.tv_dialog_absent_project.text = " "+t.project

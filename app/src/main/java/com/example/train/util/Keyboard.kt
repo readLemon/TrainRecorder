@@ -18,5 +18,8 @@ import android.view.inputmethod.InputMethodManager
 public fun hideKeyboard(context: Context) {
     val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     // 隐藏软键盘
-    imm.hideSoftInputFromWindow((context as Activity).getWindow().getDecorView().getWindowToken(), 0);
+    imm.hideSoftInputFromWindow(
+        (context as Activity).getWindow().getDecorView().getWindowToken(),
+        0
+    );
 }
