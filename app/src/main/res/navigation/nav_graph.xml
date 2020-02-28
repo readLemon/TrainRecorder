@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragment_main">
+
+    <fragment
+        android:id="@+id/fragment_main"
+        android:name="com.example.train.view.fragment.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_fragment_main_to_fragment_mine"
+            app:destination="@id/fragment_mine" />
+        <action
+            android:id="@+id/action_fragment_main_to_fragmen_team"
+            app:destination="@id/fragmen_team" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_mine"
+        android:name="com.example.train.view.fragment.MineFragment"
+        android:label="fragment_mine"
+        tools:layout="@layout/fragment_mine" />
+
+
+    <fragment
+        android:id="@+id/fragmen_team"
+        android:name="com.example.train.view.fragment.TeamFragment"
+        android:label="fragment_team"
+        tools:layout="@layout/fragment_team"/>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.train.view.fragment.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_fragment_main"
+            app:destination="@id/fragment_main" />
+    </fragment>
+
+</navigation>

@@ -64,16 +64,16 @@ class RichTextView(
     init {
         if (context != null) {
             val ta = context.obtainStyledAttributes(attrs, R.styleable.RichTextView)
-            rtImageHeight = ta.getInteger(R.styleable.RichTextView_image_height, 0)
-            rtImageBottom = ta.getInteger(R.styleable.RichTextView_image_bottom, 10)
-            ta.getString(R.styleable.RichTextView_text_view_hint).apply {
+            rtImageHeight = ta.getInteger(R.styleable.RichTextView_rt_image_height, 0)
+            rtImageBottom = ta.getInteger(R.styleable.RichTextView_rt_image_bottom, 10)
+            ta.getString(R.styleable.RichTextView_rt_text_view_hint).apply {
                 if (this != null) {
                     rtTextHint = this
                 }
             }
-            rtTextSize = ta.getInteger(R.styleable.RichTextView_text_size, 16)
-            rtTextColor = ta.getColor(R.styleable.RichTextView_text_color, DEFAULT_TEXT_COLOR)
-            rtTextLineSpace = ta.getDimensionPixelSize(R.styleable.RichTextView_text_line_space, 8)
+            rtTextSize = ta.getInteger(R.styleable.RichTextView_rt_text_size, 16)
+            rtTextColor = ta.getColor(R.styleable.RichTextView_rt_text_color, DEFAULT_TEXT_COLOR)
+            rtTextLineSpace = ta.getDimensionPixelSize(R.styleable.RichTextView_rt_text_line_space, 8)
             ta.recycle()
         }
         val params = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)

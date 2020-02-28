@@ -2,7 +2,7 @@ package com.example.train.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
-import com.example.train.bean.TeamMemberBean
+import com.example.train.db.entity.TeamMemberBean
 import com.example.train.R
 import kotlinx.android.synthetic.main.recycle_team_member_item.view.*
 

@@ -1,4 +1,4 @@
-package com.example.train.bean
+package com.example.train.db.entity
 
 import androidx.annotation.NonNull
 import androidx.room.Entity
@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey
  * Created by chenyang
  * on 19-10-23
  */
-@Entity
+@Entity(tableName = "member")
 data class TeamMemberBean(
     @PrimaryKey
     @NonNull

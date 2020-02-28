@@ -1,7 +1,7 @@
 package com.example.train.db.dao
 
 import androidx.room.*
-import com.example.train.bean.TeamMemberBean
+import com.example.train.db.entity.TeamMemberBean
 import io.reactivex.Completable
 import io.reactivex.Flowable
 
