@@ -14,7 +14,7 @@ class JsonWrapperFunc<T>: Function<JsonWrapper<T>, T> {
         }
 
         if (t.data == null) {
-            throw java.lang.RuntimeException("the response data is null")
+            throw Fault(0, "data is empty")
         }else{
             return  t.data as T
         }
