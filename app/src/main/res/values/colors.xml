@@ -9,6 +9,13 @@
 
   <color name="rich_editor_text_color">#000000</color>
 
+<!--    一些其他颜色-->
+    <color name="edit_text_cursor_color">#30D9AB</color>
+
+
+<!--    style中的颜色-->
+    <color name="tab_selected_text_color">#30D9AB</color>
+    <color name="tab_bg_color">#33FFFFFF</color>
 <!--    登陆界面的颜色-->
     <color name="login_fragment_root_bg_color">#FFFFFF</color>
     <color name="login_fragment_login_btn_bg_color">#30D9AB</color>
@@ -19,6 +26,16 @@
     <color name="main_fargment_up_bg_color">#85E9CE</color>
     <color name="main_fragment_text_morning_color">#393248</color>
 
-<!--    我的缺勤查询界面颜色-->
+<!--    mine面颜色-->
     <color name="mine_fragment_root_bg_color">#FFFFFF</color>
+    <color name="mine_fragment_first_card_bg_color">#28FFA0</color>
+    <color name="mine_fragment_second_card_bg_color">#28FFA0</color>
+    <color name="ming_fragment_text_welcome_color">#000000</color>
+
+<!--    团队管理界面的颜色-->
+    <color name="team_fragment_root_bg_color">#FFFFFF</color>
+    <color name="control_team_fragment_tab_text_color">#30D9AB</color>
+    <color name="control_team_framgment_btn_submit_text_color">#FFFFFF</color>
+    <color name="control_team_fragment_cv_bg_color">#FFFFFF</color>
+    <color name="add_team_fragment_et_focused_stroke_color">#30D9AB</color>
 </resources>

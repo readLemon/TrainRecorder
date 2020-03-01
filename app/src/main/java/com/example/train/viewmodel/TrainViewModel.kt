@@ -11,7 +11,7 @@ import com.example.train.repository.TrainRepo
  * Created by chenyang
  * on 20-1-17
  */
-class TrainVM: ViewModel() {
+class TrainViewModel: ViewModel() {
 
     private val mTrainRepo: TrainRepo
 

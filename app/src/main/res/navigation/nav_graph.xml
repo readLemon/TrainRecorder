@@ -14,8 +14,8 @@
             android:id="@+id/action_fragment_main_to_fragment_mine"
             app:destination="@id/fragment_mine" />
         <action
-            android:id="@+id/action_fragment_main_to_fragmen_team"
-            app:destination="@id/fragmen_team" />
+            android:id="@+id/action_fragment_main_to_fragmen_control_team"
+            app:destination="@id/fragmen_control_team" />
     </fragment>
 
     <fragment
@@ -26,10 +26,10 @@
 
 
     <fragment
-        android:id="@+id/fragmen_team"
-        android:name="com.example.train.view.fragment.TeamFragment"
+        android:id="@+id/fragmen_control_team"
+        android:name="com.example.train.view.fragment.ControlTeamFragment"
         android:label="fragment_team"
-        tools:layout="@layout/fragment_team"/>
+        tools:layout="@layout/fragment_control_team"/>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.train.view.fragment.LoginFragment"

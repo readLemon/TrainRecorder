@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.example.train.bean.TeamDataBean
 import com.example.train.repository.TeamDataRepo
 
-class TeamCountVM(application: Application) : ViewModel() {
+class TeamCountViewModel(application: Application) : ViewModel() {
 
     private val mTeamDataRepo: TeamDataRepo
 

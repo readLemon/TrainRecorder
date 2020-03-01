@@ -6,7 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    tools:ignore="UnusedAttribute"
     tools:context=".view.fragment.MainFragment">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:elevation="2dp"
+        android:src="@drawable/ic_basketball_dumk"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/appCompatTextView"
@@ -67,7 +78,8 @@
         android:layout_width="150dp"
         android:layout_height="200dp"
         android:layout_marginBottom="15dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:alpha="0.95"
         android:elevation="10dp"
         app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toTopOf="@+id/gl_main_fm_card_horizontal"
@@ -79,9 +91,10 @@
             android:layout_height="match_parent">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_main_fragment_card_left_up"/>
+                android:id="@+id/iv_main_fm_lu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_main_fragment_card_left_up" />
 
         </RelativeLayout>
 
@@ -91,7 +104,8 @@
         android:id="@+id/cv_main_fm_person"
         android:layout_width="150dp"
         android:layout_height="200dp"
-        android:layout_marginStart="10dp"
+        android:alpha="0.95"
+        android:layout_marginLeft="10dp"
         android:layout_marginBottom="15dp"
         android:elevation="10dp"
         app:cardCornerRadius="10dp"
@@ -104,9 +118,10 @@
             android:gravity="center">
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_main_fm_ru"
                 android:src="@drawable/ic_main_fragment_card_right_up"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
@@ -115,7 +130,8 @@
         android:layout_width="150dp"
         android:layout_height="200dp"
         android:layout_marginTop="15dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:alpha="0.95"
         android:elevation="10dp"
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toStartOf="@+id/gl_main_fm_card_vertical"
@@ -127,9 +143,10 @@
             android:gravity="center">
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_main_fm_ld"
                 android:src="@drawable/ic_main_fragment_card_left_down"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
         </RelativeLayout>
 
@@ -140,7 +157,8 @@
         android:layout_width="150dp"
         android:layout_height="200dp"
         android:layout_marginTop="15dp"
-        android:layout_marginStart="10dp"
+        android:alpha="0.95"
+        android:layout_marginLeft="10dp"
         android:elevation="10dp"
         app:cardCornerRadius="10dp"
         app:layout_constraintStart_toStartOf="@+id/gl_main_fm_card_vertical"
@@ -152,9 +170,10 @@
             android:gravity="center">
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_main_fm_rd"
                 android:src="@drawable/ic_main_fragment_card_right_down"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
         </RelativeLayout>
 

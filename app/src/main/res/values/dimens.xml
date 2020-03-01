@@ -4,4 +4,10 @@
 
     <dimen name="textSizeSmall">15dp</dimen>
 
+
+<!--    团队管理界面-->
+    <dimen name="add_team_fragment_msg_item_height">50dp</dimen>
+    <dimen name="add_team_fragment_msg_item_width">290dp</dimen>
+    <dimen name="control_team_fragment_msg_item_radius">3dp</dimen>
+
 </resources>

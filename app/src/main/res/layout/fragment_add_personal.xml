@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_add_personal_fm_project"
+        android:layout_width="@dimen/add_team_fragment_msg_item_width"
+        android:layout_height="@dimen/add_team_fragment_msg_item_height"
+        android:layout_marginTop="40dp"
+        android:elevation="10dp"
+        app:cardBackgroundColor="@color/control_team_fragment_cv_bg_color"
+        app:cardCornerRadius="@dimen/control_team_fragment_msg_item_radius"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_add_personal_fm_project"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/selector_control_team_fragment_et_bg"
+            android:foreground="?attr/selectableItemBackground"
+            android:hint="请在此输入本次训练的项目"
+            android:maxLines="1"
+            android:paddingStart="15dp"
+            android:textCursorDrawable="@drawable/shape_et_cursor"
+            tools:ignore="RtlSymmetry,UnusedAttribute" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_add_personal_fm_time"
+        android:layout_width="@dimen/add_team_fragment_msg_item_width"
+        android:layout_height="@dimen/add_team_fragment_msg_item_height"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/selector_control_team_fragment_et_bg"
+        android:textCursorDrawable="@drawable/shape_et_cursor"
+        app:cardBackgroundColor="@color/control_team_fragment_cv_bg_color"
+        app:cardCornerRadius="@dimen/control_team_fragment_msg_item_radius"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cv_add_personal_fm_project">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/selector_control_team_fragment_et_bg"
+            android:elevation="10dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:hint="请在此选择本次训练的时间"
+            android:maxLines="1"
+            android:paddingStart="15dp"
+            android:textCursorDrawable="@drawable/shape_et_cursor"
+            tools:ignore="RtlSymmetry,UnusedAttribute" />
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_add_personal_fm_where"
+        android:layout_width="@dimen/add_team_fragment_msg_item_width"
+        android:layout_height="@dimen/add_team_fragment_msg_item_height"
+        android:layout_marginTop="10dp"
+        android:textCursorDrawable="@drawable/shape_et_cursor"
+        app:cardBackgroundColor="@color/control_team_fragment_cv_bg_color"
+        app:cardCornerRadius="@dimen/control_team_fragment_msg_item_radius"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cv_add_personal_fm_time">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/selector_control_team_fragment_et_bg"
+            android:elevation="10dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:hint="请在此选择本次训练的地点"
+            android:maxLines="1"
+            android:paddingStart="15dp"
+            android:textCursorDrawable="@drawable/shape_et_cursor"
+            tools:ignore="RtlSymmetry,UnusedAttribute" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_add_personal_fm_reason"
+        android:layout_width="@dimen/add_team_fragment_msg_item_width"
+        android:layout_height="@dimen/add_team_fragment_msg_item_height"
+        android:layout_marginTop="10dp"
+        android:textCursorDrawable="@drawable/shape_et_cursor"
+        app:cardBackgroundColor="@color/control_team_fragment_cv_bg_color"
+        app:cardCornerRadius="@dimen/control_team_fragment_msg_item_radius"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cv_add_personal_fm_where">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/selector_control_team_fragment_et_bg"
+            android:elevation="10dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:hint="请输入本请假的原因"
+            android:maxLines="1"
+            android:paddingStart="15dp"
+            android:textCursorDrawable="@drawable/shape_et_cursor"
+            tools:ignore="RtlSymmetry,UnusedAttribute" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_add_personal_fm_remark"
+        android:layout_width="@dimen/add_team_fragment_msg_item_width"
+        android:layout_height="@dimen/add_team_fragment_msg_item_height"
+        android:layout_marginTop="10dp"
+        android:textCursorDrawable="@drawable/shape_et_cursor"
+        app:cardBackgroundColor="@color/control_team_fragment_cv_bg_color"
+        app:cardCornerRadius="@dimen/control_team_fragment_msg_item_radius"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cv_add_personal_fm_reason">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/selector_control_team_fragment_et_bg"
+            android:elevation="10dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:hint="备注"
+            android:maxLines="5"
+            android:paddingStart="15dp"
+            android:textCursorDrawable="@drawable/shape_et_cursor"
+            tools:ignore="RtlSymmetry,UnusedAttribute" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/tv_add_personal_notice"
+        android:layout_width="@dimen/add_team_fragment_msg_item_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:elevation="10dp"
+        app:cardBackgroundColor="@color/control_team_fragment_cv_bg_color"
+        app:cardCornerRadius="@dimen/control_team_fragment_msg_item_radius"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cv_add_personal_fm_remark">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="20sp"
+            android:padding="10dp"
+            android:text="1.本页内容是为了用来为队员缺训或者是请假做记录\n2.如果不添加原因则是缺训，添加原因则是请假" />
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        app:cardCornerRadius="150dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:background="@drawable/shape_control_team_fragment_btn_submit_bg"
+            android:foreground="?attr/selectableItemBackground"
+            android:text="提交"
+            android:textColor="@color/control_team_framgment_btn_submit_text_color"
+            android:textSize="16sp"
+            tools:ignore="UnusedAttribute" />
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,7 +8,7 @@ import com.example.train.repository.UserRepo
  * Created by chenyang
  * on 20-2-26
  */
-class UserVM {
+class UserViewModel {
 
     private val userRepo = UserRepo()
 
