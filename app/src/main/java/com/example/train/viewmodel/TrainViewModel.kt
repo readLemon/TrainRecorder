@@ -1,10 +1,9 @@
 package com.example.train.viewmodel
 
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.train.bean.PAbsentBean
-import com.example.train.bean.PLeaveBean
+import com.example.train.bean.AbsentBean
+import com.example.train.bean.LeaveBean
 import com.example.train.repository.TrainRepo
 
 /**
@@ -24,11 +23,11 @@ class TrainViewModel: ViewModel() {
 
     fun addLeave(username: String, time: Long, project: String, reason: String) = mTrainRepo.addLeave(username, time, project, reason)
 
-    fun getAbsents(username: String): MutableLiveData<PAbsentBean> {
+    fun getAbsents(username: String): MutableLiveData<AbsentBean> {
         return mTrainRepo.getAbsents(username)
     }
 
-    fun getLeaves(username: String): MutableLiveData<PLeaveBean> {
+    fun getLeaves(username: String): MutableLiveData<LeaveBean> {
         return mTrainRepo.getLeaves(username)
     }
 

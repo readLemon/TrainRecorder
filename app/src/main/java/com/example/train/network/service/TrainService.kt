@@ -1,8 +1,8 @@
 package com.example.train.network.service
 
 import com.example.train.bean.JsonWrapper
-import com.example.train.bean.PAbsentBean
-import com.example.train.bean.PLeaveBean
+import com.example.train.bean.AbsentBean
+import com.example.train.bean.LeaveBean
 import io.reactivex.Observable
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -39,12 +39,6 @@ interface TrainService {
                          @Field("project") project: String,
                         @Field("reason") reason: String): Observable<JsonWrapper<*>>
 
-    @FormUrlEncoded
-    @POST("/getAbsents")
-    fun getAbsents(@Field("username")uesername: String): Observable<JsonWrapper<PAbsentBean>>
 
-    @FormUrlEncoded
-    @POST("/getLeaves")
-    fun getLeaves(@Field("username")username: String): Observable<JsonWrapper<PLeaveBean>>
 
 }

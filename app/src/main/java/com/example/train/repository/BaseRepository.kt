@@ -1,4 +1,4 @@
-package com.example.train.network.loader
+package com.example.train.repository
 
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -6,11 +6,9 @@ import io.reactivex.schedulers.Schedulers
 
 /**
  * Created by chenyang
- * on 20-1-17
+ * on 20-3-5
  */
-abstract class BaseLoader {
-
-    abstract val clazz: Class<out Any>
+open class BaseRepository {
 
     protected fun <T> observe(observable: Observable<T>): Observable<T> {
 
@@ -19,6 +17,4 @@ abstract class BaseLoader {
             .unsubscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
-
-
 }

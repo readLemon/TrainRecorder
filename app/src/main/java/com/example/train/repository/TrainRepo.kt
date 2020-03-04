@@ -2,13 +2,10 @@ package com.example.train.repository
 
 import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
-import com.example.train.bean.BaseResponse
-import com.example.train.bean.PAbsentBean
-import com.example.train.bean.PLeaveBean
-import com.example.train.network.Fault
+import com.example.train.bean.AbsentBean
+import com.example.train.bean.LeaveBean
 import com.example.train.network.JsonWrapperFunc
 import com.example.train.network.loader.TrainLoader
-import io.reactivex.functions.Consumer
 
 /**
  * Created by chenyang
@@ -28,8 +25,8 @@ class TrainRepo {
         mTrainLoader.requestAddLeave(username, time, project, reason)
     }
 
-    fun getAbsents(username: String): MutableLiveData<PAbsentBean> {
-        val data = MutableLiveData<PAbsentBean>()
+    fun getAbsents(username: String): MutableLiveData<AbsentBean> {
+        val data = MutableLiveData<AbsentBean>()
         mTrainLoader.getAbsents(username).map(JsonWrapperFunc()).subscribe(
             {pabsents -> data.value = pabsents },
             {throwable -> }
@@ -37,8 +34,8 @@ class TrainRepo {
         return data
     }
 
-    fun getLeaves(username: String): MutableLiveData<PLeaveBean> {
-        val data = MutableLiveData<PLeaveBean>()
+    fun getLeaves(username: String): MutableLiveData<LeaveBean> {
+        val data = MutableLiveData<LeaveBean>()
         mTrainLoader.getLeaves(username).map(JsonWrapperFunc()).subscribe(
             { pleave -> data.value = pleave },
             { throwable ->}
