@@ -17,14 +17,14 @@
         android:layout_marginTop="80dp"
         android:adjustViewBounds="true"
         android:src="@drawable/ic_login_fragment_welcome"
-        app:layout_constraintBottom_toTopOf="@+id/et_main_fm_username"
+        app:layout_constraintBottom_toTopOf="@+id/et_login_fm_username"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="HardcodedText" />
 
     <EditText
-        android:id="@+id/et_main_fm_username"
+        android:id="@+id/et_login_fm_username"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="60dp"
@@ -32,7 +32,8 @@
         android:drawableStart="@drawable/ic_login_fragment_user"
         android:textColor="@color/login_fragment_login_et_text_color"
         android:drawablePadding="14dp"
-        android:hint="请输入您的密码"
+        android:hint="请输入您的密帐号"
+        android:inputType="number"
         android:paddingStart="10dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
@@ -44,7 +45,7 @@
         tools:ignore="RtlSymmetry" />
 
     <EditText
-        android:id="@+id/et_main_fm_psw"
+        android:id="@+id/et_login_fm_psw"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:drawableStart="@drawable/ic_login_fragment_lock"
@@ -57,11 +58,9 @@
         android:paddingStart="10dp"
         android:hint="请输入您的密码"
         android:inputType="textPassword"
-        app:layout_constraintTop_toBottomOf="@+id/et_main_fm_username"
+        app:layout_constraintTop_toBottomOf="@+id/et_login_fm_username"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:drawableLeft="@drawable/ic_login_fragment_lock"
-        android:paddingLeft="10dp"
         tools:ignore="RtlSymmetry" />
 
     <Button
@@ -74,7 +73,7 @@
         android:text="登录"
         android:background="@drawable/shape_main_fm_login_btn_bg"
         app:layout_constraintVertical_bias="0.2"
-        app:layout_constraintTop_toBottomOf="@+id/et_main_fm_psw"
+        app:layout_constraintTop_toBottomOf="@+id/et_login_fm_psw"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />

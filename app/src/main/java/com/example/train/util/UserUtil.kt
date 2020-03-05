@@ -8,6 +8,16 @@ import com.example.train.bean.UserBean
  */
 object UserUtil {
 
-    var currentUser: UserBean ?= null
+    private var currentUser: UserBean ?= null
+    var currentUsername: String = "wronguser"
+
+    fun replaceUser(user: UserBean) {
+        currentUser = user
+        currentUsername = user.name
+    }
+
+    fun getCurrentUser(): UserBean? {
+        return currentUser
+    }
 
 }

@@ -14,7 +14,7 @@ import com.mredrock.cyxbs.common.utils.LogUtils
  * on 20-3-4
  */
 @SuppressLint("CheckResult")
-class MineFragmentViewModel : ViewModel() {
+class MineViewModel : ViewModel() {
 
     private val mineRepository by lazy { MineFragmentRepository() }
     val leaves by lazy { MutableLiveData<MutableList<LeaveBean>>() }

@@ -47,7 +47,6 @@ class MineFragment : BaseFragment() {
             }
         )
 
-
         val absentRecycApapter = CommonRecycAdapter(
             R.layout.item_rv_mine_fragment_bottom,
             absentBeans, {

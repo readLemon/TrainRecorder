@@ -4,7 +4,6 @@ import android.view.View
 import androidx.viewpager.widget.ViewPager
 import com.example.train.R
 import com.example.train.view.fragment.adapter.PageAdapter
-import com.mredrock.cyxbs.common.utils.LogUtils
 import kotlinx.android.synthetic.main.fragment_control_team.*
 
 /**
@@ -23,6 +22,23 @@ class ControlTeamFragment : BaseFragment() {
         tl_control_team_fragment.setupWithViewPager(vp_control_team_fragmrnt)
     }
 
+    companion object {
+        fun isInputAvailable(input: String): Boolean {
+            return input.length != 0
+        }
+
+        fun isInputAvailable(vararg input: String): Boolean {
+
+            for (str in input) {
+                if (!isInputAvailable(str)) {
+                    return false
+                }
+            }
+            return true
+        }
+    }
+
+
     private inner class windmillTransformer : ViewPager.PageTransformer {
 
         //前后两页是否露角, 暂时没有解决z轴高度问题，先不露角
@@ -39,17 +55,18 @@ class ControlTeamFragment : BaseFragment() {
                     //Y轴位移，因为暂时露角有问题，暂时不设置这个值
 //                    translationY = - page.height / 10f * position
 //                    z轴阴影
-                   // translationZ = - (page.width + defaultScale * 5 * position) / page.width
+                    // translationZ = - (page.width + defaultScale * 5 * position) / page.width
                 }
             } else {  //前后页
                 page.apply {
-                    rotation = - (defaultRotation * Math.abs(position))
+                    rotation = -(defaultRotation * Math.abs(position))
 //                    translationY = page.height / 10 * position
 //                    translationZ = (page.width - defaultScale * 5 * position) / page.width
                 }
             }
 
-            page.translationX = if (showAngle) -(page.width / 10 * position) else (page.width / 3 * position)
+            page.translationX =
+                if (showAngle) -(page.width / 10 * position) else (page.width / 3 * position)
 
         }
     }

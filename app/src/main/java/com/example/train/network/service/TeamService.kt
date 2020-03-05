@@ -24,4 +24,19 @@ interface TeamService {
                          @Field("project") project: String,
                          @Field("time") time: Long): Observable<JsonWrapper<*>>
 
+    @FormUrlEncoded
+    @POST("/addAbsent")
+    fun requestAddAbsent(@Field("username") username: String,
+                         @Field("time") time: Long,
+                         @Field("project") project: String): Observable<JsonWrapper<*>>
+
+    @FormUrlEncoded
+    @POST("/addLeave")
+    fun requestAddLeave(@Field("username") username: String,
+                        @Field("time") time: Long,
+                        @Field("project") project: String,
+                        @Field("reason") reason: String): Observable<JsonWrapper<*>>
+
+
+
 }

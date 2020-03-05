@@ -28,7 +28,7 @@
 
 <!--    mine面颜色-->
     <color name="mine_fragment_root_bg_color">#FFFFFF</color>
-    <color name="mine_fragment_first_card_bg_color">#30D9AB</color>
+    <color name="mine_fragment_first_card_bg_color">#85E9CE</color>
     <color name="mine_fragment_second_card_bg_color">#30D9AB</color>
     <color name="mine_fragment_text_welcome_color">#000000</color>
     <color name="mine_fragment_bottom_sheet_bg_color">#FFFFFF</color>

@@ -12,7 +12,7 @@ import retrofit2.http.POST
  * Created by chenyang
  * on 20-3-4
  */
-interface MineFragmentService {
+interface MineService {
 
     @FormUrlEncoded
     @POST("/getAbsents")

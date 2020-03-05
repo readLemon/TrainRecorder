@@ -9,9 +9,9 @@ import retrofit2.http.POST
 
 /**
  * Created by chenyang
- * on 20-2-26
+ * on 20-3-5
  */
-interface UserService {
+interface LoginService {
 
     @FormUrlEncoded
     @POST("/login")

@@ -5,8 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_add_personal_fm_project"
         android:layout_width="@dimen/add_team_fragment_msg_item_width"
@@ -46,6 +44,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cv_add_personal_fm_project">
 
         <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_add_personal_fm_time"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/selector_control_team_fragment_et_bg"
@@ -72,6 +71,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cv_add_personal_fm_time">
 
         <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_add_personal_fm_where"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/selector_control_team_fragment_et_bg"
@@ -97,6 +97,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cv_add_personal_fm_where">
 
         <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_add_personal_reason"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/selector_control_team_fragment_et_bg"
@@ -122,6 +123,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cv_add_personal_fm_reason">
 
         <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_add_personal_fm_remark"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/selector_control_team_fragment_et_bg"
@@ -166,6 +168,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_add_personal_fm_submit"
             android:layout_width="200dp"
             android:layout_height="60dp"
             android:background="@drawable/shape_control_team_fragment_btn_submit_bg"

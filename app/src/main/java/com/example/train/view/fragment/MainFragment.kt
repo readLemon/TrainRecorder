@@ -32,6 +32,8 @@ class MainFragment : BaseFragment(), View.OnClickListener {
                 MainFragmentDirections.actionFragmentMainToFragmenControlTeam()
         }
         action?.let { v.findNavController().navigate(it) }
+
+//        cv_main_fm_lu.setOnTouchListener()
     }
 
 

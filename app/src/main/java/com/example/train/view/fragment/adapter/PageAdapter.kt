@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.example.train.view.fragment.AddPersonalChildTeamFragment
+import com.example.train.view.fragment.AddTeamChildTeamFragment
 
 /**
  * Created by chenyang
@@ -23,7 +24,8 @@ class PageAdapter(val fm: FragmentManager, val cnt: Int) : FragmentPagerAdapter(
         if (currentFragment == null) {
             when (pos) {
                 0 -> {
-                    currentFragment = AddTeamChildTeamFragment()
+                    currentFragment =
+                        AddTeamChildTeamFragment()
                     fragmentHashMap.put(0, currentFragment)
                 }
 
