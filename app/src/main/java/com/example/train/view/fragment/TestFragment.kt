@@ -2,6 +2,7 @@ package com.example.train.view.fragment
 
 import android.view.View
 import com.example.train.R
+import com.example.train.widget.QTouchListener
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import kotlinx.android.synthetic.main.fragment_test.*
 
@@ -14,9 +15,6 @@ class TestFragment:BaseFragment() {
         get() = R.layout.fragment_test
 
     override fun initial(view: View) {
-//        val b = BottomSheetBehavior.from(nsv_mine_fragment_bottom)
-//        b.isHideable = false
-//        falseb.state = BottomSheetBehavior.STATE_HALF_EXPANDED
+//        test_root.setOnTouchListener(QTouchListener())
     }
-
 }

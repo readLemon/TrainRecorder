@@ -1,11 +1,12 @@
 package com.example.train.view.fragment
 
 import android.view.View
+import android.widget.LinearLayout
 import androidx.viewpager.widget.ViewPager
 import com.example.train.R
+import com.example.train.util.DensityUtil
 import com.example.train.view.fragment.adapter.PageAdapter
 import kotlinx.android.synthetic.main.fragment_control_team.*
-
 /**
  * Created by chenyang
  * on 20-2-27
@@ -14,9 +15,11 @@ class ControlTeamFragment : BaseFragment() {
     override val contentViewId: Int
         get() = R.layout.fragment_control_team
 
-
     override fun initial(view: View) {
-        super.initial(view)
+        val tabDivider = tl_control_team_fragment.getChildAt(0) as LinearLayout
+        tabDivider.showDividers = LinearLayout.SHOW_DIVIDER_MIDDLE
+        tabDivider.dividerDrawable = context?.getDrawable(R.drawable.shape_control_team_divider_vertical)
+        tabDivider.dividerPadding = DensityUtil.dip2px(15)
         vp_control_team_fragmrnt.adapter = PageAdapter(childFragmentManager, 2)
         vp_control_team_fragmrnt.setPageTransformer(true, windmillTransformer())
         tl_control_team_fragment.setupWithViewPager(vp_control_team_fragmrnt)
@@ -28,7 +31,6 @@ class ControlTeamFragment : BaseFragment() {
         }
 
         fun isInputAvailable(vararg input: String): Boolean {
-
             for (str in input) {
                 if (!isInputAvailable(str)) {
                     return false

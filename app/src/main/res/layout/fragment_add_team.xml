@@ -21,6 +21,7 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_add_team_fm_project"
+            android:drawableStart="@drawable/ic_important_star"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/selector_control_team_fragment_et_bg"
@@ -47,6 +48,7 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_add_team_fm_time"
+            android:drawableStart="@drawable/ic_important_star"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/selector_control_team_fragment_et_bg"
@@ -74,6 +76,7 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_add_team_fm_where"
+            android:drawableStart="@drawable/ic_important_star"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/selector_control_team_fragment_et_bg"

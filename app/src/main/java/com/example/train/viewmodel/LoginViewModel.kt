@@ -7,7 +7,7 @@ import com.example.train.bean.UserBean
 import com.example.train.network.Fault
 import com.example.train.repository.LoginRepository
 import com.example.train.util.UserUtil
-import com.mredrock.cyxbs.common.utils.LogUtils
+import com.mredrock.cyxbs.common.utils.LogUtil
 
 /**
  * Created by chenyang
@@ -32,7 +32,7 @@ class LoginViewModel : ViewModel() {
             },
             {
                 if (it is Fault) {
-                    LogUtils.e(TAG, "there is a error!!!stasus: ${it.status},info: ${it.info}")
+                    LogUtil.e(TAG, "there is a error!!!stasus: ${it.status},info: ${it.info}")
                 }
             }
         )

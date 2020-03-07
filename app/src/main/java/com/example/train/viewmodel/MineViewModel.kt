@@ -7,7 +7,7 @@ import com.example.train.bean.AbsentBean
 import com.example.train.bean.LeaveBean
 import com.example.train.network.Fault
 import com.example.train.repository.MineFragmentRepository
-import com.mredrock.cyxbs.common.utils.LogUtils
+import com.mredrock.cyxbs.common.utils.LogUtil
 
 /**
  * Created by chenyang
@@ -31,7 +31,7 @@ class MineViewModel : ViewModel() {
             },
             {
                 if (it is Fault) {
-                    LogUtils.e(TAG, "there is a error!!!stasus: ${it.status},info: ${it.info}")
+                    LogUtil.e(TAG, "there is a error!!!stasus: ${it.status},info: ${it.info}")
                 }
             })
 
@@ -44,7 +44,7 @@ class MineViewModel : ViewModel() {
             },
             {
                 if (it is Fault) {
-                    LogUtils.e(TAG, "there is a error!!!stasus: ${it.status},info: ${it.info}")
+                    LogUtil.e(TAG, "there is a error!!!stasus: ${it.status},info: ${it.info}")
                 }
             }
         )

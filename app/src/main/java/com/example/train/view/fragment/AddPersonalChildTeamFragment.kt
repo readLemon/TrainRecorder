@@ -7,7 +7,6 @@ import com.example.train.R
 import com.example.train.view.fragment.ControlTeamFragment.Companion.isInputAvailable
 import com.example.train.viewmodel.ControlTeamViewModel
 import kotlinx.android.synthetic.main.fragment_add_personal.*
-
 /**
  * Created by chenyang
  * on 20-2-29
@@ -38,6 +37,4 @@ class AddPersonalChildTeamFragment : BaseFragment() {
             }
         }
     }
-
-
 }

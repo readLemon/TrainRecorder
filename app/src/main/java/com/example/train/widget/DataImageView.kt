@@ -12,7 +12,7 @@ import androidx.annotation.Nullable
  * Created by chenyang
  * on 20-1-30
  */
-class DataImageView: ImageView {
+class DataImageView: androidx.appcompat.widget.AppCompatImageView {
     constructor(context: Context) : super(context)
     constructor(context: Context, @Nullable attrs: AttributeSet) : super(context, attrs)
     constructor(context: Context, @Nullable attrs: AttributeSet, defStyleAttr: Int) : super(
@@ -20,6 +20,7 @@ class DataImageView: ImageView {
         attrs,
         defStyleAttr
     )
+
 
     var isShowBorder = false
     var borderColor = Color.GRAY

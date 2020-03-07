@@ -28,7 +28,7 @@ import com.example.train.util.DensityUtil
 import com.example.train.widget.interfaces.IRichEditorImageLoader
 import com.example.train.widget.interfaces.OnImageDeleteClickListener
 import com.example.train.widget.interfaces.OnREImageViewClickListener
-import com.mredrock.cyxbs.common.utils.LogUtils
+import com.mredrock.cyxbs.common.utils.LogUtil
 import java.util.regex.Pattern
 
 /**
@@ -442,7 +442,7 @@ class RichEditor @JvmOverloads constructor(
                             imagePath: String,
                             imageHeight: Int
                         ) {
-                            LogUtils.e("******imagePath*****", imagePath)
+                            LogUtil.e("******imagePath*****", imagePath)
                             if (imagePath.startsWith("http://")
                                 || imagePath.startsWith("https://")
                             ) {

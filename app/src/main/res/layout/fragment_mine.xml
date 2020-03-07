@@ -21,7 +21,7 @@
             android:layout_width="150dp"
             android:layout_height="2dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/shape_round_bg"
+            android:background="@drawable/shape_round_grey_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -74,6 +74,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
+                    app:cardCornerRadius="15dp"
                     android:layout_marginTop="20dp"
                     android:elevation="10dp"
                     app:cardBackgroundColor="@android:color/transparent"
@@ -84,8 +85,10 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tv_mine_fragment_welcome"
+                        android:padding="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/shape_round_white_bg"
                         android:text="Welcome \nIt's your train data!"
                         android:textColor="@color/mine_fragment_text_welcome_color"
                         android:textSize="25sp" />
@@ -93,16 +96,16 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cv_mine_fragment_absent"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="400dp"
                     android:layout_marginTop="10dp"
                     android:alpha="0.5"
                     android:elevation="10dp"
+                    android:layout_marginEnd="15dp"
                     app:cardBackgroundColor="@color/mine_fragment_first_card_bg_color"
                     app:cardCornerRadius="10dp"
-                    app:cardUseCompatPadding="true"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/cv_minn_fragment_welcome"
                     app:layout_constraintTop_toBottomOf="@id/cv_minn_fragment_welcome">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -140,17 +143,18 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cv_mine_fragment_leave"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="400dp"
                     android:layout_marginTop="40dp"
                     android:alpha="0.5"
                     android:elevation="10dp"
+                    android:layout_marginEnd="15dp"
                     app:cardBackgroundColor="@color/mine_fragment_second_card_bg_color"
                     app:cardCornerRadius="10dp"
                     app:cardUseCompatPadding="true"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/cv_minn_fragment_welcome"
                     app:layout_constraintTop_toBottomOf="@+id/cv_mine_fragment_absent">
 
                     <androidx.constraintlayout.widget.ConstraintLayout

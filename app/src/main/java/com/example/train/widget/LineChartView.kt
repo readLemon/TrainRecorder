@@ -8,7 +8,7 @@ import android.graphics.Path
 import android.util.AttributeSet
 import android.view.View
 import androidx.annotation.Nullable
-import com.mredrock.cyxbs.common.utils.LogUtils
+import com.mredrock.cyxbs.common.utils.LogUtil
 
 /**
  * Created by chenyang
@@ -114,7 +114,7 @@ class LineChartView @JvmOverloads constructor(
                 }
 
             } catch (e: ArrayIndexOutOfBoundsException) {
-                LogUtils.d("LineChartView", e.message.toString())
+                LogUtil.d("LineChartView", e.message.toString())
             }
         }
         canvas.drawPath(mChartPath, mPathPaint)
@@ -151,7 +151,7 @@ class LineChartView @JvmOverloads constructor(
     }
 
     private fun drawX(canvas: Canvas) {
-        LogUtils.d("*****", "${height}*****${width}")
+        LogUtil.d("*****", "${height}*****${width}")
         canvas.drawLine(mPadding, mHeight - mPadding, mWidth.toFloat(), mHeight - mPadding, mPaint)
         val tempX = (mWidth - mPadding * 2) / (monthPerYear - 1)
         for (i in 1..monthPerYear) {
