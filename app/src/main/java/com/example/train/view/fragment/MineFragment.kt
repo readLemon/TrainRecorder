@@ -35,7 +35,7 @@ class MineFragment : BaseFragment() {
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            lcv_mine_fm_leave.startAnim(lcv_mine_fm_absent,200L)
+            lcv_mine_fm_leave.startAnim(2000L)
         }
 
         var l: LeaveBean

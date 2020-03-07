@@ -1,6 +1,5 @@
 package com.example.train.widget
 
-import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
@@ -29,6 +28,9 @@ class LineChartView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
+    companion object{
+        private val TAG = "LineChartView"
+    }
 
     private val textSize = 50f
     private var mPadding = 50f
@@ -38,7 +40,7 @@ class LineChartView @JvmOverloads constructor(
     private val chartData = arrayListOf<Float>()
     private var mWidth = -1
     private var mHeight = -1
-    private val mChartBgPaint: Paint
+    private val mChartBackgroundPaint: Paint
     private val mPathPaint: Paint
     private val canvasPaint: Paint by lazy { Paint(Paint.ANTI_ALIAS_FLAG) }
 
@@ -66,11 +68,11 @@ class LineChartView @JvmOverloads constructor(
             color = chartPathColor
             strokeJoin = Paint.Join.ROUND
         }
-        mChartBgPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-        mChartBgPaint.textSize = textSize
+        mChartBackgroundPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+        mChartBackgroundPaint.textSize = textSize
         mChartPath = Path()
-        mChartBgPaint.strokeWidth = 2f
-        mChartBgPaint.color = paintColor
+        mChartBackgroundPaint.strokeWidth = 2f
+        mChartBackgroundPaint.color = paintColor
         initMyAttr(attrs)
 //        setBackgroundColor(myGrad.shape)
         setData()
@@ -122,6 +124,7 @@ class LineChartView @JvmOverloads constructor(
         mWidth = width
         mHeight = height
 
+        LogUtil.d(TAG, "ondrew")
         //画底下和顶上的线
         drawX(canvas)
 
@@ -144,21 +147,22 @@ class LineChartView @JvmOverloads constructor(
         val measure = PathMeasure(mChartPath, false)
         val pathLength = measure.length
         val effect = DashPathEffect(floatArrayOf(pathLength, pathLength), pathLength - pathLength * mAnimProgress)
-        mChartBgPaint.pathEffect = effect
+        mPathPaint.pathEffect = effect
         canvas.drawPath(mChartPath, mPathPaint)
     }
 
     @SuppressLint("AnimatorKeep")
     //这个要用反射，暂时先不处理
-    fun startAnim(lineChartView: LineChartView,duration: Long) {
-        val animator = ObjectAnimator.ofFloat(lineChartView,"progress",0f,1f)
+    fun startAnim(duration: Long) {
+        val animator = ObjectAnimator.ofFloat(this,"progress",0f,1f)
         animator.duration = duration
         animator.interpolator = LinearInterpolator()
         animator.start()
     }
 
+    /**弃用，我目前还没弄懂，为什么这种方法无法使用，只有用反射才可以实现线的移动*/
 //    fun startAnim(duration: Long) {
-//        val animator = ValueAnimator.ofFloat(0f,1f)
+//        val animator = ValueAnimator.ofFloat(0.0f,1.0f)
 //        animator.duration = duration
 //        animator.interpolator = LinearInterpolator()
 //        animator.addUpdateListener {
@@ -208,21 +212,21 @@ class LineChartView @JvmOverloads constructor(
      * @return
      */
     private fun drawY(canvas: Canvas) {
-        mChartBgPaint.style = Paint.Style.FILL
+        mChartBackgroundPaint.style = Paint.Style.FILL
         canvas.drawLine(
             mPadding,
             0f,
             mPadding,
             mHeight - mPadding,
-            mChartBgPaint
+            mChartBackgroundPaint
         )
 
         val tempY = (mHeight - mPadding * 2) / 6
         for (i in 1..7) {
-            canvas.drawText("${i}", 10f, (mHeight - mPadding - i * tempY), mChartBgPaint)
+            canvas.drawText("${i}", 10f, (mHeight - mPadding - i * tempY), mChartBackgroundPaint)
             canvas.drawLine(
                 mPadding, (mHeight - mPadding - i * tempY),
-                mWidth.toFloat(), (mHeight - mPadding - i * tempY), mChartBgPaint
+                mWidth.toFloat(), (mHeight - mPadding - i * tempY), mChartBackgroundPaint
             )
         }
     }
@@ -233,7 +237,7 @@ class LineChartView @JvmOverloads constructor(
             mHeight - mPadding,
             mWidth.toFloat(),
             mHeight - mPadding,
-            mChartBgPaint
+            mChartBackgroundPaint
         )
         val tempX = (mWidth - mPadding * 2) / (monthPerYear - 1)
         for (i in 1..monthPerYear) {
@@ -241,7 +245,7 @@ class LineChartView @JvmOverloads constructor(
                 "${monthPerYear - i + 1}",
                 mWidth - mPadding - (i - 1) * tempX,
                 mHeight.toFloat(),
-                mChartBgPaint
+                mChartBackgroundPaint
             )
 
         }
