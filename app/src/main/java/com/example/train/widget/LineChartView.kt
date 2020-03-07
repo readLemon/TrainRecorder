@@ -1,63 +1,103 @@
 package com.example.train.widget
 
+import android.animation.Animator
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
+import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.Path
+import android.graphics.*
+import android.os.Build
 import android.util.AttributeSet
 import android.view.View
+import android.view.animation.LinearInterpolator
 import androidx.annotation.Nullable
+import androidx.annotation.RequiresApi
+import com.example.train.R
 import com.mredrock.cyxbs.common.utils.LogUtil
+import kotlin.properties.Delegates
 
 /**
+ * 留了一个setData接口出来，用于输入数据
+ *
  * Created by chenyang
  * on 20-1-23
  */
+@RequiresApi(Build.VERSION_CODES.N)
 class LineChartView @JvmOverloads constructor(
-    context: Context?, @Nullable attrs: AttributeSet? = null,
+    context: Context,
+    @Nullable attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
 
     private val textSize = 50f
-    private val mPadding = 50f
+    private var mPadding = 50f
     private val monthPerYear = 12
     private val mChartPath: Path
 
     private val chartData = arrayListOf<Float>()
     private var mWidth = -1
     private var mHeight = -1
-    private val mPaint: Paint
+    private val mChartBgPaint: Paint
     private val mPathPaint: Paint
+    private val canvasPaint: Paint by lazy { Paint(Paint.ANTI_ALIAS_FLAG) }
+
+    private var radius by Delegates.notNull<Int>()
+    private var radiusTopLeft by Delegates.notNull<Int>()
+    private var radiusTopRight by Delegates.notNull<Int>()
+    private var radiusBottomRight by Delegates.notNull<Int>()
+    private var radiusBottomLeft by Delegates.notNull<Int>()
 
 
     val paintColor: Int = Color.BLUE
     val backGroundColor = Color.WHITE
-    val charPathColor = Color.GREEN
+    val chartPathColor = Color.GREEN
+    val pathWidth = 6F
 
+    private var mAnimProgress = 0f
 
     init {
+        mPadding = mPadding + paddingLeft
         mPathPaint = Paint(Paint.ANTI_ALIAS_FLAG)
         mPathPaint.apply {
             style = Paint.Style.STROKE
-            strokeWidth = 10F
+            strokeWidth = pathWidth
             strokeCap = Paint.Cap.ROUND
-            color = charPathColor
+            color = chartPathColor
             strokeJoin = Paint.Join.ROUND
         }
-        mPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-        mPaint.textSize = textSize
+        mChartBgPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+        mChartBgPaint.textSize = textSize
         mChartPath = Path()
-        mPaint.strokeWidth = 2f
-        mPaint.color = paintColor
-        setBackgroundColor(backGroundColor)
+        mChartBgPaint.strokeWidth = 2f
+        mChartBgPaint.color = paintColor
+        initMyAttr(attrs)
+//        setBackgroundColor(myGrad.shape)
         setData()
+        canvasPaint
+        canvasPaint.apply {
+            style = Paint.Style.FILL
+            color = backGroundColor
+        }
+    }
+
+    private fun initMyAttr(attrs: AttributeSet?) {
+        val ta = context.obtainStyledAttributes(attrs, R.styleable.LineChartView)
+        radius = ta.getColor(R.styleable.LineChartView_line_chart_radius, 10)
+        //写了，没有用到。懒得删了
+        radiusTopLeft = ta.getColor(R.styleable.LineChartView_line_chart_top_left_radius, radius)
+        radiusTopRight = ta.getColor(R.styleable.LineChartView_line_chart_top_right_radius, radius)
+        radiusBottomRight =
+            ta.getColor(R.styleable.LineChartView_line_chart_bottom_right_radius, radius)
+        radiusBottomLeft =
+            ta.getColor(R.styleable.LineChartView_line_chart_bottom_left_radius, radius)
+
+        ta.recycle()
+
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-
         val widthSpecMode = MeasureSpec.getMode(widthMeasureSpec)
         val widthSpecSize = MeasureSpec.getSize(widthMeasureSpec)
         val heightSpecMode = MeasureSpec.getMode(heightMeasureSpec)
@@ -72,14 +112,15 @@ class LineChartView @JvmOverloads constructor(
         } else if (heightSpecMode == MeasureSpec.AT_MOST) {
             setMeasuredDimension(widthSpecSize, 600)
         }
-
     }
 
+    @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
+        val recf = RectF(0f,0f, measuredWidth.toFloat(), measuredHeight.toFloat())
+        canvas.drawRoundRect(recf, radius.toFloat(), radius.toFloat(),canvasPaint)
         mWidth = width
         mHeight = height
-
 
         //画底下和顶上的线
         drawX(canvas)
@@ -93,10 +134,47 @@ class LineChartView @JvmOverloads constructor(
 //        //绘制上面的文字提示
 //        drawTopText(canvas)
 
-        drawChart(canvas)
+        drawLine(canvas)
+
+        setAnim(canvas)
+
     }
 
-    private fun drawChart(canvas: Canvas) {
+    private fun setAnim(canvas: Canvas) {
+        val measure = PathMeasure(mChartPath, false)
+        val pathLength = measure.length
+        val effect = DashPathEffect(floatArrayOf(pathLength, pathLength), pathLength - pathLength * mAnimProgress)
+        mChartBgPaint.pathEffect = effect
+        canvas.drawPath(mChartPath, mPathPaint)
+    }
+
+    @SuppressLint("AnimatorKeep")
+    //这个要用反射，暂时先不处理
+    fun startAnim(lineChartView: LineChartView,duration: Long) {
+        val animator = ObjectAnimator.ofFloat(lineChartView,"progress",0f,1f)
+        animator.duration = duration
+        animator.interpolator = LinearInterpolator()
+        animator.start()
+    }
+
+//    fun startAnim(duration: Long) {
+//        val animator = ValueAnimator.ofFloat(0f,1f)
+//        animator.duration = duration
+//        animator.interpolator = LinearInterpolator()
+//        animator.addUpdateListener {
+//            setProgress(it.animatedValue as Float)
+//        }
+//    }
+
+    private fun setProgress(progress: Float) {
+        if(progress < 0f || progress > 1f) {
+            throw IllegalAccessException("动画的进度出现问题")
+        }
+        mAnimProgress = progress
+        invalidate()
+    }
+
+    private fun drawLine(canvas: Canvas) {
         val tempY = (mHeight - mPadding * 2) / 6 //Y轴间隔
         val tempX = (mWidth - mPadding * 2) / (monthPerYear - 1) //x轴间隔
         var temp = 0f
@@ -117,7 +195,6 @@ class LineChartView @JvmOverloads constructor(
                 LogUtil.d("LineChartView", e.message.toString())
             }
         }
-        canvas.drawPath(mChartPath, mPathPaint)
     }
 
     private fun drawBottomLineAndText(canvas: Canvas) {
@@ -131,35 +208,40 @@ class LineChartView @JvmOverloads constructor(
      * @return
      */
     private fun drawY(canvas: Canvas) {
-        mPaint.style = Paint.Style.FILL
+        mChartBgPaint.style = Paint.Style.FILL
         canvas.drawLine(
             mPadding,
             0f,
             mPadding,
             mHeight - mPadding,
-            mPaint
+            mChartBgPaint
         )
 
         val tempY = (mHeight - mPadding * 2) / 6
         for (i in 1..7) {
-            canvas.drawText("${i}", 10f, (mHeight - mPadding - i * tempY), mPaint)
+            canvas.drawText("${i}", 10f, (mHeight - mPadding - i * tempY), mChartBgPaint)
             canvas.drawLine(
                 mPadding, (mHeight - mPadding - i * tempY),
-                mWidth.toFloat(), (mHeight - mPadding - i * tempY), mPaint
+                mWidth.toFloat(), (mHeight - mPadding - i * tempY), mChartBgPaint
             )
         }
     }
 
     private fun drawX(canvas: Canvas) {
-        LogUtil.d("*****", "${height}*****${width}")
-        canvas.drawLine(mPadding, mHeight - mPadding, mWidth.toFloat(), mHeight - mPadding, mPaint)
+        canvas.drawLine(
+            mPadding,
+            mHeight - mPadding,
+            mWidth.toFloat(),
+            mHeight - mPadding,
+            mChartBgPaint
+        )
         val tempX = (mWidth - mPadding * 2) / (monthPerYear - 1)
         for (i in 1..monthPerYear) {
             canvas.drawText(
                 "${monthPerYear - i + 1}",
                 mWidth - mPadding - (i - 1) * tempX,
                 mHeight.toFloat(),
-                mPaint
+                mChartBgPaint
             )
 
         }
@@ -173,6 +255,9 @@ class LineChartView @JvmOverloads constructor(
     }
 
 
+    /**
+     * 测试用数据
+     */
     private fun setData() {
         chartData.addAll(
             listOf(

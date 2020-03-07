@@ -33,7 +33,7 @@
     <color name="mine_fragment_text_welcome_color">#000000</color>
     <color name="mine_fragment_bottom_sheet_bg_color">#FFFFFF</color>
     <color name="mine_fragment_view_bg_color">#D7D7D7</color>
-  <color name="mine_fragment_tb_bg_color">#FFFFFF</color>
+  <color name="mine_fragment_tb_bg_color">#30D9AB</color>
 
 <!--    团队管理界面的颜色-->
     <color name="team_fragment_root_bg_color">#FFFFFF</color>

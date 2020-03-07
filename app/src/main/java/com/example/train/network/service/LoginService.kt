@@ -12,7 +12,6 @@ import retrofit2.http.POST
  * on 20-3-5
  */
 interface LoginService {
-
     @FormUrlEncoded
     @POST("/login")
     fun login(@Field("username") username: String,

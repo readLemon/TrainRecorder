@@ -17,4 +17,13 @@
         <attr name="rt_text_color" format="color"/>
         <attr name="rt_text_line_space" format="dimension"/>
     </declare-styleable>
+
+    <declare-styleable name="LineChartView">
+        <attr name="line_chart_radius" format="integer"/>
+        <attr name="line_chart_top_left_radius" format="integer"/>
+        <attr name="line_chart_top_right_radius" format="integer"/>
+        <attr name="line_chart_bottom_right_radius" format="integer"/>
+        <attr name="line_chart_bottom_left_radius" format="integer"/>
+        <attr name="line_chart_bg_color" format="color"/>
+    </declare-styleable>
 </resources>

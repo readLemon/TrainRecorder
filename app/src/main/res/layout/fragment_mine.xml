@@ -53,7 +53,7 @@
             android:layout_width="match_parent"
             app:navigationIcon="@drawable/common_ic_back"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/mine_fragment_tb_bg_color"
+            android:background="@drawable/shape_tb_bg_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -101,6 +101,7 @@
                     android:layout_marginTop="10dp"
                     android:alpha="0.5"
                     android:elevation="10dp"
+                    android:background="@drawable/shape_round_white_bg"
                     android:layout_marginEnd="15dp"
                     app:cardBackgroundColor="@color/mine_fragment_first_card_bg_color"
                     app:cardCornerRadius="10dp"

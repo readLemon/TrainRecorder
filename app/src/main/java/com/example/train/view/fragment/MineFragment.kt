@@ -1,6 +1,8 @@
 package com.example.train.view.fragment
 
+import android.os.Build
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.train.R
@@ -30,6 +32,10 @@ class MineFragment : BaseFragment() {
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
         btn_mine_fm_show_leave_detail.setOnClickListener {
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            lcv_mine_fm_leave.startAnim(lcv_mine_fm_absent,200L)
         }
 
         var l: LeaveBean
