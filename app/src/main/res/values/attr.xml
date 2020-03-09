@@ -25,5 +25,7 @@
         <attr name="line_chart_bottom_right_radius" format="integer"/>
         <attr name="line_chart_bottom_left_radius" format="integer"/>
         <attr name="line_chart_bg_color" format="color"/>
+        <attr name="line_chart_bg_line_color" format="color"/>
+        <attr name="line_chart_data_line_color" format="color"/>
     </declare-styleable>
 </resources>

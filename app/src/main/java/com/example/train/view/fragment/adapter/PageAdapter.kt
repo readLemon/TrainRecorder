@@ -10,9 +10,8 @@ import com.example.train.view.fragment.AddTeamChildTeamFragment
  * Created by chenyang
  * on 20-2-29
  */
-class PageAdapter(val fm: FragmentManager, val cnt: Int) : FragmentPagerAdapter(fm, cnt) {
+class PageAdapter(fm: FragmentManager, val cnt: Int, val fragmentHashMap: HashMap<Int, Fragment> = HashMap()) : FragmentPagerAdapter(fm, cnt) {
 
-    private val fragmentHashMap = HashMap<Int, Fragment>()
     override fun getItem(position: Int): Fragment {
         return getFragment(position)
     }
@@ -28,7 +27,6 @@ class PageAdapter(val fm: FragmentManager, val cnt: Int) : FragmentPagerAdapter(
                         AddTeamChildTeamFragment()
                     fragmentHashMap.put(0, currentFragment)
                 }
-
                 1 -> {
                     currentFragment = AddPersonalChildTeamFragment()
                     fragmentHashMap.put(1, currentFragment)
@@ -36,18 +34,16 @@ class PageAdapter(val fm: FragmentManager, val cnt: Int) : FragmentPagerAdapter(
 
             }
         }
-
         return currentFragment as Fragment
-
     }
 
     override fun getCount() = cnt
 
     override fun getPageTitle(position: Int): CharSequence? {
-        when(position) {
-            0 -> return "team"
+        when (position) {
+            0 -> return "个人记录"
 
-            else -> return "person"
+            else -> return "团队记录"
         }
     }
 

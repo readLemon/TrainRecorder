@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:background="@color/mine_fragment_root_bg_color">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/nsv_mine_fragment_bottom"
         android:layout_width="match_parent"
@@ -51,63 +50,94 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/tb_mine_fm_leave_absent"
             android:layout_width="match_parent"
-            app:navigationIcon="@drawable/common_ic_back"
             android:layout_height="?attr/actionBarSize"
             android:background="@drawable/shape_tb_bg_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/common_ic_back" />
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintTop_toBottomOf="@+id/tb_mine_fm_leave_absent"
-            android:background="@color/mine_fragment_root_bg_color">
+            android:background="@color/mine_fragment_root_bg_color"
+            app:layout_constraintTop_toBottomOf="@+id/tb_mine_fm_leave_absent">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:paddingBottom="100dp">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cv_minn_fragment_welcome"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/cv_mine_fm_welcome"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
-                    app:cardCornerRadius="15dp"
                     android:layout_marginTop="20dp"
+                    android:layout_marginEnd="15dp"
                     android:elevation="10dp"
                     app:cardBackgroundColor="@android:color/transparent"
-                    app:cardUseCompatPadding="true"
-                    app:layout_constraintBottom_toTopOf="@id/cv_mine_fragment_absent"
+                    app:cardCornerRadius="10dp"
+                    app:layout_constraintBottom_toTopOf="@id/cv_mine_fm_absent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tv_mine_fragment_welcome"
-                        android:padding="10dp"
-                        android:layout_width="wrap_content"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/shape_round_white_bg"
-                        android:text="Welcome \nIt's your train data!"
-                        android:textColor="@color/mine_fragment_text_welcome_color"
-                        android:textSize="25sp" />
+                        android:padding="10dp">
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_mine_fm_welcome"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Welcome \nIt's your train data!"
+                            android:textColor="@color/mine_fragment_text_welcome_color"
+                            android:textSize="25sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_mine_fm_leave_cnt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="请假次数：0"
+                            android:textColor="@color/mine_fragment_text_welcome_color"
+                            android:textSize="20sp"
+                            app:layout_constraintStart_toStartOf="@id/tv_mine_fm_welcome"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_mine_fm_welcome" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_mine_fm_absent_cnt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="缺勤次数：0"
+                            android:textColor="@color/mine_fragment_text_welcome_color"
+                            android:textSize="20sp"
+                            app:layout_constraintStart_toStartOf="@id/tv_mine_fm_welcome"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_mine_fm_leave_cnt" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cv_mine_fragment_absent"
+                    android:id="@+id/cv_mine_fm_absent"
                     android:layout_width="0dp"
-                    android:layout_height="400dp"
+
+                    android:layout_height="350dp"
                     android:layout_marginTop="10dp"
                     android:alpha="0.5"
-                    android:elevation="10dp"
                     android:background="@drawable/shape_round_white_bg"
-                    android:layout_marginEnd="15dp"
+                    android:elevation="10dp"
                     app:cardBackgroundColor="@color/mine_fragment_first_card_bg_color"
                     app:cardCornerRadius="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/cv_minn_fragment_welcome"
-                    app:layout_constraintTop_toBottomOf="@id/cv_minn_fragment_welcome">
+                    app:layout_constraintEnd_toEndOf="@id/cv_mine_fm_welcome"
+                    app:layout_constraintStart_toStartOf="@id/cv_mine_fm_welcome"
+                    app:layout_constraintTop_toBottomOf="@id/cv_mine_fm_welcome">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -121,10 +151,11 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
                             android:gravity="center"
-                            android:text="暂时先放到这儿叭。占个位，等view画好以后再说"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:line_chart_bg_line_color="@color/mine_fragment_line_chart_bg_line_color"
+                            app:line_chart_data_line_color="@color/mine_fragment_line_chart_data_line_color" />
 
                         <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/btn_mine_fm_show_leave_detail"
@@ -145,18 +176,16 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cv_mine_fragment_leave"
                     android:layout_width="0dp"
-                    android:layout_height="400dp"
+                    android:layout_height="350dp"
                     android:layout_marginTop="40dp"
                     android:alpha="0.5"
                     android:elevation="10dp"
-                    android:layout_marginEnd="15dp"
                     app:cardBackgroundColor="@color/mine_fragment_second_card_bg_color"
                     app:cardCornerRadius="10dp"
-                    app:cardUseCompatPadding="true"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/cv_minn_fragment_welcome"
-                    app:layout_constraintTop_toBottomOf="@+id/cv_mine_fragment_absent">
+                    app:layout_constraintEnd_toEndOf="@+id/cv_mine_fm_welcome"
+                    app:layout_constraintStart_toStartOf="@id/cv_mine_fm_welcome"
+                    app:layout_constraintTop_toBottomOf="@+id/cv_mine_fm_absent">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -170,10 +199,12 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="10dp"
                             android:gravity="center"
-                            android:text="暂时先放到这儿叭。占个位，等画好以后再说"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:line_chart_bg_color="@color/mine_fragment_line_chart_bg_color"
+                            app:line_chart_bg_line_color="@color/mine_fragment_line_chart_bg_line_color"
+                            app:line_chart_data_line_color="@color/mine_fragment_line_chart_data_line_color" />
 
                         <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/btn_mine_fm_show_absent_detail"
@@ -191,8 +222,6 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
         </androidx.core.widget.NestedScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

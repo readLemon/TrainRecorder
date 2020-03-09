@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <corners android:radius="20dp"/>
-    <solid android:color="@color/control_team_fragment_tab_text_color"/>
+
+    <corners android:radius="15dp"/>
+    <solid android:color="#96D7D7D7"/>
+
 </shape>

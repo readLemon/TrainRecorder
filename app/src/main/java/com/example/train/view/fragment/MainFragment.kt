@@ -2,12 +2,9 @@ package com.example.train.view.fragment
 
 import android.view.View
 import android.widget.Toast
-import androidx.cardview.widget.CardView
-import androidx.customview.widget.ViewDragHelper
 import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
 import com.example.train.R
-import com.example.train.widget.QTouchListener
 import kotlinx.android.synthetic.main.fragment_main.*
 
 /**
@@ -18,13 +15,9 @@ class MainFragment : BaseFragment(), View.OnClickListener {
     override val contentViewId: Int
         get() = R.layout.fragment_main
 
-
     override fun initial(view: View) {
         iv_main_fm_lu.setOnClickListener(this)
         iv_main_fm_ru.setOnClickListener(this)
-//        cv_main_fm_ld.setOnTouchListener(QTouchListener())
-//        cv_main_fm_ld.setOnClickListener(this)
-
 
     }
 

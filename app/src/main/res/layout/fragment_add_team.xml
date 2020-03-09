@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -21,10 +20,10 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_add_team_fm_project"
-            android:drawableStart="@drawable/ic_important_star"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/selector_control_team_fragment_et_bg"
+            android:drawableStart="@drawable/ic_important_star"
             android:foreground="?attr/selectableItemBackground"
             android:hint="请在此输入本次训练的项目"
             android:maxLines="1"
@@ -38,9 +37,9 @@
         android:layout_width="@dimen/add_team_fragment_msg_item_width"
         android:layout_height="@dimen/add_team_fragment_msg_item_height"
         android:layout_marginTop="10dp"
-        app:cardBackgroundColor="@color/control_team_fragment_cv_bg_color"
         android:background="@drawable/selector_control_team_fragment_et_bg"
         android:textCursorDrawable="@drawable/shape_et_cursor"
+        app:cardBackgroundColor="@color/control_team_fragment_cv_bg_color"
         app:cardCornerRadius="@dimen/control_team_fragment_msg_item_radius"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,10 +47,10 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_add_team_fm_time"
-            android:drawableStart="@drawable/ic_important_star"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/selector_control_team_fragment_et_bg"
+            android:drawableStart="@drawable/ic_important_star"
             android:elevation="10dp"
             android:foreground="?attr/selectableItemBackground"
             android:hint="请在此选择本次训练的时间"
@@ -67,8 +66,8 @@
         android:layout_width="@dimen/add_team_fragment_msg_item_width"
         android:layout_height="@dimen/add_team_fragment_msg_item_height"
         android:layout_marginTop="10dp"
-        app:cardBackgroundColor="@color/control_team_fragment_cv_bg_color"
         android:textCursorDrawable="@drawable/shape_et_cursor"
+        app:cardBackgroundColor="@color/control_team_fragment_cv_bg_color"
         app:cardCornerRadius="@dimen/control_team_fragment_msg_item_radius"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,10 +75,10 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_add_team_fm_where"
-            android:drawableStart="@drawable/ic_important_star"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/selector_control_team_fragment_et_bg"
+            android:drawableStart="@drawable/ic_important_star"
             android:elevation="10dp"
             android:foreground="?attr/selectableItemBackground"
             android:hint="请在此选择本次训练的地点"
@@ -94,8 +93,8 @@
         android:layout_width="@dimen/add_team_fragment_msg_item_width"
         android:layout_height="@dimen/add_team_fragment_msg_item_height"
         android:layout_marginTop="10dp"
-        app:cardBackgroundColor="@color/control_team_fragment_cv_bg_color"
         android:textCursorDrawable="@drawable/shape_et_cursor"
+        app:cardBackgroundColor="@color/control_team_fragment_cv_bg_color"
         app:cardCornerRadius="@dimen/control_team_fragment_msg_item_radius"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -125,12 +124,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.example.train.widget.MutableListenerButton
             android:id="@+id/btn_add_team_submit"
             android:layout_width="200dp"
             android:layout_height="60dp"
             android:background="@drawable/shape_control_team_fragment_btn_submit_bg"
             android:foreground="?attr/selectableItemBackground"
+            android:gravity="center"
             android:text="提交"
             android:textColor="@color/control_team_framgment_btn_submit_text_color"
             android:textSize="16sp"

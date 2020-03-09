@@ -27,7 +27,7 @@ class LoginViewModel : ViewModel() {
         loginRepo.login(username, psw).subscribe(
             {
                 isLoginSuccess.value = true
-                val user = UserBean(it.age, it.name, it.team)
+                val user = UserBean(it.age, it.name, it.team, it.isCaptaion)
                 UserUtil.replaceUser(user)
             },
             {

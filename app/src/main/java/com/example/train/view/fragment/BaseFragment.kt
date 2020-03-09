@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
+import com.example.train.App
 
 /**
  * Created by chenyang
@@ -15,6 +18,8 @@ abstract class BaseFragment: Fragment() {
 
     @get:LayoutRes
     abstract val contentViewId: Int
+
+    val mContext = context?:App.context
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -27,5 +32,12 @@ abstract class BaseFragment: Fragment() {
     }
 
     open fun initial(view: View) = Unit
+
+    //嫖的袁兵大哥写的
+    inline fun <T> LiveData<T>.observeNotNull(crossinline onChange: (T) -> Unit) = observe(this@BaseFragment, Observer {
+        it ?: return@Observer
+        onChange(it)
+    })
+
 
 }

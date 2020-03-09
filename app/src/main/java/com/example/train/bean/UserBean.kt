@@ -7,5 +7,6 @@ package com.example.train.bean
 data class UserBean(
     val age: Int,
     val name: String,
-    val team: String
+    val team: String,
+    val isCaptaion: Boolean
 )
