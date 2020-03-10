@@ -12,7 +12,7 @@
         android:background="@drawable/shape_fragment_mine_bottom_sheet_bg"
         android:elevation="11dp"
         app:behavior_hideable="true"
-        app:behavior_peekHeight="70dp"
+        app:behavior_peekHeight="0dp"
         app:layout_behavior="@string/bottom_sheet_behavior">
         <!--        我也想直接这个NestedScrollView作为bottomsheet，可是不知道为什么，会有bug。。-->
         <androidx.appcompat.widget.AppCompatTextView

@@ -14,7 +14,7 @@ import com.mredrock.cyxbs.common.utils.LogUtil
  * on 20-3-5
  */
 @SuppressLint("CheckResult")
-class LoginViewModel : ViewModel() {
+class LoginViewModel : BaseViewModel() {
 
     private val loginRepo by lazy { LoginRepository() }
     val isLoginSuccess by lazy { MutableLiveData<Boolean>(null) }
@@ -24,7 +24,7 @@ class LoginViewModel : ViewModel() {
     }
 
     fun login(username: String, psw: String) {
-        loginRepo.login(username, psw).subscribe(
+        val dis = loginRepo.login(username, psw).subscribe(
             {
                 isLoginSuccess.value = true
                 val user = UserBean(it.age, it.name, it.team, it.isCaptaion)
@@ -36,13 +36,17 @@ class LoginViewModel : ViewModel() {
                 }
             }
         )
+
+        mCompositeDisposable.add(dis)
     }
 
     fun register(username: String, psw: String) {
-        loginRepo.resigter(username, psw).subscribe({},
+        val dis = loginRepo.resigter(username, psw).subscribe({},
             {
 
             })
+        mCompositeDisposable.add(dis)
+
     }
 
 }

@@ -2,6 +2,7 @@ package com.example.train.repository
 
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 /**
@@ -10,6 +11,8 @@ import io.reactivex.schedulers.Schedulers
  */
 open class BaseRepository {
 
+    val compo = CompositeDisposable()
+
     protected fun <T> observe(observable: Observable<T>): Observable<T> {
 
         return observable
@@ -17,4 +20,5 @@ open class BaseRepository {
             .unsubscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
+
 }

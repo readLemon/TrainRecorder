@@ -14,7 +14,7 @@ import com.mredrock.cyxbs.common.utils.LogUtil
  * on 20-3-4
  */
 @SuppressLint("CheckResult")
-class MineViewModel : ViewModel() {
+class MineViewModel : BaseViewModel() {
 
     private val mineRepository by lazy { MineFragmentRepository() }
     val leaves by lazy { MutableLiveData<MutableList<LeaveBean>>() }
@@ -25,7 +25,7 @@ class MineViewModel : ViewModel() {
     }
 
     fun getLeaves(username: String) {
-        mineRepository.getLeaves(username).subscribe(
+        val dis = mineRepository.getLeaves(username).subscribe(
             {
                 leaves.value = it
             },
@@ -35,10 +35,12 @@ class MineViewModel : ViewModel() {
                 }
             })
 
+        mCompositeDisposable.add(dis)
+
     }
 
     fun getAbsents(username: String) {
-        mineRepository.getAbsents(username).subscribe(
+        val dis = mineRepository.getAbsents(username).subscribe(
             {
                 absents.value = it
             },
@@ -48,6 +50,7 @@ class MineViewModel : ViewModel() {
                 }
             }
         )
+        mCompositeDisposable.add(dis)
     }
 
 }

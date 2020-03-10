@@ -11,5 +11,13 @@ class MainActivity : BaseActivity() {
     override fun initView(savedInstanceState: Bundle?) {
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return super.onSupportNavigateUp()
+    }
+
 
 }

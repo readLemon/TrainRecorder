@@ -18,6 +18,7 @@ class ControlTeamRepository : BaseRepository() {
 
 
     fun addLeave(time: Long, project: String, reason: String): Observable<JsonWrapper<*>> {
+
         return observe(dao.requestAddLeave(UserUtil.currentUsername, time, project, reason))
     }
 

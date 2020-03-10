@@ -50,4 +50,9 @@ class AddPersonalChildTeamFragment(val onFragmentClick: Fragment.(v: View)->Unit
         })
 
     }
+
+    override fun onDestroy() {
+        viewModel.clearDisposable()
+        super.onDestroy()
+    }
 }

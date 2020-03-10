@@ -40,4 +40,10 @@ class LoginFragment : BaseFragment() {
     private fun isPasswordAvailable(psw: String): Boolean {
         return psw.length == 6
     }
+
+
+    override fun onDestroy() {
+        viewModel.clearDisposable()
+        super.onDestroy()
+    }
 }

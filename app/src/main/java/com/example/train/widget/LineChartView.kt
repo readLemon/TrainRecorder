@@ -143,7 +143,6 @@ class LineChartView @JvmOverloads constructor(
         mWidth = width
         mHeight = height
 
-        LogUtil.d(TAG, "ondrew")
         //画底下和顶上的线
         drawX(canvas)
 
