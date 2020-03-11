@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import com.example.train.App
+import com.mredrock.cyxbs.common.utils.LogUtil
 
 /**
  * Created by chenyang
@@ -23,14 +24,33 @@ abstract class BaseFragment: Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
+
         return LayoutInflater.from(context).inflate(contentViewId, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initial(view)
+//        LogUtil.e("*******************","*onViewCreated*****")
+
     }
 
+//    override fun onStart() {
+//        super.onStart()
+//     LogUtil.e("*******************","*onStart*****")
+//    }
+//
+//    override fun onDestroy() {
+//        super.onDestroy()
+//        LogUtil.e("*******************","*onDestroy*****")
+//    }
+//
+//
+//    override fun onDetach() {
+//        super.onDetach()
+//        LogUtil.e("*******************","*onDetach*****")
+//
+//    }
     open fun initial(view: View) = Unit
 
     //嫖的袁兵大哥写的

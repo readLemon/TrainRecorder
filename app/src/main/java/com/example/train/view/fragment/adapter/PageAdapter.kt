@@ -19,7 +19,6 @@ class PageAdapter(fm: FragmentManager, val cnt: Int, val fragmentHashMap: HashMa
 
     private fun getFragment(pos: Int): Fragment {
         var currentFragment = fragmentHashMap.get(pos)
-
         if (currentFragment == null) {
             when (pos) {
                 0 -> {

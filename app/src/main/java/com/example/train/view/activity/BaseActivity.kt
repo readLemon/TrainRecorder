@@ -3,6 +3,7 @@ package com.example.train.view.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.Toolbar
@@ -35,6 +36,10 @@ abstract class BaseActivity : AppCompatActivity() {
             setNavigationIcon(icon)
             setNavigationOnClickListener(listener)
         }
+    }
+
+    fun showToast(msg :String) {
+        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show()
     }
 
 }

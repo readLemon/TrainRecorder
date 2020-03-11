@@ -3,19 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/item_main_nav_home"
+        android:id="@+id/nav_main_graph"
         android:icon="@drawable/ic_main_nav_item_home"
         android:title="主页"
         tools:ignore="HardcodedText" />
 
     <item
-        android:id="@+id/item_main_nav_team"
+        android:id="@+id/nav_test_second"
         android:icon="@drawable/ic_main_nav_item_team"
         android:title="训练"
         tools:ignore="HardcodedText" />
 
     <item
-        android:id="@+id/item_main_nav_setting"
+        android:id="@+id/nav_test_third"
         android:icon="@drawable/ic_main_nav_item_setting"
         android:title="设置"
         tools:ignore="HardcodedText" />

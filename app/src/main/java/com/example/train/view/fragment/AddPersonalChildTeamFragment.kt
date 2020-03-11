@@ -28,7 +28,6 @@ class AddPersonalChildTeamFragment(val onFragmentClick: Fragment.(v: View)->Unit
         val remark = et_add_personal_fm_remark.text.toString().trim()
         onFragmentClick(btn_add_personal_fm_submit)
         btn_add_personal_fm_submit.addListner(View.OnClickListener { btnView ->
-            //暂时放这儿测试
             if (isInputAvailable(project, where)) {
                 if (isInputAvailable(reason)) {
                     viewModel.addLeave(project = project, time = tempTime, reason = reason).observeNotNull {

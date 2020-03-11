@@ -1,10 +1,14 @@
 package com.example.train.view.fragment
 
+import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
 import com.example.train.R
+import com.mredrock.cyxbs.common.utils.LogUtil
 import kotlinx.android.synthetic.main.fragment_main.*
 
 /**
@@ -14,6 +18,15 @@ import kotlinx.android.synthetic.main.fragment_main.*
 class MainFragment : BaseFragment(), View.OnClickListener {
     override val contentViewId: Int
         get() = R.layout.fragment_main
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        LogUtil.e("*******************","*MainFragmentonCreateView*****")
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
 
     override fun initial(view: View) {
         iv_main_fm_lu.setOnClickListener(this)
@@ -34,6 +47,18 @@ class MainFragment : BaseFragment(), View.OnClickListener {
             R.id.cv_main_fm_lu -> Toast.makeText(context, "被点击了", Toast.LENGTH_SHORT).show()
         }
         action?.let { v.findNavController().navigate(it) }
+    }
+
+
+    override fun onDetach() {
+        super.onDetach()
+        LogUtil.e("*************mmma******","*onDetach*****")
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        LogUtil.e("*************mmma******","*onDestroy*****")
 
     }
 

@@ -10,7 +10,7 @@ import kotlin.properties.Delegates
  */
 open class BaseViewModel: ViewModel() {
 
-    val mCompositeDisposable by Delegates.notNull<CompositeDisposable>()
+    val mCompositeDisposable by lazy { CompositeDisposable() }
 
 
     fun clearDisposable() {
