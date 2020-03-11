@@ -47,10 +47,6 @@
             android:id="@+id/action_loginFragment_to_fragment_main"
             app:destination="@id/fragment_main" />
     </fragment>
-    <fragment
-        android:id="@+id/testFragment"
-        android:name="com.example.train.view.fragment.TestFragment"
-        android:label="TestFragment"
-        tools:layout="@layout/fragment_test"/>
+
 
 </navigation>

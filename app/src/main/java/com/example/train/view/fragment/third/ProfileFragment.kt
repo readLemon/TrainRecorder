@@ -11,9 +11,9 @@ import kotlinx.android.synthetic.main.fragment_test.*
  * Created by chenyang
  * on 20-3-4
  */
-class TestFragment: BaseFragment() {
+class ProfileFragment: BaseFragment() {
     override val contentViewId: Int
-        get() = R.layout.fragment_test
+        get() = R.layout.fragment_profile
 
     override fun initial(view: View) {
 //        test_root.setOnTouchListener(QTouchListener())

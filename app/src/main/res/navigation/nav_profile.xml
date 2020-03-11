@@ -2,12 +2,12 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_test_third"
+    android:id="@+id/nav_profile"
     app:startDestination="@id/testFragment3">
 
     <fragment
         android:id="@+id/testFragment3"
-        android:name="com.example.train.view.fragment.third.TestFragment"
+        android:name="com.example.train.view.fragment.third.ProfileFragment"
         android:label="TestFragment"
-        tools:layout="@layout/fragment_test"/>
+        tools:layout="@layout/fragment_profile"/>
 </navigation>

@@ -1,47 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#30D9AB</color>
-    <color name="colorPrimaryDark">#30D9AB</color>
+    <color name="colorPrimaryDark">#F5F6FA</color>
     <color name="colorAccent">#000000</color>
     <color name="colorGrey">#55A794</color>
 
     <color name="my_grey">#D7D7D7</color>
 
-  <color name="rich_editor_text_color">#000000</color>
+    <color name="rich_editor_text_color">#000000</color>
 
-<!--    一些其他颜色-->
+    <!--    一些其他颜色-->
     <color name="edit_text_cursor_color">#30D9AB</color>
 
 
-<!--    style中的颜色-->
+    <!--    style中的颜色-->
     <color name="tab_selected_text_color">#30D9AB</color>
     <color name="tab_bg_color">#33FFFFFF</color>
-<!--    登陆界面的颜色-->
+    <!--    登陆界面的颜色-->
     <color name="login_fragment_root_bg_color">#FFFFFF</color>
     <color name="login_fragment_login_btn_bg_color">#30D9AB</color>
     <color name="login_fragment_login_et_text_color">#000000</color>
     <color name="login_fragment_login_btn_text_color">#FFFFFF</color>
 
-<!--    主界面的颜色-->
-    <color name="main_fargment_up_bg_color">#85E9CE</color>
+    <!--    主界面的颜色-->
+    <color name="main_fragment_bg_color">#D7D7D7</color>
+    <color name="main_fargment_up_bg_color">#F5F6FA</color>
     <color name="main_fragment_text_morning_color">#393248</color>
 
-<!--    mine面颜色-->
-    <color name="mine_fragment_root_bg_color">#FFFFFF</color>
+    <!--    mine面颜色-->
+    <color name="mine_fragment_root_bg_color">#FAFAFA</color>
     <color name="mine_fragment_first_card_bg_color">#30D9AB</color>
     <color name="mine_fragment_second_card_bg_color">#30D9AB</color>
     <color name="mine_fragment_text_welcome_color">#000000</color>
     <color name="mine_fragment_bottom_sheet_bg_color">#FFFFFF</color>
     <color name="mine_fragment_view_bg_color">#D7D7D7</color>
-  <color name="mine_fragment_tb_bg_color">#30D9AB</color>
-  <color name="mine_fragment_line_chart_bg_color">#D7D7D7</color>
-  <color name="mine_fragment_line_chart_bg_line_color">#30D9AB</color>
-  <color name="mine_fragment_line_chart_data_line_color">#30D9AB</color>
+    <color name="mine_fragment_tb_bg_color">#30D9AB</color>
+    <color name="mine_fragment_line_chart_bg_color">#D7D7D7</color>
+    <color name="mine_fragment_line_chart_bg_line_color">#30D9AB</color>
+    <color name="mine_fragment_line_chart_data_line_color">#30D9AB</color>
 
-<!--    团队管理界面的颜色-->
+    <!--    团队管理界面的颜色-->
     <color name="team_fragment_root_bg_color">#FFFFFF</color>
     <color name="control_team_fragment_tab_text_color">#30D9AB</color>
     <color name="control_team_framgment_btn_submit_text_color">#FFFFFF</color>
     <color name="control_team_fragment_cv_bg_color">#FFFFFF</color>
     <color name="add_team_fragment_et_focused_stroke_color">#30D9AB</color>
+
+    <!--  迟到检查页面的颜色-->
+    <color name="time_fragment_root_bg_color">#F5F6FA</color>
+    <color name="time_fragment_above_bg_color">#FFFFFF</color>
+    <color name="time_fragment_btn_submit_text_color">#FFFFFF</color>
 </resources>

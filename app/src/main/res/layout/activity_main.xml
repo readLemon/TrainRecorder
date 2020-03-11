@@ -8,6 +8,7 @@
     android:orientation="vertical"
     tools:context=".view.activity.MainActivity">
 
+<!--    实际上这个放一个framLayout就可以，因为在Extension里面，会创建container-->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_main_activity"
         android:name="androidx.navigation.fragment.NavHostFragment"

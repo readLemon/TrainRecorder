@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_time"
+    app:startDestination="@id/fragment_time">
+
+    <fragment
+        android:id="@+id/fragment_time"
+        android:name="com.example.train.view.fragment.second.TimeFragment"
+        android:label="TestFragment"
+        tools:layout="@layout/fragment_time">
+        <action
+            android:id="@+id/action_fragment_time_to_addSignInFragment"
+            app:destination="@id/fragment_add_sign_in" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_add_sign_in"
+        android:name="com.example.train.view.fragment.second.AddSignInFragment"
+        android:label="AddSignInFragment"
+        tools:layout="@layout/fragment_add_sign_in"/>
+</navigation>

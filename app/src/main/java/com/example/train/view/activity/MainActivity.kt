@@ -1,6 +1,8 @@
 package com.example.train.view.activity
 
+import android.os.Build
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
 import com.example.train.R
@@ -20,13 +22,13 @@ class MainActivity : BaseActivity() {
                 return@OnNavigationItemSelectedListener true
             }
 
-            R.id.nav_test_second -> {
-                showToast("nav_test_second")
+            R.id.nav_time -> {
+                showToast("nav_time")
                 return@OnNavigationItemSelectedListener true
             }
 
-            R.id.nav_test_third -> {
-                showToast("nav_test_third")
+            R.id.nav_profile -> {
+                showToast("nav_profile")
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -39,13 +41,14 @@ class MainActivity : BaseActivity() {
         if (savedInstanceState == null) {
             setupBottomNavigationBar()
         }
+        setStatusBar()
     }
 
     private fun setupBottomNavigationBar() {
         val navGraphIds = listOf(
             R.navigation.nav_train,
-            R.navigation.nav_test_second,
-            R.navigation.nav_test_third
+            R.navigation.nav_time,
+            R.navigation.nav_profile
         )
         val controller = bnv_main_activity.setupWithNavController(
             navGraphIds = navGraphIds,
@@ -75,6 +78,12 @@ class MainActivity : BaseActivity() {
         if (currentNavController?.value?.popBackStack() != true) {
             super.onBackPressed()
         }
+    }
+
+    private fun setStatusBar() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        };
     }
 
 

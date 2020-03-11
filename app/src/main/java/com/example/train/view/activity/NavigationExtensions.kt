@@ -29,6 +29,7 @@ import com.example.train.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 /**
+ * 来自谷歌的扩展
  * Manages the various graphs needed for a [BottomNavigationView].
  *
  * This sample is a workaround until the Navigation Component supports multiple back stacks.
@@ -43,12 +44,13 @@ fun BottomNavigationView.setupWithNavController(
 
     // Map of tags
     val graphIdToTagMap = SparseArray<String>()
-    // Result. Mutable live data with the selected controlled
+    // 可变可数据和选定的conreoller
     val selectedNavController = MutableLiveData<NavController>()
 
     var firstFragmentGraphId = 0
 
     // First create a NavHostFragment for each NavGraph ID
+    //首先建一个NavHostFragment
     navGraphIds.forEachIndexed { index, navGraphId ->
         val fragmentTag = getFragmentTag(index)
 

@@ -9,13 +9,13 @@
         tools:ignore="HardcodedText" />
 
     <item
-        android:id="@+id/nav_test_second"
+        android:id="@+id/nav_time"
         android:icon="@drawable/ic_main_nav_item_team"
         android:title="训练"
         tools:ignore="HardcodedText" />
 
     <item
-        android:id="@+id/nav_test_third"
+        android:id="@+id/nav_profile"
         android:icon="@drawable/ic_main_nav_item_setting"
         android:title="设置"
         tools:ignore="HardcodedText" />
