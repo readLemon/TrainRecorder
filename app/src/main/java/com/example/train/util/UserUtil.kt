@@ -10,7 +10,7 @@ object UserUtil {
 
     private var currentUser: UserBean ?= null
     var currentUsername: String = "wronguser"
-    var isCaptain = false
+    var isCaptain = true
 
     fun replaceUser(user: UserBean) {
         currentUser = user

@@ -6,6 +6,7 @@ import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
 import com.example.train.R
+import com.example.train.util.extention.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 

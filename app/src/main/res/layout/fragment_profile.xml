@@ -3,12 +3,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <TimePicker
-        android:timePickerMode="spinner"
+
+
+    <com.example.train.widget.RoundImageview
+        android:background="@drawable/shape_item_signin_avatar_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:src="@drawable/ic_snowboarder"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"/>
+
+<!--     <com.example.train.widget.RoundImageView2-->
+<!--        android:src="@drawable/ic_snowboarder"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"/>-->
+
 </androidx.constraintlayout.widget.ConstraintLayout>

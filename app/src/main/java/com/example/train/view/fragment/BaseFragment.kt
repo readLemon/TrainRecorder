@@ -31,29 +31,10 @@ abstract class BaseFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initial(view)
-//        LogUtil.e("*******************","*onViewCreated*****")
-
     }
 
-//    override fun onStart() {
-//        super.onStart()
-//     LogUtil.e("*******************","*onStart*****")
-//    }
-//
-//    override fun onDestroy() {
-//        super.onDestroy()
-//        LogUtil.e("*******************","*onDestroy*****")
-//    }
-//
-//
-//    override fun onDetach() {
-//        super.onDetach()
-//        LogUtil.e("*******************","*onDetach*****")
-//
-//    }
     open fun initial(view: View) = Unit
 
-    //嫖的袁兵大哥写的
     inline fun <T> LiveData<T>.observeNotNull(crossinline onChange: (T) -> Unit) = observe(this@BaseFragment, Observer {
         it ?: return@Observer
         onChange(it)

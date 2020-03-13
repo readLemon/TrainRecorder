@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_time_picker_fm_top"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_time_pick_fm_left"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_time_pick_fm_right"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        app:layout_constraintEnd_toEndOf="@id/gl_time_pick_fm_right"
+        app:layout_constraintStart_toStartOf="@id/gl_time_pick_fm_left"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingBottom="15dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/gl_time_picker_fm_top"
+        app:layout_constraintTop_toBottomOf="@+id/gl_time_picker_fm_top">
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_time_pike_fm_title"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:background="#D7D7D7"
+            android:gravity="center"
+            android:text="请选择时间"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TimePicker
+            android:id="@+id/tp_time_pick_fm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:timePickerMode="spinner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_time_pike_fm_title" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_time_pick_fm_sure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="确定"
+            android:textColor="#FFFFFF"
+            android:padding="5dp"
+            android:background="@drawable/shape_time_pick_sure_bg"
+            android:textSize="16sp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/tp_time_pick_fm" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="取消"
+            app:layout_constraintTop_toTopOf="@+id/tv_time_pick_fm_sure"
+            android:layout_marginEnd="15dp"
+            android:textColor="#D7D7D7"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/tv_time_pick_fm_sure"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
