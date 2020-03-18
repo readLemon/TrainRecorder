@@ -10,7 +10,7 @@ import androidx.room.PrimaryKey
  * on 19-10-23
  */
 @Entity(tableName = "member")
-data class TeamMemberBean(
+data class TeamMemberEntity(
     @PrimaryKey
     @NonNull
     val name: String

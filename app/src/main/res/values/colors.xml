@@ -28,16 +28,17 @@
     <color name="main_fragment_text_morning_color">#393248</color>
 
     <!--    mine面颜色-->
-    <color name="mine_fragment_root_bg_color">#FAFAFA</color>
-    <color name="mine_fragment_first_card_bg_color">#30D9AB</color>
+    <color name="mine_fragment_root_bg_color">#F5F6FA</color>
+    <color name="mine_fragment_first_card_bg_color">#FFFFFF</color>
     <color name="mine_fragment_second_card_bg_color">#30D9AB</color>
     <color name="mine_fragment_text_welcome_color">#000000</color>
     <color name="mine_fragment_bottom_sheet_bg_color">#FFFFFF</color>
     <color name="mine_fragment_view_bg_color">#D7D7D7</color>
     <color name="mine_fragment_tb_bg_color">#30D9AB</color>
-    <color name="mine_fragment_line_chart_bg_color">#D7D7D7</color>
+    <color name="mine_fragment_line_chart_bg_color">#F5F6FA</color>
     <color name="mine_fragment_line_chart_bg_line_color">#30D9AB</color>
     <color name="mine_fragment_line_chart_data_line_color">#30D9AB</color>
+    <color name="mine_fragment_card_btn_bg_color">#F5F6FA</color>
 
     <!--    团队管理界面的颜色-->
     <color name="team_fragment_root_bg_color">#FFFFFF</color>

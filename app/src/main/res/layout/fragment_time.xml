@@ -88,7 +88,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_time_fm_add"
             android:layout_marginTop="10dp"
-            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@+id/iv_time_fm_running"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -174,12 +173,12 @@
         android:id="@+id/cl_time_fm_sigin_satuation_page"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="15dp"
         android:background="@color/time_fragment_above_bg_color"
         android:paddingBottom="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cl_time_fm_start_sigin">
+        app:layout_constraintTop_toBottomOf="@+id/cl_time_fm_signin_control">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_time_fm_text_train_signin_notice"
@@ -269,6 +268,7 @@
             android:layout_height="80dp"/>
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_time_fm_num_of_late"
             android:layout_marginStart="10dp"
             app:layout_constraintTop_toTopOf="@+id/iv_time_fm_surfing"
             app:layout_constraintStart_toEndOf="@+id/iv_time_fm_surfing"
@@ -280,11 +280,11 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_time_fm_signin_control"
             android:background="@color/time_fragment_above_bg_color"
             android:layout_marginTop="15dp"
-            app:layout_constraintTop_toBottomOf="@+id/cl_time_fm_sigin_satuation_page"
+            app:layout_constraintTop_toBottomOf="@+id/cl_time_fm_start_sigin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -321,13 +321,14 @@
                 android:layout_height="0.5dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:paddingStart="15dp"
+                android:visibility="gone"
+                android:id="@+id/rv_time_fm_signin_situation"
                 android:layout_marginTop="15dp"
                 app:layout_constraintTop_toBottomOf="@+id/tv_time_fm_line_04"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
+                android:layout_height="300dp"
+                tools:ignore="RtlSymmetry" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.core.widget.NestedScrollView>

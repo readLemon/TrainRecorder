@@ -1,6 +1,7 @@
 package com.example.train.view.fragment
 
 import android.os.Build
+import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +17,6 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.mredrock.cyxbs.common.utils.LogUtil
 import kotlinx.android.synthetic.main.fragment_mine.*
 import kotlinx.android.synthetic.main.item_rv_mine_fragment_bottom.view.*
-
 /**
  * Created by chenyang
  * on 20-2-27
@@ -33,8 +33,16 @@ class MineFragment : BaseFragment(), View.OnClickListener {
     private lateinit var absentRecycApapter: CommonRecycAdapter<AbsentBean>
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        LogUtil.e("*******","***************")
+    }
 
     override fun initial(view: View) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            lcv_mine_fm_leave.startAnim(2000L)
+            lcv_mine_fm_absent.startAnim(2000L)
+        }
         setView()
         var l: LeaveBean
         for (i in 1..20) {
@@ -44,18 +52,19 @@ class MineFragment : BaseFragment(), View.OnClickListener {
         leaveRecycApapter = CommonRecycAdapter(
             R.layout.item_rv_mine_fragment_bottom,
             leaveBeans,
-            {
-                tv_rv_item_project_content.text = it.leaveProject
-                tv_rv_item_time_content.text = it.leaveTime.toString()
-                tv_rv_item_where_content.text = it.leaveReason
+            {bean ->
+                tv_rv_item_project_content.text = bean.leaveProject
+                tv_rv_item_time_content.text = bean.leaveTime.toString()
+                tv_rv_item_where_content.text = bean.leaveReason
             }
         )
 
         absentRecycApapter = CommonRecycAdapter(
             R.layout.item_rv_mine_fragment_bottom,
-            absentBeans, {
-                tv_rv_item_project_content.text = it.absentProject
-                tv_rv_item_time_content.text = it.absentTime.toString()
+            absentBeans,
+            {bean ->
+                tv_rv_item_project_content.text = bean.absentProject
+                tv_rv_item_time_content.text = bean.absentTime.toString()
             }
         )
 
@@ -63,29 +72,16 @@ class MineFragment : BaseFragment(), View.OnClickListener {
         rv_mine_fm_show_leave_absent.layoutManager = LinearLayoutManager(context)
     }
 
-//    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-//        super.setUserVisibleHint(isVisibleToUser)
-//    }
 
 
-
-
-
-    override fun onDetach() {
-        super.onDetach()
-        LogUtil.e("*************a******","*onDetach*****")
-
-    }
     private fun setView() {
         tb_mine_fm_leave_absent.setNavigationOnClickListener {
             val action = MineFragmentDirections.actionFragmentMineToFragmentMain()
             Navigation.findNavController(it).navigate(action)
         }
 
-
         bottomSheetBehavior = BottomSheetBehavior.from(nsv_mine_fragment_bottom)
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
-
 
 
         btn_mine_fm_show_leave_detail.setOnClickListener(this)
@@ -94,15 +90,6 @@ class MineFragment : BaseFragment(), View.OnClickListener {
         tv_mine_fm_leave_cnt.setText("请假次数：${leaveBeans.size}")
         tv_mine_fm_absent_cnt.setText("请假次数：${absentBeans.size}")
 
-
-    }
-
-    override fun onStart() {
-        super.onStart()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            lcv_mine_fm_leave.startAnim(2000L)
-            lcv_mine_fm_absent.startAnim(2000L)
-        }
     }
 
 
@@ -143,7 +130,6 @@ class MineFragment : BaseFragment(), View.OnClickListener {
 
     override fun onDestroy() {
         viewModel.clearDisposable()
-        LogUtil.e("******************a*","*onDestroy*****")
         super.onDestroy()
     }
 }

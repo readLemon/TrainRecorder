@@ -6,13 +6,13 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.train.App
 import com.example.train.db.dao.MemberDao
-import com.example.train.db.entity.TeamMemberBean
+import com.example.train.db.entity.TeamMemberEntity
 
 /**
  * Created by chenyang
  * on 20-1-28
  */
-@Database(entities = [TeamMemberBean::class], version = 1)
+@Database(entities = [TeamMemberEntity::class], version = 1)
 abstract class MyDatabase : RoomDatabase() {
 
     abstract fun MemberDao(): MemberDao

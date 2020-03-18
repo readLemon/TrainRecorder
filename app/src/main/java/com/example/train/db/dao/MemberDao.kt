@@ -1,7 +1,8 @@
 package com.example.train.db.dao
 
+import androidx.lifecycle.MutableLiveData
 import androidx.room.*
-import com.example.train.db.entity.TeamMemberBean
+import com.example.train.db.entity.TeamMemberEntity
 import io.reactivex.Completable
 import io.reactivex.Flowable
 
@@ -13,18 +14,18 @@ import io.reactivex.Flowable
 interface MemberDao {
 
     @Insert
-    fun insert(memberBean: TeamMemberBean): Completable
+    fun insert(memberEntity: TeamMemberEntity)
 
     @Delete
-    fun deleteAll(members: Array<TeamMemberBean>): Completable
+    fun deleteAll(members: Array<TeamMemberEntity>)
 
     @Query("DELETE FROM TeamMemberBean")
     fun deleteAll(): Completable
 
     @Query("SELECT * FROM TeamMemberBean")
-    fun getAll(): Flowable<List<TeamMemberBean>>
+    fun getAll(): MutableLiveData<List<TeamMemberEntity>>
 
     @Update
-    fun update(member: TeamMemberBean): Completable
+    fun update(member: TeamMemberEntity)
 
 }

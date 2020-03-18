@@ -11,7 +11,7 @@ import io.reactivex.Observable
  * Created by chenyang
  * on 20-3-5
  */
-class MineFragmentRepository : BaseRepository() {
+class MineRepository : BaseRepository() {
 
     val dao = RetrofitServiceManager.getInstance().creat(MineService::class.java)
 
