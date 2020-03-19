@@ -6,16 +6,22 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.train.App
 import com.example.train.db.dao.MemberDao
+import com.example.train.db.dao.TimeDao
 import com.example.train.db.entity.TeamMemberEntity
+import com.example.train.db.entity.UnsignedEntity
 
 /**
  * Created by chenyang
  * on 20-1-28
  */
-@Database(entities = [TeamMemberEntity::class], version = 1)
+@Database(
+    entities = [TeamMemberEntity::class,
+        UnsignedEntity::class], version = 1
+)
 abstract class MyDatabase : RoomDatabase() {
 
     abstract fun MemberDao(): MemberDao
+    abstract fun TimeDao(): TimeDao
 
     companion object {
 
@@ -36,6 +42,6 @@ abstract class MyDatabase : RoomDatabase() {
     }
 }
 
-fun getDatabase(): MyDatabase{
+fun getDatabase(): MyDatabase {
     return MyDatabase.getInstance(App.context)
 }

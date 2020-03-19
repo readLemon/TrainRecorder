@@ -1,17 +1,18 @@
 package com.example.train.db.entity
 
-import androidx.annotation.NonNull
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import io.reactivex.annotations.NonNull
 
 /**
- * 团队成员名单
  * Created by chenyang
- * on 19-10-23
+ * on 20-3-19
  */
-@Entity(tableName = "member_entity")
-data class TeamMemberEntity(
+@Entity(tableName = "unsigned_entity")
+data class UnsignedEntity(
     @PrimaryKey
     @NonNull
     val name: String
-)
+) {
+
+}

@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.view.View
 import android.view.animation.LinearInterpolator
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.train.R
 import com.example.train.bean.Member
@@ -15,11 +16,15 @@ import com.example.train.util.extention.mySharedPreferences
 import com.example.train.view.fragment.BaseFragment
 import com.example.train.view.fragment.adapter.CommonRecycAdapter
 import com.example.train.view.fragment.dialog.MyTimePickerFragment
+import com.example.train.viewmodel.TimeViewModel
 import com.example.train.widget.SlideLayout
 import com.example.train.widget.interfaces.onSlideChangeListener
+import com.mredrock.cyxbs.common.utils.LogUtil
 import kotlinx.android.synthetic.main.fragment_add_personal.*
 import kotlinx.android.synthetic.main.fragment_time.*
 import kotlinx.android.synthetic.main.item_signin_situation.view.*
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.properties.Delegates
 
 
@@ -32,15 +37,20 @@ class TimeFragment : BaseFragment(), View.OnClickListener {
         get() = R.layout.fragment_time
 
     private val sp by lazy { requireActivity().mySharedPreferences }
+    private val viewmodel by viewModels<TimeViewModel>()
+
     private val members = ArrayList<Member>()
     private var currentClickBean: Member? = null
     private var rvAdapter by Delegates.notNull<CommonRecycAdapter<Member>>()
+
     private var startSignInTime = 0
     private var endSignInTime = 0
 
     private var startTime = "00"
     private var endTime = "00"
 
+    private var teamSize = 0
+    private val calendar by lazy { Calendar.getInstance() }
     private val countDownAnimator by lazy { ValueAnimator.ofFloat(0F, 1F) }
 
     override fun initial(view: View) {
@@ -49,11 +59,14 @@ class TimeFragment : BaseFragment(), View.OnClickListener {
         tv_time_fm_add_signin_end_time.setOnClickListener(this)
         btn_time_fm_submit.setOnClickListener(this)
         iv_time_fm_signin_satuation_arrow.setOnClickListener(this)
+        viewmodel.getMembersFromDB().observeNotNull {
+            teamSize = it.size
+        }
+        restartCountDown()
         setRecyclerView()
     }
 
     private fun setRecyclerView() {
-
         var bea: Member
         for (i in 1..15) {
             bea = Member("我叫陈阳${i}")
@@ -62,38 +75,111 @@ class TimeFragment : BaseFragment(), View.OnClickListener {
         var s: SlideLayout? = null
         rvAdapter = CommonRecycAdapter(
             R.layout.item_signin_situation,
-            members,
-            { bean ->
-                currentClickBean = bean
-                this.tv_item_situation_name.text = bean.name
-                //这里其实有纠结过要不要换成多监听然后在fragment的监听器做统一处理。。。后来想想又没太大必要就没换了
-                this.tv_item_signin_sure.setOnClickListener {
-                    members.remove(bean)
-                    s?.closeMenu()
-                    rvAdapter.notifyDataSetChanged()
+            members
+        ) { bean ->
+            currentClickBean = bean
+            this.tv_item_situation_name.text = bean.name
+            //这里其实有纠结过要不要换成多监听然后在fragment的监听器做统一处理。。。后来想想又没太大必要就没换了
+            this.tv_item_signin_sure.setOnClickListener({
+                if (timeOut()) { //为true则是已经迟到了
+                    signInWithLate(bean)
+                } else {
+                    signInWithoutLate(bean)
                 }
-                (this.tv_item_situation_name.rootView as SlideLayout).slideListener =
-                    object : onSlideChangeListener {
-                        override fun onMenuOpen(slide: SlideLayout) {
-                            s = slide
-                        }
+                s?.closeMenu()
+            })
 
-                        override fun onMenuClose(slide: SlideLayout) {
-                            if (s != null) {
-                                s = null
-                            }
-                        }
+            this.tv_item_signin_absent.setOnClickListener({
+                //处理缺勤逻辑
+                absent(bean)
+            })
 
-                        override fun onMenuClick(slide: SlideLayout) {
-                            s?.closeMenu()
+            (this.tv_item_situation_name.rootView as SlideLayout).slideListener =
+                object : onSlideChangeListener {
+                    override fun onMenuOpen(slide: SlideLayout) {
+                        s = slide
+                    }
+                    override fun onMenuClose(slide: SlideLayout) {
+                        if (s != null) {
+                            s = null
                         }
                     }
-            }
-        )
 
+                    override fun onMenuClick(slide: SlideLayout) {
+                        s?.closeMenu()
+                    }
+                }
+        }
         rv_time_fm_signin_situation.adapter = rvAdapter
         rv_time_fm_signin_situation.layoutManager = LinearLayoutManager(context)
+    }
 
+    /**
+     * 缺勤处理逻辑
+     */
+    private fun absent(bean: Member) {
+        members.remove(bean)
+        rvAdapter.notifyDataSetChanged()
+        sp.getString(SIGN_IN_PROJECT, "signInAbsent")
+            ?.let { viewmodel.addAbsent(calendar.time.time, it) }
+        if (members.isEmpty()) {
+            onMembersEmpty()
+        }
+    }
+
+    /**
+     * 签到
+     * 准时处理逻辑
+     */
+    private fun signInWithoutLate(bean: Member) {
+        members.remove(bean)
+        rvAdapter.notifyDataSetChanged()
+        tv_num_of_signed.setText("已签到人数: ${teamSize - members.size}")
+        if (members.isEmpty()) {
+            onMembersEmpty()
+        }
+    }
+
+    /**
+     * 签到
+     * 迟到处理逻辑
+     */
+    private fun signInWithLate(bean: Member) {
+        members.remove(bean)
+        rvAdapter.notifyDataSetChanged()
+        //迟到了多长时间
+        val lateDuration =
+            calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE) - endSignInTime
+        sp.getString(SIGN_IN_PROJECT, "signInLate")
+            ?.let { viewmodel.addLate(calendar.time.time, lateDuration, it) }
+        if (members.isEmpty()) {
+            onMembersEmpty()
+        }
+    }
+
+    /**
+     * 在一次签到中，所有的人都已经签到或者缺勤签到
+     */
+    private fun onMembersEmpty() {
+        sp.editor {
+            putInt(SIGN_IN_START_TIME, -1)
+            putInt(SIGN_IN_END_TIME, -1)
+        }
+    }
+
+    private fun timeOut(): Boolean {
+        endSignInTime = sp.getInt(SIGN_IN_END_TIME, -1)
+        if (endSignInTime != -1) {
+            val curHour = calendar.get(Calendar.HOUR_OF_DAY)
+            val curMinute = calendar.get(Calendar.MINUTE)
+            if (endSignInTime < curHour * 60 + curMinute) {   //已经迟到了
+                return true
+            }
+
+        } else {
+            throw RuntimeException("签到时间没在SharedPreference记录成功！")
+        }
+        return false
     }
 
     override fun onClick(v: View) {
@@ -147,16 +233,16 @@ class TimeFragment : BaseFragment(), View.OnClickListener {
                 } else {
                     if (startSignInTime > endSignInTime) {
                         sp.editor {
-                            putString(
-                                "SIGN_IN_START_TIME",
-                                "${startSignInTime / 60}:${startSignInTime % 60}"
+                            putInt(
+                                SIGN_IN_START_TIME,
+                                startSignInTime
                             )
-                            putString(
-                                "SIGN_IN_END_TIME",
-                                "${endSignInTime / 60}:${endSignInTime % 60}"
+                            putInt(
+                                SIGN_IN_END_TIME,
+                                endSignInTime
                             )
-                            putString("SIGN_IN_PROJECT", et_time_fm_project.text.toString())
-                            putString("SIGN_IN_WHERE", et_time_fm_where.text.toString())
+                            putString(SIGN_IN_PROJECT, et_time_fm_project.text.toString())
+                            putString(SIGN_IN_WHERE, et_time_fm_where.text.toString())
                         }
                         if (tv_current_signin_end_time.visibility != View.VISIBLE) {
                             tv_current_signin_end_time.visibility = View.VISIBLE
@@ -191,18 +277,73 @@ class TimeFragment : BaseFragment(), View.OnClickListener {
     private fun startCountDown() {
         countDownAnimator.apply {
             interpolator = LinearInterpolator()
-            duration = (endSignInTime - startSignInTime).toLong()
+//            duration = ((endSignInTime - startSignInTime) * 60 * 1000).toLong()
+            duration = (0.5 * 60 * 1000).toLong()
             addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator) {
-                    
+                    tv_num_of_unsignin.setText("未签到人数: ${members.size}")
                 }
             })
         }
+        countDownAnimator.start()
     }
 
-    private fun resetCountDown() {
+    private fun restartCountDown() {
+        if (!countDownAnimator.isRunning) {
+            if (endSignInTime == 0) {
+                endSignInTime = sp.getInt(SIGN_IN_END_TIME, -1)
+                startSignInTime = sp.getInt(SIGN_IN_START_TIME, -1)
+
+                if (endSignInTime == -1 || startSignInTime == -1) { //这种情况说明，并未有上次未完成的签到
+                    return
+                }
+
+                val curTime =
+                    calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE)
+                viewmodel.getAllUnsignedMemer().observeNotNull {
+                    members.clear()
+                    var member: Member
+                    for (entity in it) {
+                        member = Member(entity.name)
+                        members.add(member)
+                        rvAdapter.notifyDataSetChanged()
+                        LogUtil.d(TAG, "更新了未签到的名单")
+                    }
+                }
+                if (endSignInTime > curTime && curTime > startSignInTime) {
+                    //未超时,重新设置计时器进行倒计时
+                    countDownAnimator.apply {
+                        interpolator = LinearInterpolator()
+                        duration = ((endSignInTime - curTime) * 60 * 1000).toLong()
+//                        duration = (0.5 * 60 * 1000).toLong()
+                        addListener(object : AnimatorListenerAdapter() {
+                            override fun onAnimationEnd(animation: Animator) {
+                                tv_num_of_unsignin.setText("未签到人数: ${members.size}")
+                            }
+                        })
+                    }
+                    countDownAnimator.start()
+                } else if (curTime < startSignInTime) {
+                    ToastUtil.showMsg("说实话，这种情况我还没写处理逻辑！")
+                }
+            }
+            countDownAnimator.start()
+        }
+    }
+
+    override fun onDetach() {
         if (countDownAnimator.isRunning) {
             countDownAnimator.cancel()
         }
+        super.onDetach()
+    }
+
+    companion object {
+        const val TAG = "TimeFragment"
+        const val SIGN_IN_END_TIME = "SIGN_IN_END_TIME"
+        const val SIGN_IN_START_TIME = "SIGN_IN_START_TIME"
+        const val SIGN_IN_PROJECT = "SIGN_IN_PROJECT"
+        const val SIGN_IN_WHERE = "SIGN_IN_WHERE"
+
     }
 }

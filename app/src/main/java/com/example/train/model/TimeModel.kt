@@ -1,9 +1,9 @@
 package com.example.train.model
 
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
 import com.example.train.db.entity.TeamMemberEntity
+import com.example.train.db.entity.UnsignedEntity
 import com.example.train.db.getDatabase
-import java.lang.reflect.Member
 
 /**
  * Created by chenyang
@@ -11,10 +11,23 @@ import java.lang.reflect.Member
  */
 class TimeModel {
 
-    private val db by lazy { getDatabase().MemberDao() }
+    private val memberDao by lazy { getDatabase().MemberDao() }
+    private val timeDao by lazy { getDatabase().TimeDao() }
 
-    fun getMembers():MutableLiveData<List<TeamMemberEntity>> {
-        return db.getAll()
+    fun getMembers(): LiveData<List<TeamMemberEntity>> {
+        return memberDao.getAll()
+    }
+
+    fun saveUnsignedMember(unsignedEntity: UnsignedEntity) {
+        timeDao.insert(unsignedEntity)
+    }
+
+    fun deleteAllUnsigned() {
+        timeDao.deleteAll()
+    }
+
+    fun getAllUnsignedMemver(): LiveData<List<UnsignedEntity>> {
+        return timeDao.getAll()
     }
 
 }
