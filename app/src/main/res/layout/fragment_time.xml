@@ -88,6 +88,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_time_fm_add"
             android:layout_marginTop="10dp"
+            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@+id/iv_time_fm_running"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

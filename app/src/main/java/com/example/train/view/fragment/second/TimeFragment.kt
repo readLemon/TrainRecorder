@@ -20,7 +20,6 @@ import com.example.train.viewmodel.TimeViewModel
 import com.example.train.widget.SlideLayout
 import com.example.train.widget.interfaces.onSlideChangeListener
 import com.mredrock.cyxbs.common.utils.LogUtil
-import kotlinx.android.synthetic.main.fragment_add_personal.*
 import kotlinx.android.synthetic.main.fragment_time.*
 import kotlinx.android.synthetic.main.item_signin_situation.view.*
 import java.util.*
@@ -31,6 +30,10 @@ import kotlin.properties.Delegates
 /**
  * Created by chenyang
  * on 20-3-4
+ *
+ * 倒计时函数用了临时值
+ * rv的数据是手动添加的需要修改
+ * 团队的成员数量是手动写的需要修改
  */
 class TimeFragment : BaseFragment(), View.OnClickListener {
     override val contentViewId: Int
@@ -60,18 +63,24 @@ class TimeFragment : BaseFragment(), View.OnClickListener {
         btn_time_fm_submit.setOnClickListener(this)
         iv_time_fm_signin_satuation_arrow.setOnClickListener(this)
         viewmodel.getMembersFromDB().observeNotNull {
-            teamSize = it.size
+            teamSize = 15//it.size
         }
-        restartCountDown()
         setRecyclerView()
     }
 
-    private fun setRecyclerView() {
+    /**
+     * 生成测试数据
+     */
+    private fun addData() {
         var bea: Member
         for (i in 1..15) {
             bea = Member("我叫陈阳${i}")
             members.add(bea)
         }
+    }
+
+    private fun setRecyclerView() {
+
         var s: SlideLayout? = null
         rvAdapter = CommonRecycAdapter(
             R.layout.item_signin_situation,
@@ -99,6 +108,7 @@ class TimeFragment : BaseFragment(), View.OnClickListener {
                     override fun onMenuOpen(slide: SlideLayout) {
                         s = slide
                     }
+
                     override fun onMenuClose(slide: SlideLayout) {
                         if (s != null) {
                             s = null
@@ -125,6 +135,7 @@ class TimeFragment : BaseFragment(), View.OnClickListener {
         if (members.isEmpty()) {
             onMembersEmpty()
         }
+        tv_num_of_unsignin.setText("剩余未签到人数: ${members.size}")
     }
 
     /**
@@ -135,6 +146,7 @@ class TimeFragment : BaseFragment(), View.OnClickListener {
         members.remove(bean)
         rvAdapter.notifyDataSetChanged()
         tv_num_of_signed.setText("已签到人数: ${teamSize - members.size}")
+        tv_num_of_unsignin.setText("剩余未签到人数: ${members.size}")
         if (members.isEmpty()) {
             onMembersEmpty()
         }
@@ -155,6 +167,8 @@ class TimeFragment : BaseFragment(), View.OnClickListener {
         if (members.isEmpty()) {
             onMembersEmpty()
         }
+        tv_num_of_signed.setText("已签到人数: ${teamSize - members.size}")
+        tv_num_of_unsignin.setText("剩余未签到人数: ${members.size}")
     }
 
     /**
@@ -187,6 +201,10 @@ class TimeFragment : BaseFragment(), View.OnClickListener {
             //添加打卡
             R.id.iv_time_fm_add_signin -> {
                 if (UserUtil.isCaptain) {
+                    if (hasSignTask()) {
+                        ToastUtil.showMsg("对不起，已经有一个签到正在进行！")
+                        return
+                    }
                     if (cl_time_fm_add.visibility != View.VISIBLE) {
                         cl_time_fm_add.visibility = View.VISIBLE
                         iv_time_fm_add_signin.setImageResource(R.drawable.ic_back_gray)
@@ -226,12 +244,12 @@ class TimeFragment : BaseFragment(), View.OnClickListener {
             R.id.btn_time_fm_submit -> {
                 if (tv_time_fm_add_signin_start_time.text.isEmpty() ||
                     tv_time_fm_add_signin_end_time.text.isEmpty() ||
-                    et_add_personal_fm_project.text?.isEmpty() ?: false ||
+                    et_time_fm_project.text?.isEmpty() ?: false ||
                     et_time_fm_where.text?.isEmpty() ?: false
                 ) {
                     showToast("请设置完整签到信息！")
                 } else {
-                    if (startSignInTime > endSignInTime) {
+                    if (startSignInTime < endSignInTime) {
                         sp.editor {
                             putInt(
                                 SIGN_IN_START_TIME,
@@ -252,6 +270,11 @@ class TimeFragment : BaseFragment(), View.OnClickListener {
                         endTime = String.format("%02d", endSignInTime % 60)
                         tv_current_signin_end_time.text = "签到结束时间: ${startTime}:${endTime}"
                         startCountDown()
+                        addData()
+                        cl_time_fm_add.visibility = View.GONE
+                        tv_num_of_unsignin.setText("剩余未签到人数: ${members.size}")
+                        ToastUtil.showMsg("现在开始签到！")
+
                     } else {
                         ToastUtil.showMsg("请选择正确的开始结束时间！")
                     }
@@ -281,7 +304,8 @@ class TimeFragment : BaseFragment(), View.OnClickListener {
             duration = (0.5 * 60 * 1000).toLong()
             addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator) {
-                    tv_num_of_unsignin.setText("未签到人数: ${members.size}")
+                    tv_time_fm_num_of_late.setText("迟到人数: ${members.size}")
+                    onSignFinished()
                 }
             })
         }
@@ -289,19 +313,19 @@ class TimeFragment : BaseFragment(), View.OnClickListener {
     }
 
     private fun restartCountDown() {
+        LogUtil.d(TAG,"执行了restartCountDown")
         if (!countDownAnimator.isRunning) {
             if (endSignInTime == 0) {
-                endSignInTime = sp.getInt(SIGN_IN_END_TIME, -1)
-                startSignInTime = sp.getInt(SIGN_IN_START_TIME, -1)
 
-                if (endSignInTime == -1 || startSignInTime == -1) { //这种情况说明，并未有上次未完成的签到
+                if (!hasSignTask()) {
+                    //这种情况说明，并没有未完成的签到
                     return
                 }
-
                 val curTime =
                     calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE)
+                members.clear()
                 viewmodel.getAllUnsignedMemer().observeNotNull {
-                    members.clear()
+                    LogUtil.d(TAG,"数据库中的未签到的人数为${it.size}")
                     var member: Member
                     for (entity in it) {
                         member = Member(entity.name)
@@ -318,25 +342,61 @@ class TimeFragment : BaseFragment(), View.OnClickListener {
 //                        duration = (0.5 * 60 * 1000).toLong()
                         addListener(object : AnimatorListenerAdapter() {
                             override fun onAnimationEnd(animation: Animator) {
-                                tv_num_of_unsignin.setText("未签到人数: ${members.size}")
+                                tv_time_fm_num_of_late.setText("迟到人数: ${members.size}")
+                                onSignFinished()
                             }
                         })
                     }
                     countDownAnimator.start()
                 } else if (curTime < startSignInTime) {
-                    ToastUtil.showMsg("说实话，这种情况我还没写处理逻辑！")
+                    ToastUtil.showMsg("说实话，这种情况我还没写提前设置签到的处理逻辑！")
                 }
             }
             countDownAnimator.start()
         }
     }
 
-    override fun onDetach() {
+    /**
+     * 当一次签到执行完毕以后将要执行的操作
+     */
+    private fun onSignFinished() {
+
+    }
+
+    /**
+     * 用来判断是否有一个签到任务正在进行
+     */
+    private fun hasSignTask(): Boolean {
+        val time = sp.getInt(SIGN_IN_START_TIME, -1)
+        return time != -1
+    }
+
+    override fun onStart() {
+        super.onStart()
+        restartCountDown()
+    }
+
+    override fun onDestroyView() {
         if (countDownAnimator.isRunning) {
             countDownAnimator.cancel()
         }
-        super.onDetach()
+        super.onDestroyView()
+        LogUtil.d(TAG, "*****onDestroyView*****")
     }
+
+    override fun onStop() {
+        super.onStop()
+        LogUtil.d(TAG, "*****onStop*****")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        LogUtil.d(TAG,"存储了未签到的人数为${members.size}")
+        viewmodel.deleteAllUnsignedMember()
+        viewmodel.saveUnsignedMember(members)
+    }
+
+
 
     companion object {
         const val TAG = "TimeFragment"
