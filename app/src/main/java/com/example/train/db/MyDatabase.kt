@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.train.App
+import com.example.train.db.dao.MainDao
 import com.example.train.db.dao.MemberDao
 import com.example.train.db.dao.TimeDao
 import com.example.train.db.entity.TeamMemberEntity
@@ -20,8 +21,9 @@ import com.example.train.db.entity.UnsignedEntity
 )
 abstract class MyDatabase : RoomDatabase() {
 
-    abstract fun MemberDao(): MemberDao
-    abstract fun TimeDao(): TimeDao
+    abstract fun memberDao(): MemberDao
+    abstract fun timeDao(): TimeDao
+    abstract fun mainDao(): MainDao
 
     companion object {
 

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragment_main"
-        android:name="com.example.train.view.fragment.MainFragment"
+        android:name="com.example.train.view.fragment.first.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/fragment_mine"
-        android:name="com.example.train.view.fragment.MineFragment"
+        android:name="com.example.train.view.fragment.first.MineFragment"
         android:label="fragment_mine"
         tools:layout="@layout/fragment_mine" >
         <action
@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/fragmen_control_team"
-        android:name="com.example.train.view.fragment.ControlTeamFragment"
+        android:name="com.example.train.view.fragment.first.ControlTeamFragment"
         android:label="fragment_team"
         tools:layout="@layout/fragment_control_team">
         <action

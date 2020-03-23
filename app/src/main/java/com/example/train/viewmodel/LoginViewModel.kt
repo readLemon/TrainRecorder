@@ -40,6 +40,8 @@ class LoginViewModel : BaseViewModel() {
         mCompositeDisposable.add(dis)
     }
 
+
+
     fun register(username: String, psw: String) {
         val dis = loginRepo.resigter(username, psw).subscribe({},
             {

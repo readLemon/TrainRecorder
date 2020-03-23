@@ -2,6 +2,7 @@ package com.example.train.repository
 
 import androidx.lifecycle.LiveData
 import com.example.train.bean.JsonWrapper
+import com.example.train.bean.UserBean
 import com.example.train.db.entity.TeamMemberEntity
 import com.example.train.db.entity.UnsignedEntity
 import com.example.train.model.TimeModel
@@ -44,7 +45,7 @@ class TimeRepository : BaseRepository() {
         duration: Int,
         project: String
     ): Observable<JsonWrapper<*>> {
-        return observe(retrofit.requestAddLate(username, time, duration, project))
+        return observe(retrofit.requestAddLate(username, time, duration, project,(UserUtil.getCurrentUser() as UserBean).team))
     }
 
     fun addAbsent(

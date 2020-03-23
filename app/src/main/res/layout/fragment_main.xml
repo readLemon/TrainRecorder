@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:background="@color/main_fragment_bg_color"
     tools:ignore="UnusedAttribute"
-    tools:context=".view.fragment.MainFragment">
+    tools:context=".view.fragment.first.MainFragment">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="0dp"

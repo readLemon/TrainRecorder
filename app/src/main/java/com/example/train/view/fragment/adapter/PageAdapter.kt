@@ -3,8 +3,8 @@ package com.example.train.view.fragment.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.example.train.view.fragment.AddPersonalChildTeamFragment
-import com.example.train.view.fragment.AddTeamChildTeamFragment
+import com.example.train.view.fragment.first.AddPersonalChildTeamFragment
+import com.example.train.view.fragment.first.AddTeamChildTeamFragment
 
 /**
  * Created by chenyang
@@ -27,7 +27,8 @@ class PageAdapter(fm: FragmentManager, val cnt: Int, val fragmentHashMap: HashMa
                     fragmentHashMap.put(0, currentFragment)
                 }
                 1 -> {
-                    currentFragment = AddPersonalChildTeamFragment()
+                    currentFragment =
+                        AddPersonalChildTeamFragment()
                     fragmentHashMap.put(1, currentFragment)
                 }
 

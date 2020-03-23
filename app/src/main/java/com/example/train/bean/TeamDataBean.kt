@@ -9,9 +9,11 @@ data class TeamDataBean(
     val teamName: String,
     val totalTrainCount: Int,
     val trainData: List<TrainData>
-)
+){
 
-data class TrainData(
-    val trainPro: String,
-    val trainTime: Long
-)
+    data class TrainData(
+        val trainPro: String,
+        val trainTime: Long
+    )
+
+}

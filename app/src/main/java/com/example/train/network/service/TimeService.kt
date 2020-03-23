@@ -26,7 +26,8 @@ interface TimeService {
         @Field("username") username: String,
         @Field("time") time: Long,
         @Field("duration") duration: Int,
-        @Field("project") project: String
+        @Field("project") project: String,
+        @Field("teamname") teamname: String
     ): Observable<JsonWrapper<*>>
 
 

@@ -34,9 +34,7 @@ class MineViewModel : BaseViewModel() {
                     LogUtil.e(TAG, "there is a error!!!stasus: ${it.status},info: ${it.info}")
                 }
             })
-
         mCompositeDisposable.add(dis)
-
     }
 
     fun getAbsents(username: String) {

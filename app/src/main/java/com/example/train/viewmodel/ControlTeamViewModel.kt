@@ -10,8 +10,6 @@ class ControlTeamViewModel : BaseViewModel() {
 
     private val controTeamRepository by lazy { ControlTeamRepository() }
 
-
-
     fun addLeave(time: Long, project: String, reason: String): MutableLiveData<Boolean> {
         val isSuccess = MutableLiveData<Boolean>(null)
         val dis = controTeamRepository.addLeave(time, project, reason).subscribe(

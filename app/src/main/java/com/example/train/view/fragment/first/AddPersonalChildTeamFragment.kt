@@ -1,12 +1,12 @@
-package com.example.train.view.fragment
+package com.example.train.view.fragment.first
 
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import com.example.train.R
-import com.example.train.view.fragment.ControlTeamFragment.Companion.isInputAvailable
+import com.example.train.view.fragment.BaseFragment
+import com.example.train.view.fragment.first.ControlTeamFragment.Companion.isInputAvailable
 import com.example.train.viewmodel.ControlTeamViewModel
 import kotlinx.android.synthetic.main.fragment_add_personal.*
 /**

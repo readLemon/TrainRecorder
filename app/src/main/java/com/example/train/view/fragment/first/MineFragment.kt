@@ -1,7 +1,6 @@
-package com.example.train.view.fragment
+package com.example.train.view.fragment.first
 
 import android.os.Build
-import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -11,10 +10,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.train.R
 import com.example.train.bean.AbsentBean
 import com.example.train.bean.LeaveBean
+import com.example.train.util.UserUtil
+import com.example.train.view.fragment.BaseFragment
+import com.example.train.view.fragment.MineFragmentDirections
 import com.example.train.view.fragment.adapter.CommonRecycAdapter
 import com.example.train.viewmodel.MineViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.mredrock.cyxbs.common.utils.LogUtil
 import kotlinx.android.synthetic.main.fragment_mine.*
 import kotlinx.android.synthetic.main.item_rv_mine_fragment_bottom.view.*
 /**
@@ -33,22 +34,25 @@ class MineFragment : BaseFragment(), View.OnClickListener {
     private lateinit var absentRecycApapter: CommonRecycAdapter<AbsentBean>
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        LogUtil.e("*******","***************")
-    }
 
     override fun initial(view: View) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             lcv_mine_fm_leave.startAnim(2000L)
             lcv_mine_fm_absent.startAnim(2000L)
+            viewModel.getAbsents(username = UserUtil.currentUsername)
+            viewModel.getLeaves(username = UserUtil.currentUsername)
+
         }
         setView()
-        var l: LeaveBean
-        for (i in 1..20) {
-            l = LeaveBean("ddd", "ddddd", System.currentTimeMillis())
-            leaveBeans.add(l)
+
+        viewModel.leaves.observeNotNull {
+            leaveBeans.addAll(it)
         }
+
+        viewModel.absents.observeNotNull {
+            absentBeans.addAll(it)
+        }
+
         leaveRecycApapter = CommonRecycAdapter(
             R.layout.item_rv_mine_fragment_bottom,
             leaveBeans,
@@ -76,7 +80,8 @@ class MineFragment : BaseFragment(), View.OnClickListener {
 
     private fun setView() {
         tb_mine_fm_leave_absent.setNavigationOnClickListener {
-            val action = MineFragmentDirections.actionFragmentMineToFragmentMain()
+            val action =
+                MineFragmentDirections.actionFragmentMineToFragmentMain()
             Navigation.findNavController(it).navigate(action)
         }
 

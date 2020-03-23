@@ -63,7 +63,12 @@ class TimeFragment : BaseFragment(), View.OnClickListener {
         btn_time_fm_submit.setOnClickListener(this)
         iv_time_fm_signin_satuation_arrow.setOnClickListener(this)
         viewmodel.getMembersFromDB().observeNotNull {
-            teamSize = 15//it.size
+            teamSize = it.size
+            viewmodel.getMembersFromDB().observeNotNull {
+                for (bean in it) {
+                    members.add(Member(bean.name))
+                }
+            }
         }
         setRecyclerView()
     }
@@ -71,16 +76,16 @@ class TimeFragment : BaseFragment(), View.OnClickListener {
     /**
      * 生成测试数据
      */
-    private fun addData() {
-        var bea: Member
-        for (i in 1..15) {
-            bea = Member("我叫陈阳${i}")
-            members.add(bea)
-        }
-    }
+//    private fun addData() {
+//        var bea: Member
+//        for (i in 1..15) {
+//            bea = Member("我叫陈阳${i}")
+//            members.add(bea)
+//        }
+//
+//    }
 
     private fun setRecyclerView() {
-
         var s: SlideLayout? = null
         rvAdapter = CommonRecycAdapter(
             R.layout.item_signin_situation,
@@ -270,7 +275,8 @@ class TimeFragment : BaseFragment(), View.OnClickListener {
                         endTime = String.format("%02d", endSignInTime % 60)
                         tv_current_signin_end_time.text = "签到结束时间: ${startTime}:${endTime}"
                         startCountDown()
-                        addData()
+//                        addData()
+                        rvAdapter.notifyDataSetChanged()   //直接刷新即可，早已加载数据
                         cl_time_fm_add.visibility = View.GONE
                         tv_num_of_unsignin.setText("剩余未签到人数: ${members.size}")
                         ToastUtil.showMsg("现在开始签到！")
@@ -313,7 +319,7 @@ class TimeFragment : BaseFragment(), View.OnClickListener {
     }
 
     private fun restartCountDown() {
-        LogUtil.d(TAG,"执行了restartCountDown")
+        LogUtil.d(TAG, "执行了restartCountDown")
         if (!countDownAnimator.isRunning) {
             if (endSignInTime == 0) {
 
@@ -325,7 +331,7 @@ class TimeFragment : BaseFragment(), View.OnClickListener {
                     calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE)
                 members.clear()
                 viewmodel.getAllUnsignedMemer().observeNotNull {
-                    LogUtil.d(TAG,"数据库中的未签到的人数为${it.size}")
+                    LogUtil.d(TAG, "数据库中的未签到的人数为${it.size}")
                     var member: Member
                     for (entity in it) {
                         member = Member(entity.name)
@@ -391,11 +397,15 @@ class TimeFragment : BaseFragment(), View.OnClickListener {
 
     override fun onPause() {
         super.onPause()
-        LogUtil.d(TAG,"存储了未签到的人数为${members.size}")
+        LogUtil.d(TAG, "存储了未签到的人数为${members.size}")
         viewmodel.deleteAllUnsignedMember()
         viewmodel.saveUnsignedMember(members)
     }
 
+    override fun onDestroy() {
+        viewmodel.clearDisposable()
+        super.onDestroy()
+    }
 
 
     companion object {

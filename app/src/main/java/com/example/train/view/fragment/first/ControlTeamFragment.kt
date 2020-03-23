@@ -1,8 +1,7 @@
-package com.example.train.view.fragment
+package com.example.train.view.fragment.first
 
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
 import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatButton
@@ -10,8 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.example.train.R
 import com.example.train.util.DensityUtil
+import com.example.train.view.fragment.BaseFragment
 import com.example.train.view.fragment.adapter.PageAdapter
-import com.mredrock.cyxbs.common.utils.LogUtil
 import kotlinx.android.synthetic.main.fragment_add_personal.*
 import kotlinx.android.synthetic.main.fragment_control_team.*
 import kotlin.properties.Delegates
@@ -44,9 +43,17 @@ class ControlTeamFragment : BaseFragment(), View.OnClickListener {
 
     private fun setChildFragment() {
         val addPersonalFragment =
-            AddPersonalChildTeamFragment({ it.setOnClickListener(this@ControlTeamFragment) })
+            AddPersonalChildTeamFragment({
+                it.setOnClickListener(
+                    this@ControlTeamFragment
+                )
+            })
         val addTeamFragment =
-            AddTeamChildTeamFragment({ it.setOnClickListener(this@ControlTeamFragment) })
+            AddTeamChildTeamFragment({
+                it.setOnClickListener(
+                    this@ControlTeamFragment
+                )
+            })
         val hashMap: HashMap<Int, Fragment> =
             hashMapOf(0 to addPersonalFragment, 1 to addTeamFragment)
         pageAdapter = PageAdapter(childFragmentManager, hashMap.size, hashMap)
@@ -107,7 +114,10 @@ class ControlTeamFragment : BaseFragment(), View.OnClickListener {
 
         fun isInputAvailable(vararg input: String): Boolean {
             for (str in input) {
-                if (!isInputAvailable(str)) {
+                if (!isInputAvailable(
+                        str
+                    )
+                ) {
                     return false
                 }
             }
