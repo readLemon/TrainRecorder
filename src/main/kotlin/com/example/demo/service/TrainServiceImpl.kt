@@ -6,7 +6,7 @@ import com.example.demo.bean.Leave
 import com.example.demo.bean.Result
 import com.example.demo.dao.TrainDaoImpl
 import com.example.demo.service.iface.ITrainService
-import com.example.demo.util.isUserExist
+import com.example.demo.util.UserUtil
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.sql.SQLException
@@ -18,12 +18,16 @@ import javax.annotation.Resource
  */
 @Service
 class TrainServiceImpl : ITrainService {
+
+    @Autowired
+    lateinit var userUtil: UserUtil
+
     @Autowired
     lateinit var trainDao: TrainDaoImpl
     override fun addAbsent(username: String, time: Long, absentProject: String): String {
         val result = Result()
         //判断用户是否存在
-        if (isUserExist(username)) {
+        if (userUtil.isUserExist(username)) {
             result.status = ApiConfig.ResponseStatus.INVALIB_USER
             result.info = ApiConfig.UserInfo.INVALIB_USER
             return result.toJson()
@@ -42,7 +46,7 @@ class TrainServiceImpl : ITrainService {
     override fun addLeave(username: String, time: Long, leaveProject: String, leaveReason: String): String {
         val result = Result()
         //判断用户是否存在
-        if (isUserExist(username)) {
+        if (userUtil.isUserExist(username)) {
             result.status = ApiConfig.ResponseStatus.INVALIB_USER
             result.info = ApiConfig.UserInfo.INVALIB_USER
             return result.toJson()
@@ -62,7 +66,7 @@ class TrainServiceImpl : ITrainService {
         val absents: List<Absent>
         val result = Result()
         //判断用户是否存在
-        if (isUserExist(username)) {
+        if (userUtil.isUserExist(username)) {
             result.status = ApiConfig.ResponseStatus.INVALIB_USER
             result.info = ApiConfig.UserInfo.INVALIB_USER
             return result.toJson()
@@ -84,7 +88,7 @@ class TrainServiceImpl : ITrainService {
         val leaves: List<Leave>
         val result = Result()
         //判断用户是否存在
-        if (isUserExist(username)) {
+        if (userUtil.isUserExist(username)) {
             result.status = ApiConfig.ResponseStatus.INVALIB_USER
             result.info = ApiConfig.UserInfo.INVALIB_USER
             return result.toJson()

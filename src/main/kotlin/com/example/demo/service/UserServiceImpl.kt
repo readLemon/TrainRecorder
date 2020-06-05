@@ -5,12 +5,16 @@ import com.example.demo.bean.Result
 import com.example.demo.bean.User
 import com.example.demo.dao.UserDaoImpl
 import com.example.demo.service.iface.IUserService
-import com.example.demo.util.isUserExist
+import com.example.demo.util.UserUtil
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service(value = "userService")
 class UserServiceImpl : IUserService {
+
+    @Autowired
+    lateinit var userUtil: UserUtil
+
     @Autowired
     lateinit var userDao: UserDaoImpl
     override fun register(username: String, psw: String): String {
@@ -29,7 +33,7 @@ class UserServiceImpl : IUserService {
     override fun login(username: String, psw: String, code: String): String {
         val userResult: User = userDao.login(username, psw)
         val result = Result()
-        if (isUserExist(username)) {
+        if (userUtil.isUserExist(username)) {
             result.status = ApiConfig.ResponseStatus.INVALIB_USER
             result.info = ApiConfig.UserInfo.INVALIB_USER
             return result.toJson()

@@ -4,7 +4,8 @@ import com.example.demo.bean.ApiConfig
 import com.example.demo.bean.Late
 import com.example.demo.bean.Result
 import com.example.demo.dao.LateDaoImpl
-import com.example.demo.util.isUserExist
+import com.example.demo.util.UserUtil
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.sql.SQLException
 import javax.annotation.Resource
@@ -15,12 +16,16 @@ import javax.annotation.Resource
  */
 @Service
 class LateServiceImpl {
+
+    @Autowired
+    lateinit var userUtil: UserUtil
+
     @Resource
     private lateinit var lateDao: LateDaoImpl
     fun addLate(username: String, time: Long, duration: Int, project: String, team: String): String {
         val result = Result()
         //判断用户是否存在
-        if (isUserExist(username)) {
+        if (userUtil.isUserExist(username)) {
             result.status = ApiConfig.ResponseStatus.INVALIB_USER
             result.info = ApiConfig.UserInfo.INVALIB_USER
             return result.toJson()
@@ -40,7 +45,7 @@ class LateServiceImpl {
         val lates: List<Late>
         val result = Result()
         //判断用户是否存在
-        if (isUserExist(username)) {
+        if (userUtil.isUserExist(username)) {
             result.status = ApiConfig.ResponseStatus.INVALIB_USER
             result.info = ApiConfig.UserInfo.INVALIB_USER
             return result.toJson()

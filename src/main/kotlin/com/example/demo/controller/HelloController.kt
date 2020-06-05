@@ -21,7 +21,6 @@ class HelloController {
 //    fun test(@RequestParam hehelo: String): String {
 //    fun test(@RequestBody per: Map<String, String>): String { //raw
     fun test(@RequestParam per: Map<String, String>): String { //x-www-form-urlencoded
-
         for ( temp in per.entries)
         println("v -> ${temp.key}, v -> ${temp.value}")
 
@@ -41,12 +40,5 @@ class HelloController {
             user.id = p0.getInt("id")
             return user;
         }
-
     }
-
-
-
-
-
-
 }
